@@ -1,0 +1,245 @@
+---
+layout: layouts/base.njk
+title: Contact
+description: Contact Monterey Bay Door - Get a quote, schedule service, or discuss your commercial access control needs
+---
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h1>Contact Monterey Bay Door</h1>
+            <p class="section-subtitle">Get a quote, schedule service, or discuss your commercial access control needs</p>
+        </div>
+    </div>
+</section>
+
+<section class="hero" style="background: linear-gradient(135deg, var(--color-primary) 0%, #0a2b30 100%); padding: var(--spacing-3xl) 0;">
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h2 style="color: var(--color-white);">Ready to discuss your project?</h2>
+                <p style="color: rgba(255, 255, 255, 0.9);">Whether you're planning a new access control installation, need service on existing systems, or want to explore options for upgrading your commercial door hardware, we'd love to hear from you. Our team is ready to provide professional consultation and competitive quotes for projects throughout Central California.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Contact Information</h2>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>Phone</h3>
+                <p><strong><a href="tel:(831)555-0100">(831) 555-0100</a></strong> - Main Office</p>
+                <p><strong><a href="tel:(831)555-0100">(831) 555-0100</a></strong> - Emergency Service</p>
+            </div>
+            
+            <div class="card">
+                <h3>Email</h3>
+                <p><strong><a href="mailto:info@mbdoor.com">info@mbdoor.com</a></strong> - General Information</p>
+                <p><strong><a href="mailto:service@mbdoor.com">service@mbdoor.com</a></strong> - Service & Maintenance</p>
+                <p><strong><a href="mailto:quotes@mbdoor.com">quotes@mbdoor.com</a></strong> - Project Quotes</p>
+            </div>
+            
+            <div class="card">
+                <h3>Address</h3>
+                <p><strong>Monterey Bay Door</strong><br>
+                Hollister, CA<br>
+                <em>Full address available upon request</em></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Business Hours</h2>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>Regular Business Hours</h3>
+                <p><strong>Monday - Friday:</strong> 7:00 AM - 5:00 PM<br>
+                <strong>Saturday:</strong> 8:00 AM - 12:00 PM (Emergency service only)<br>
+                <strong>Sunday:</strong> Emergency service only</p>
+            </div>
+            
+            <div class="card">
+                <h3>Emergency Service</h3>
+                <p><strong>24/7</strong> for critical system failures</p>
+                <p>Available throughout our service area for urgent access control and door hardware issues.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Request a Quote</h2>
+            <p class="section-subtitle">Get a professional quote for your commercial access control or door hardware project</p>
+        </div>
+        
+        <form class="form" method="POST" action="/contact/" netlify>
+            <div class="form-group">
+                <label for="name" class="form-label">Name *</label>
+                <input type="text" id="name" name="name" class="form-input" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="company" class="form-label">Company *</label>
+                <input type="text" id="company" name="company" class="form-input" required>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone *</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email *</label>
+                    <input type="email" id="email" name="email" class="form-input" required>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--spacing-lg);">
+                <div class="form-group">
+                    <label for="project-type" class="form-label">Project Type</label>
+                    <select id="project-type" name="project-type" class="form-select">
+                        <option value="">Select Project Type</option>
+                        <option value="access-control">Access Control System</option>
+                        <option value="door-hardware">Door Hardware</option>
+                        <option value="service-contract">Service Contract</option>
+                        <option value="emergency-service">Emergency Service</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location" class="form-label">Project Location</label>
+                    <input type="text" id="location" name="location" class="form-input" placeholder="City, County">
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="description" class="form-label">Project Description</label>
+                <textarea id="description" name="description" class="form-textarea" placeholder="Please describe your project requirements, facility type, number of doors, etc."></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="timeline" class="form-label">Timeline</label>
+                <select id="timeline" name="timeline" class="form-select">
+                    <option value="">Select Timeline</option>
+                    <option value="asap">ASAP</option>
+                    <option value="1-2-weeks">1-2 weeks</option>
+                    <option value="1-2-months">1-2 months</option>
+                    <option value="planning">Planning stage</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="budget" class="form-label">Budget Range (Optional)</label>
+                <select id="budget" name="budget" class="form-select">
+                    <option value="">Select Budget Range</option>
+                    <option value="under-5k">Under $5,000</option>
+                    <option value="5k-15k">$5,000 - $15,000</option>
+                    <option value="15k-50k">$15,000 - $50,000</option>
+                    <option value="50k-plus">$50,000+</option>
+                    <option value="tbd">To be determined</option>
+                </select>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <button type="submit" class="btn btn-primary">Submit Quote Request</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Service Areas</h2>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>Primary Coverage:</h3>
+                <p>San Benito, Monterey, and Santa Cruz Counties</p>
+            </div>
+            
+            <div class="card">
+                <h3>Extended Service:</h3>
+                <p>San Jose Metro, Central Coast, Santa Clara County</p>
+            </div>
+            
+            <div class="card">
+                <h3>Emergency Service:</h3>
+                <p>Available 24/7 throughout our service area</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose Us?</h2>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>✓ Direct Vendor Relationships</h3>
+                <p>Competitive pricing from Allegion and other leading manufacturers</p>
+            </div>
+            
+            <div class="card">
+                <h3>✓ Full-Service Approach</h3>
+                <p>Design, installation, training, and ongoing support</p>
+            </div>
+            
+            <div class="card">
+                <h3>✓ Local Presence</h3>
+                <p>Based in Hollister with rapid response throughout Central California</p>
+            </div>
+            
+            <div class="card">
+                <h3>✓ Proven Experience</h3>
+                <p>Hotels, colleges, and commercial buildings trust us with their security</p>
+            </div>
+            
+            <div class="card">
+                <h3>✓ Professional Standards</h3>
+                <p>Licensed, bonded, insured with manufacturer certifications</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2>Quick Links</h2>
+        </div>
+        
+        <div class="text-center">
+            <div class="hero-actions">
+                <a href="/contact/" class="btn btn-primary">Request Quote</a>
+                <a href="/contact/" class="btn btn-secondary">Schedule Service</a>
+                <a href="/projects/" class="btn btn-secondary">View Projects</a>
+                <a href="/about/" class="btn btn-secondary">About Us</a>
+                <a href="/service-areas/" class="btn btn-secondary">Service Areas</a>
+            </div>
+            
+            <div class="mt-lg">
+                <p><strong>Licensed • Bonded • Insured</strong><br>
+                <strong>CA License #</strong> [License Number TBD]</p>
+            </div>
+        </div>
+    </div>
+</section>

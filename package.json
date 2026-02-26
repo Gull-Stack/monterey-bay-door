@@ -1,0 +1,22 @@
+{
+  "name": "monterey-bay-door",
+  "version": "1.0.0",
+  "description": "Commercial access control & door hardware specialists serving Central California",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "start": "eleventy --serve"
+  },
+  "keywords": [
+    "access control",
+    "door hardware",
+    "commercial security",
+    "monterey bay"
+  ],
+  "author": "GullStack",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0"
+  }
+}

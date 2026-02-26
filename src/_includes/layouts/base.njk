@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} | {% endif %}Monterey Bay Door - Commercial Access Control & Door Hardware</title>
+    <meta name="description" content="{% if description %}{{ description }}{% else %}Commercial access control specialists serving Central California since 2007. Professional door hardware, card readers, and security systems for hotels, colleges, and commercial buildings.{% endif %}">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/site.webmanifest">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    
+    <!-- Snipcart placeholder (for future e-commerce) -->
+    <!-- <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script> -->
+    <!-- <div hidden id="snipcart" data-api-key="your_api_key"></div> -->
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="container">
+                <div class="nav-brand">
+                    <a href="/" class="logo">
+                        <img src="/assets/logos/monterey-bay-door-logo-wide-dark.png" alt="Monterey Bay Door" class="logo-img">
+                    </a>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li><a href="/" class="nav-link">Home</a></li>
+                        <li><a href="/about/" class="nav-link">About</a></li>
+                        <li class="nav-dropdown">
+                            <a href="/services/" class="nav-link">Services</a>
+                            <ul class="nav-dropdown-menu">
+                                <li><a href="/services/access-control/" class="nav-link">Access Control</a></li>
+                                <li><a href="/services/door-hardware/" class="nav-link">Door Hardware</a></li>
+                                <li><a href="/services/service-maintenance/" class="nav-link">Service & Maintenance</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/projects/" class="nav-link">Projects</a></li>
+                        <li><a href="/partners/" class="nav-link">Partners</a></li>
+                        <li><a href="/service-areas/" class="nav-link">Service Areas</a></li>
+                        <li><a href="/contact/" class="nav-link">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-actions">
+                    <a href="/contact/" class="btn btn-primary">Get Quote</a>
+                    <button class="nav-toggle" id="navToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        {{ content | safe }}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="/assets/logos/monterey-bay-door-logo-wide-white.png" alt="Monterey Bay Door" class="footer-logo-img">
+                    </div>
+                    <p class="footer-description">
+                        Commercial access control & door hardware specialists serving Central California since 2007.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="/services/access-control/">Access Control Systems</a></li>
+                        <li><a href="/services/door-hardware/">Door Hardware</a></li>
+                        <li><a href="/services/service-maintenance/">Service & Maintenance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="/about/">About Us</a></li>
+                        <li><a href="/projects/">Projects</a></li>
+                        <li><a href="/partners/">Partners</a></li>
+                        <li><a href="/service-areas/">Service Areas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <div class="footer-contact">
+                        <p><strong>Phone:</strong> (831) 555-0100</p>
+                        <p><strong>Email:</strong> info@mbdoor.com</p>
+                        <p><strong>Location:</strong> Hollister, CA</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Monterey Bay Door. All rights reserved. Licensed • Bonded • Insured</p>
+                    <p class="gullstack-credit">Powered by <a href="https://gullstack.com" target="_blank" rel="noopener">GullStack</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/assets/js/main.js"></script>
+</body>
+</html>
