@@ -51,41 +51,41 @@ body {
 
 /* Typography */
 h1 {
-    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
     font-weight: 700;
     line-height: 1.15;
-    margin-bottom: 1.25rem;
-}
-
-h2 {
-    font-size: clamp(1.6rem, 3vw, 2.5rem);
-    font-weight: 700;
-    line-height: 1.2;
     margin-bottom: 1rem;
 }
 
-h3 {
-    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
-    font-weight: 600;
-    line-height: 1.3;
+h2 {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    font-weight: 700;
+    line-height: 1.25;
     margin-bottom: 0.75rem;
 }
 
-h4 {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+h3 {
+    font-size: clamp(1.05rem, 2vw, 1.35rem);
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.3;
     margin-bottom: 0.5rem;
 }
 
+h4 {
+    font-size: clamp(0.9rem, 1.5vw, 1.05rem);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.4rem;
+}
+
 p {
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     line-height: 1.7;
-    margin-bottom: 0.875rem;
+    margin-bottom: 0.75rem;
 }
 
 .lead {
-    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-size: clamp(0.925rem, 1.5vw, 1.05rem);
     font-weight: 500;
     line-height: 1.6;
     color: var(--color-text-muted);
@@ -95,8 +95,8 @@ p {
 .btn {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
+    padding: 0.65rem 1.35rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: var(--border-radius);
@@ -405,7 +405,7 @@ p {
 }
 
 .subheadline {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
     color: var(--color-text-muted);
     margin-bottom: 2rem;
     max-width: 600px;
@@ -481,11 +481,12 @@ p {
 .partners-title {
     text-align: center;
     color: var(--color-white);
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    letter-spacing: 0.2rem;
-    margin-bottom: 3rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.25rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
+    opacity: 0.6;
 }
 
 .partners-scroll {
@@ -536,7 +537,7 @@ p {
 }
 
 .section-subtitle {
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-size: clamp(0.875rem, 1.5vw, 1rem);
     color: var(--color-text-muted);
     line-height: 1.6;
 }
@@ -584,8 +585,10 @@ p {
 
 .footer-section h4 {
     color: var(--color-white);
-    font-size: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .footer-links {
@@ -600,6 +603,7 @@ p {
     color: var(--color-text-muted);
     text-decoration: none;
     transition: var(--transition);
+    font-size: 0.85rem;
 }
 
 .footer-links a:hover {
@@ -619,8 +623,12 @@ p {
 
 .footer-bottom {
     border-top: 1px solid var(--color-border);
-    padding-top: 2rem;
-    text-align: center;
+    padding-top: 1.5rem;
+}
+
+.footer-copy {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.4);
 }
 
 .footer-bottom-content {
@@ -638,33 +646,37 @@ p {
 }
 
 /* GullStack Footer Credit */
-.gullstack-link {
+.gullstack-credit {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: var(--color-text-muted);
+    color: rgba(255,255,255,0.45);
+    font-size: 0.8rem;
+}
+
+.gullstack-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: rgba(255,255,255,0.6);
     text-decoration: none;
     transition: var(--transition);
 }
 
 .gullstack-link:hover {
-    color: var(--color-accent);
+    color: rgba(255,255,255,0.85);
 }
 
 .gullstack-bird {
     width: 18px;
     height: 18px;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 
-.gullstack-text {
-    font-size: 0.85rem;
-    font-weight: 400;
+.gullstack-name {
+    font-size: 0.8rem;
+    font-weight: 500;
     letter-spacing: 0.02em;
-}
-
-.gullstack-text strong {
-    font-weight: 700;
 }
 
 /* Footer grid: force 4 columns */
