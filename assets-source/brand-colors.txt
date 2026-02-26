@@ -1,0 +1,22 @@
+# MONTEREY BAY DOOR - Brand Colors
+
+## Primary Color Palette
+- **White:** #FFFFFF (primary background/text)
+- **Dark Teal:** #051E21 (primary brand color - dark sophisticated)
+- **Sage Green:** #94AB69 (accent color - natural/professional)
+
+## Color Usage Notes
+- Dark Teal (#051E21): Headers, primary buttons, logo elements
+- Sage Green (#94AB69): Accent elements, secondary buttons, highlights
+- White (#FFFFFF): Background, negative space, contrast text
+
+## Color Harmony
+This palette creates a professional, trustworthy feel perfect for commercial access control:
+- Dark teal conveys security and reliability
+- Sage green adds approachability and growth
+- White provides clean, professional contrast
+
+## Technical Specs
+- All colors web-safe and accessible
+- High contrast ratios for readability
+- Professional B2B aesthetic aligned with dwellpaint.com framework
