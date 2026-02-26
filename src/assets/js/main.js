@@ -31,9 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Close menu when clicking on a link
-        const navLinks = navMenu.querySelectorAll('.nav-link');
+        // Close menu when clicking on a link (but not the dropdown trigger)
+        const navLinks = navMenu.querySelectorAll('.nav-link:not(.nav-dropdown-trigger)');
         navLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close dropdown links on mobile after click
+        const dropdownLinks = navMenu.querySelectorAll('.nav-dropdown-menu a');
+        dropdownLinks.forEach(function(link) {
             link.addEventListener('click', function() {
                 navMenu.classList.remove('active');
             });

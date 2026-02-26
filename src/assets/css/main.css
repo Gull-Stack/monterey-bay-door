@@ -276,12 +276,27 @@ p {
     min-width: 220px;
     list-style: none;
     z-index: 1001;
-    margin-top: 0.5rem;
+    padding-top: 1rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.nav-dropdown:hover .nav-dropdown-menu {
+/* Bridge the gap between trigger and dropdown so hover doesn't break */
+.nav-dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
     display: block;
+}
+
+.nav-dropdown-menu li {
+    list-style: none;
 }
 
 .nav-dropdown-menu li a {
@@ -312,17 +327,7 @@ p {
     color: var(--color-text-dark);
 }
 
-/* Contact page hero (compact) */
-.hero-compact {
-    min-height: 35vh;
-    padding-top: 100px;
-    padding-bottom: 3rem;
-}
-
-/* Half-height hero for inner pages */
-.hero-half {
-    min-height: 50vh;
-}
+/* These overrides are applied after .hero below */
 
 /* Gallery Grid */
 .gallery-grid {
@@ -431,6 +436,17 @@ p {
     color: var(--color-accent);
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
+}
+
+/* Inner page hero overrides — must come after .hero */
+.hero.hero-half {
+    min-height: 50vh;
+}
+
+.hero.hero-compact {
+    min-height: 35vh;
+    padding-top: 100px;
+    padding-bottom: 3rem;
 }
 
 .hero-stat p {
