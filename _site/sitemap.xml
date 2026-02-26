@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://montereybayoor.com/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
     <loc>https://montereybayoor.com/about/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://montereybayoor.com/services/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://montereybayoor.com/services/access-control/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://montereybayoor.com/services/door-hardware/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://montereybayoor.com/services/service-maintenance/</loc>
     <lastmod>2024-02-25</lastmod>
   </url>
   <url>
@@ -42,6 +22,26 @@
   </url>
   <url>
     <loc>https://montereybayoor.com/assets/favicons/favicon-html-code/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/services/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/services/access-control/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/services/door-hardware/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/services/service-maintenance/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/</loc>
     <lastmod>2024-02-25</lastmod>
   </url>
 </urlset>
