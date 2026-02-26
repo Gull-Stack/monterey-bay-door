@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://montereybayoor.com/about/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
     <loc>https://montereybayoor.com/projects/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://montereybayoor.com/partners/</loc>
-    <lastmod>2024-02-25</lastmod>
-  </url>
-  <url>
-    <loc>https://montereybayoor.com/service-areas/</loc>
     <lastmod>2024-02-25</lastmod>
   </url>
   <url>
@@ -42,6 +30,18 @@
   </url>
   <url>
     <loc>https://montereybayoor.com/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/service-areas/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/about/</loc>
+    <lastmod>2024-02-25</lastmod>
+  </url>
+  <url>
+    <loc>https://montereybayoor.com/partners/</loc>
     <lastmod>2024-02-25</lastmod>
   </url>
 </urlset>
