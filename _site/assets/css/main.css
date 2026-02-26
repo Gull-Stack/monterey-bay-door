@@ -390,7 +390,6 @@ p {
                       url('/assets/images/hero/hero-commercial-building-1920w.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     color: var(--color-white);
     padding: 8rem 0 5rem;
 }
@@ -565,7 +564,6 @@ p {
 .section-bg {
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     position: relative;
 }
 
@@ -786,17 +784,40 @@ p {
     }
     
     .hero {
-        background-attachment: scroll;
+        background-attachment: scroll !important;
         text-align: center;
-        padding: 6rem 0 3rem;
+        padding: 5rem 1rem 2.5rem;
     }
     
     .hero.hero-half {
-        padding: 5rem 0 2.5rem;
+        padding: 5rem 1rem 2rem;
     }
     
     .hero.hero-compact {
-        padding: 5rem 0 2rem;
+        padding: 4.5rem 1rem 1.5rem;
+    }
+    
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+    }
+    
+    .hero-stat h4 {
+        font-size: 0.85rem;
+    }
+    
+    .hero-stat p {
+        font-size: 0.75rem;
+    }
+    
+    .subheadline {
+        font-size: 0.85rem;
+    }
+    
+    .hero h1 {
+        font-size: 1.6rem;
     }
     
     .hero-actions {
