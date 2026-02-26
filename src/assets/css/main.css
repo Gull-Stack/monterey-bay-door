@@ -51,41 +51,41 @@ body {
 
 /* Typography */
 h1 {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2rem, 4vw, 3.25rem);
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
 }
 
 h2 {
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1rem;
 }
 
 h3 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.75rem);
     font-weight: 600;
     line-height: 1.3;
-    margin-bottom: 1rem;
-}
-
-h4 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 600;
-    line-height: 1.4;
     margin-bottom: 0.75rem;
 }
 
-p {
+h4 {
     font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    font-size: 0.95rem;
     line-height: 1.7;
-    margin-bottom: 1rem;
+    margin-bottom: 0.875rem;
 }
 
 .lead {
-    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 500;
     line-height: 1.6;
     color: var(--color-text-muted);
@@ -95,8 +95,8 @@ p {
 .btn {
     display: inline-flex;
     align-items: center;
-    padding: 1rem 2rem;
-    font-size: 1.125rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
     font-weight: 600;
     text-decoration: none;
     border-radius: var(--border-radius);
@@ -235,6 +235,90 @@ p {
     transition: var(--transition);
 }
 
+/* Nav Phone */
+.nav-phone {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.nav-phone:hover {
+    color: var(--color-white);
+}
+
+.btn-sm {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
+}
+
+/* Dropdown Menu */
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown-trigger {
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: rgba(5, 30, 33, 0.98);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    padding: 0.75rem 0;
+    min-width: 220px;
+    list-style: none;
+    z-index: 1001;
+    margin-top: 0.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.nav-dropdown:hover .nav-dropdown-menu {
+    display: block;
+}
+
+.nav-dropdown-menu li a {
+    display: block;
+    padding: 0.6rem 1.25rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-dropdown-menu li a:hover {
+    color: var(--color-accent);
+    background: rgba(255,255,255,0.05);
+}
+
+/* White text on light background fix */
+.section-light h2,
+.section-light h3,
+.section-light h4,
+.section-light .section-title {
+    color: var(--color-primary-dark);
+}
+
+.section-light p,
+.section-light .section-subtitle {
+    color: var(--color-text-dark);
+}
+
+/* Contact page hero (compact) */
+.hero-compact {
+    min-height: 35vh;
+    padding-top: 100px;
+    padding-bottom: 3rem;
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -266,7 +350,7 @@ p {
 }
 
 .subheadline {
-    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-size: clamp(1rem, 2vw, 1.25rem);
     color: var(--color-text-muted);
     margin-bottom: 2rem;
     max-width: 600px;
@@ -498,6 +582,41 @@ p {
     font-weight: 500;
 }
 
+/* GullStack Footer Credit */
+.gullstack-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.gullstack-link:hover {
+    color: var(--color-accent);
+}
+
+.gullstack-bird {
+    width: 18px;
+    height: 18px;
+    opacity: 0.7;
+}
+
+.gullstack-text {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.gullstack-text strong {
+    font-weight: 700;
+}
+
+/* Footer grid: force 4 columns */
+.footer-content {
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+}
+
 /* Utilities */
 .text-center {
     text-align: center;
@@ -558,6 +677,22 @@ p {
     .footer-bottom-content {
         flex-direction: column;
         text-align: center;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-phone {
+        display: none;
+    }
+    
+    .nav-dropdown-menu {
+        position: static;
+        box-shadow: none;
+        margin-top: 0;
+        border: none;
+        padding-left: 1rem;
     }
 }
 

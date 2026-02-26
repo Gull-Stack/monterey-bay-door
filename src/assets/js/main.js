@@ -1,3 +1,19 @@
+// Rotating hero background images
+(function() {
+    const heroImages = [
+        '/assets/images/hero/hero-commercial-building-1920w.jpg',
+        '/assets/images/hospitality/hotel-corridor-hero-1920w.jpg',
+        '/assets/images/access-control/keycard-access-system-hero-1920w.jpg',
+        '/assets/images/buildings/college-campus-hero-1920w.jpg',
+        '/assets/images/service/technician-installation-hero-1920w.jpg'
+    ];
+    const hero = document.querySelector('.hero:not(.hero-compact)');
+    if (hero && hero.closest('[data-page="home"]') || (hero && window.location.pathname === '/')) {
+        const randomImg = heroImages[Math.floor(Math.random() * heroImages.length)];
+        hero.style.backgroundImage = 'linear-gradient(rgba(5, 30, 33, 0.7), rgba(5, 30, 33, 0.7)), url("' + randomImg + '")';
+    }
+})();
+
 // Mobile navigation toggle
 document.addEventListener('DOMContentLoaded', function() {
     const navToggle = document.getElementById('navToggle');
