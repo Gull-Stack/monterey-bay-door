@@ -1,12 +1,11 @@
 ---
-layout: layouts/product.njk
 pagination:
   data: products
   size: 1
   alias: product
-  addAllPagesToCollections: true
-permalink: /products/{{ product | productSlug }}/
+permalink: "/products/{{ (product.url_component if product.url_component else ('product-' + product.id)) | slugify }}/"
+layout: layouts/product.njk
 eleventyComputed:
-  title: "{{ product.name }}"
+  title: "{{ product.name }} - Commercial Door Hardware"
   description: "{{ product.description | stripHtml | truncate(155) }}"
 ---

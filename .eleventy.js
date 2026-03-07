@@ -44,6 +44,12 @@ module.exports = function(eleventyConfig) {
     return slug;
   });
 
+  // URL encode for query strings
+  eleventyConfig.addFilter('urlencode', function(value) {
+    if (!value) return '';
+    return encodeURIComponent(value);
+  });
+
   // Set input and output directories
   return {
     dir: {
