@@ -345,7 +345,8 @@
 
         var catLabel = (p.categories && p.categories.length) ? p.categories[0].name : p._parentCat;
         var desc = truncate(stripHtml(p.description), 100);
-        var dugmoreUrl = 'https://www.dugmore.com/' + p.url_component;
+        var slug = p.url_component ? p.url_component.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') : 'product-' + p.id;
+        var productUrl = '/products/' + slug + '/';
 
         return '<article class="product-card">' +
             imageHtml +
@@ -354,7 +355,7 @@
                 '<h3>' + p.name + '</h3>' +
                 '<p>' + desc + '</p>' +
                 '<div class="product-card-actions">' +
-                    '<a href="' + dugmoreUrl + '" target="_blank" rel="noopener" class="btn btn-secondary">View Details</a>' +
+                    '<a href="' + productUrl + '" class="btn btn-secondary">View Details</a>' +
                     '<a href="/contact/" class="btn btn-primary">Request Quote</a>' +
                 '</div>' +
             '</div>' +
