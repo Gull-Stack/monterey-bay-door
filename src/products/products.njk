@@ -1,0 +1,12 @@
+---
+layout: layouts/product.njk
+pagination:
+  data: products
+  size: 1
+  alias: product
+  addAllPagesToCollections: true
+permalink: /products/{{ product | productSlug }}/
+eleventyComputed:
+  title: "{{ product.name }}"
+  description: "{{ product.description | stripHtml | truncate(155) }}"
+---

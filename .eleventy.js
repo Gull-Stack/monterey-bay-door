@@ -33,6 +33,17 @@ module.exports = function(eleventyConfig) {
       .replace(/^-+|-+$/g, '');
   });
 
+  // Product slug: uses url_component, falls back to product id for uniqueness
+  eleventyConfig.addFilter('productSlug', function(product) {
+    var slug = (product.url_component || '').toString().toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    if (!slug) {
+      slug = 'product-' + product.id;
+    }
+    return slug;
+  });
+
   // Set input and output directories
   return {
     dir: {
