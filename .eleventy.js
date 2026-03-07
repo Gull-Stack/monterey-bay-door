@@ -7,6 +7,9 @@ module.exports = function(eleventyConfig) {
   
   // Dynamic sitemap using collections.all
   eleventyConfig.addPassthroughCopy("src/robots.txt");
+
+  // Brand facts for AEO crawlers
+  eleventyConfig.addPassthroughCopy("src/brand-facts.json");
   
   // Set input and output directories
   return {

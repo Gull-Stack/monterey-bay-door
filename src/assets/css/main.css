@@ -889,9 +889,183 @@ p {
         transform: translateY(30px);
         transition: opacity 0.6s ease, transform 0.6s ease;
     }
-    
+
     .fade-in.visible {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* ======================================
+   Shop Page Styles
+   ====================================== */
+
+.shop-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.shop-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.75rem;
+}
+
+.shop-headline {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    margin-bottom: 1.25rem;
+}
+
+.shop-intro {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-text-dark);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.shop-card {
+    background-color: var(--color-white);
+    padding: 2.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.shop-card h3 {
+    color: var(--color-primary-dark);
+    margin-bottom: 0.75rem;
+}
+
+.shop-card p {
+    color: var(--color-text-dark);
+    font-size: 0.875rem;
+    line-height: 1.7;
+}
+
+.shop-card-brands {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.shop-card .btn {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.shop-footer-note {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2.5rem 2rem;
+    background-color: var(--color-white);
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.shop-footer-note p {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    margin-bottom: 1.25rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (max-width: 768px) {
+    .shop-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ======================================
+   Featured Products Section (Homepage)
+   ====================================== */
+
+.featured-products-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+}
+
+.featured-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.featured-products-card {
+    background-color: var(--color-white);
+    padding: 2rem 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.featured-products-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+}
+
+.featured-products-icon {
+    margin-bottom: 1.25rem;
+}
+
+.featured-products-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.featured-products-card h3 {
+    color: var(--color-primary-dark);
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+}
+
+.featured-products-card p {
+    font-size: 0.825rem;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 992px) {
+    .featured-products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-products-grid {
+        grid-template-columns: 1fr;
     }
 }

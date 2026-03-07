@@ -5,9 +5,12 @@ eleventyExcludeFromCollections: true
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- for page in collections.all %}
+{%- if not page.data.eleventyExcludeFromCollections %}
   <url>
     <loc>https://montereybayoor.com{{ page.url }}</loc>
-    <lastmod>2024-02-25</lastmod>
+    <lastmod>{{ page.date | date: "%Y-%m-%d" }}</lastmod>
+    <changefreq>monthly</changefreq>
   </url>
+{%- endif %}
 {%- endfor %}
 </urlset>
