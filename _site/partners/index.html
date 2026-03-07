@@ -19,10 +19,118 @@
     
     <!-- Main CSS -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    
+
     <!-- Snipcart placeholder (for future e-commerce) -->
     <!-- <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script> -->
     <!-- <div hidden id="snipcart" data-api-key="your_api_key"></div> -->
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Monterey Bay Door",
+        "url": "https://montereybayoor.com",
+        "logo": "https://montereybayoor.com/assets/logos/logo-wide_dark.png",
+        "foundingDate": "2007",
+        "telephone": "(831) 555-0100",
+        "email": "info@mbdoor.com",
+        "description": "Commercial access control and door hardware specialists serving Central California since 2007. Authorized Dugmore & Duncan / ASSA ABLOY distributor.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Hollister",
+            "addressRegion": "CA",
+            "postalCode": "95023",
+            "addressCountry": "US"
+        },
+        "sameAs": []
+    }
+    </script>
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Monterey Bay Door",
+        "url": "https://montereybayoor.com",
+        "logo": "https://montereybayoor.com/assets/logos/logo-wide_dark.png",
+        "image": "https://montereybayoor.com/assets/images/hero/hero-commercial-building-1920w.jpg",
+        "telephone": "(831) 555-0100",
+        "email": "info@mbdoor.com",
+        "foundingDate": "2007",
+        "description": "Commercial access control and door hardware specialists serving Central California since 2007.",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Hollister",
+            "addressRegion": "CA",
+            "postalCode": "95023",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 36.8525,
+            "longitude": -121.4016
+        },
+        "areaServed": [
+            {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 36.8525,
+                    "longitude": -121.4016
+                },
+                "geoRadius": "100 mi"
+            },
+            {
+                "@type": "Place",
+                "name": "Monterey Bay"
+            },
+            {
+                "@type": "Place",
+                "name": "Central Coast, California"
+            },
+            {
+                "@type": "Place",
+                "name": "San Benito County, California"
+            }
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Commercial Door Hardware & Access Control",
+            "url": "https://montereybayoor.com/shop/"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://montereybayoor.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Partners",
+                "item": "https://montereybayoor.com/partners/"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -45,6 +153,7 @@
                                 <li><a href="/services/service-maintenance/">Service & Maintenance</a></li>
                             </ul>
                         </li>
+                        <li><a href="/shop/" class="nav-link">Shop</a></li>
                         <li><a href="/projects/" class="nav-link">Gallery</a></li>
                         <li><a href="/partners/" class="nav-link">Partners</a></li>
                         <li><a href="/service-areas/" class="nav-link">Areas</a></li>

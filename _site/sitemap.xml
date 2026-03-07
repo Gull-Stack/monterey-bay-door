@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://montereybayoor.com/projects/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/about/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/contact/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/assets/favicons/favicon-html-code/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/assets/favicons/favicon-html-code/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/contact/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/services/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/partners/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/services/access-control/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/projects/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/services/door-hardware/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/service-areas/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/services/service-maintenance/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/services/access-control/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/services/door-hardware/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/service-areas/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/services/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/about/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/services/service-maintenance/</loc>
+    <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://montereybayoor.com/partners/</loc>
-    <lastmod>2024-02-25</lastmod>
+    <loc>https://montereybardoor.com/shop/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://montereybardoor.com/</loc>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>

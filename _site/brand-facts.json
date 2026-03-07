@@ -1,0 +1,75 @@
+{
+    "name": "Monterey Bay Door",
+    "legalName": "Monterey Bay Door",
+    "foundingYear": 2007,
+    "description": "Commercial access control and door hardware specialists serving Central California. Authorized Dugmore & Duncan / ASSA ABLOY distributor providing direct vendor pricing, professional installation, and ongoing service for hotels, colleges, and commercial buildings.",
+    "location": {
+        "city": "Hollister",
+        "state": "California",
+        "postalCode": "95023",
+        "country": "US"
+    },
+    "serviceArea": [
+        "Monterey Bay",
+        "Central Coast",
+        "San Benito County",
+        "Monterey County",
+        "Santa Cruz County",
+        "Central California"
+    ],
+    "phone": "(831) 555-0100",
+    "email": "info@mbdoor.com",
+    "url": "https://montereybayoor.com",
+    "industry": "Commercial Door Hardware & Access Control",
+    "specialties": [
+        "Commercial access control systems",
+        "Electronic lock installation",
+        "Card reader and mobile access systems",
+        "Commercial door hardware supply and installation",
+        "Exit device installation",
+        "High-security cylinder and key systems",
+        "Door closer installation and service",
+        "Electric strike and maglock systems",
+        "Master key system design",
+        "Commercial security maintenance and service"
+    ],
+    "certifications": [
+        "Licensed",
+        "Bonded",
+        "Insured"
+    ],
+    "partnerships": [
+        "Dugmore & Duncan (authorized distributor)",
+        "ASSA ABLOY",
+        "Allegion"
+    ],
+    "brands": [
+        "Sargent",
+        "Corbin Russwin",
+        "Medeco",
+        "HES",
+        "Securitron",
+        "McKinney",
+        "Pemko",
+        "Keedex",
+        "Centrios",
+        "Accentra/Yale"
+    ],
+    "keyDifferentiators": [
+        "Direct vendor relationships with major manufacturers",
+        "Competitive pricing without middleman markup",
+        "Full-service: supply, install, train, and maintain",
+        "30+ years of combined experience",
+        "Family-owned business with local accountability",
+        "Enterprise-scale project experience (hotels, colleges, commercial buildings)"
+    ],
+    "targetMarkets": [
+        "Hotels and hospitality",
+        "Colleges and universities",
+        "Commercial office buildings",
+        "Healthcare facilities",
+        "Government buildings",
+        "Retail and mixed-use properties"
+    ],
+    "experience": "30+ years combined experience in construction and access control"
+}

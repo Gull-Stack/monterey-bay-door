@@ -19,10 +19,112 @@
     
     <!-- Main CSS -->
     <link rel="stylesheet" href="/assets/css/main.css">
-    
+
     <!-- Snipcart placeholder (for future e-commerce) -->
     <!-- <script async src="https://cdn.snipcart.com/themes/v3.2.2/default/snipcart.js"></script> -->
     <!-- <div hidden id="snipcart" data-api-key="your_api_key"></div> -->
+
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Monterey Bay Door",
+        "url": "https://montereybayoor.com",
+        "logo": "https://montereybayoor.com/assets/logos/logo-wide_dark.png",
+        "foundingDate": "2007",
+        "telephone": "(831) 555-0100",
+        "email": "info@mbdoor.com",
+        "description": "Commercial access control and door hardware specialists serving Central California since 2007. Authorized Dugmore & Duncan / ASSA ABLOY distributor.",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Hollister",
+            "addressRegion": "CA",
+            "postalCode": "95023",
+            "addressCountry": "US"
+        },
+        "sameAs": []
+    }
+    </script>
+
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Monterey Bay Door",
+        "url": "https://montereybayoor.com",
+        "logo": "https://montereybayoor.com/assets/logos/logo-wide_dark.png",
+        "image": "https://montereybayoor.com/assets/images/hero/hero-commercial-building-1920w.jpg",
+        "telephone": "(831) 555-0100",
+        "email": "info@mbdoor.com",
+        "foundingDate": "2007",
+        "description": "Commercial access control and door hardware specialists serving Central California since 2007.",
+        "priceRange": "$$",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Hollister",
+            "addressRegion": "CA",
+            "postalCode": "95023",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 36.8525,
+            "longitude": -121.4016
+        },
+        "areaServed": [
+            {
+                "@type": "GeoCircle",
+                "geoMidpoint": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 36.8525,
+                    "longitude": -121.4016
+                },
+                "geoRadius": "100 mi"
+            },
+            {
+                "@type": "Place",
+                "name": "Monterey Bay"
+            },
+            {
+                "@type": "Place",
+                "name": "Central Coast, California"
+            },
+            {
+                "@type": "Place",
+                "name": "San Benito County, California"
+            }
+        ],
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Commercial Door Hardware & Access Control",
+            "url": "https://montereybayoor.com/shop/"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://montereybayoor.com/"
+            }
+        ]
+    }
+    </script>
 </head>
 <body>
     <header class="header">
@@ -45,6 +147,7 @@
                                 <li><a href="/services/service-maintenance/">Service & Maintenance</a></li>
                             </ul>
                         </li>
+                        <li><a href="/shop/" class="nav-link">Shop</a></li>
                         <li><a href="/projects/" class="nav-link">Gallery</a></li>
                         <li><a href="/partners/" class="nav-link">Partners</a></li>
                         <li><a href="/service-areas/" class="nav-link">Areas</a></li>
@@ -169,6 +272,66 @@
     </div>
 </section>
 
+<!-- Featured Products Section -->
+<section class="section section-light featured-products">
+    <div class="container">
+        <div class="section-header">
+            <p class="featured-products-label">FEATURED PRODUCTS</p>
+            <h2 class="section-title">Direct access to premium door hardware</h2>
+        </div>
+
+        <div class="featured-products-grid">
+            <a href="https://www.dugmore.com/Accentra-4708LN" target="_blank" rel="noopener" class="featured-product-card">
+                <div class="featured-product-image">
+                    <img src="https://www.dugmore.com/product-images/accentra_4705LN-media-au-626.jpg" alt="Accentra 4708LN Cylindrical Lock" loading="lazy">
+                </div>
+                <div class="featured-product-body">
+                    <p class="featured-product-category">Cylindrical Lock</p>
+                    <h3>Accentra 4708LN</h3>
+                    <p>Classroom function cylindrical lock, keyed random in PARA or 2803 keyway</p>
+                </div>
+            </a>
+
+            <a href="https://www.dugmore.com/Centrios-CEB100-AU" target="_blank" rel="noopener" class="featured-product-card">
+                <div class="featured-product-image">
+                    <img src="https://www.dugmore.com/product-images/centrios_ceb100_au-media-626-2.jpg" alt="Centrios CEB100 AU Access Control" loading="lazy">
+                </div>
+                <div class="featured-product-body">
+                    <p class="featured-product-category">Access Control</p>
+                    <h3>Centrios CEB100 AU</h3>
+                    <p>Grade 1 cylindrical lock with Bluetooth mobile access and 9V backup</p>
+                </div>
+            </a>
+
+            <a href="https://www.dugmore.com/SARGENT-EN-1431-UH-TB" target="_blank" rel="noopener" class="featured-product-card">
+                <div class="featured-product-image">
+                    <img src="https://www.dugmore.com/product-images/SAR_1431UH-media-2.jpg" alt="SARGENT 1431 Door Closer" loading="lazy">
+                </div>
+                <div class="featured-product-body">
+                    <p class="featured-product-category">Door Closer</p>
+                    <h3>SARGENT EN 1431 UH TB</h3>
+                    <p>Surface door closer with hold open arm and thru bolts</p>
+                </div>
+            </a>
+
+            <a href="https://www.dugmore.com/SARGENT-LC-8265-ALP-32D-RH" target="_blank" rel="noopener" class="featured-product-card">
+                <div class="featured-product-image">
+                    <img src="https://www.dugmore.com/product-images/SAR_8265_ALP-media-32D-4.jpg" alt="SARGENT 8265 ALP Healthcare Mortise Lock" loading="lazy">
+                </div>
+                <div class="featured-product-body">
+                    <p class="featured-product-category">Health Care Solutions</p>
+                    <h3>SARGENT 8265 ALP 32D</h3>
+                    <p>Mortise lock with push/pull trim for healthcare environments</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="text-center" style="margin-top: 3rem;">
+            <a href="/shop/" class="btn btn-primary">See All 498 Products &rarr;</a>
+        </div>
+    </div>
+</section>
+
 <!-- Why Choose Us Section (Dark Background) -->
 <section class="section section-dark">
     <div class="container">
@@ -209,6 +372,41 @@
         
         <div class="text-center">
             <a href="/projects/" class="btn btn-primary">View Our Gallery</a>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="contact-form-section">
+    <div class="container">
+        <div class="contact-form-card">
+            <p class="contact-form-label">GET STARTED</p>
+            <h2>Tell us about your project</h2>
+            <form action="/contact/" method="GET" class="contact-form-fields">
+                <div class="contact-form-field">
+                    <label for="cf-name">Name</label>
+                    <input type="text" id="cf-name" name="name" placeholder="Your full name" required>
+                </div>
+                <div class="contact-form-field">
+                    <label for="cf-company">Company</label>
+                    <input type="text" id="cf-company" name="company" placeholder="Company or organization">
+                </div>
+                <div class="contact-form-field">
+                    <label for="cf-email">Email</label>
+                    <input type="email" id="cf-email" name="email" placeholder="you@company.com" required>
+                </div>
+                <div class="contact-form-field">
+                    <label for="cf-phone">Phone</label>
+                    <input type="tel" id="cf-phone" name="phone" placeholder="(831) 555-0100">
+                </div>
+                <div class="contact-form-field full-width">
+                    <label for="cf-details">Project Details</label>
+                    <textarea id="cf-details" name="details" placeholder="Describe your project -- building type, number of openings, timeline, hardware needs..."></textarea>
+                </div>
+                <div class="contact-form-submit">
+                    <button type="submit" class="btn btn-primary">Request a Quote</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>

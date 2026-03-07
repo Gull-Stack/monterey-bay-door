@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
-title: Shop - Commercial Door Hardware & Access Control
-description: Browse our complete catalog of commercial door hardware and access control products from Dugmore & Duncan / ASSA ABLOY. Authorized distributor with direct vendor pricing for locksets, exit devices, door closers, and more.
+title: Commercial Door Hardware Catalog - 498 Products | Monterey Bay Door
+description: Browse 498 commercial door hardware and access control products. Authorized Dugmore & Duncan / ASSA ABLOY distributor with direct vendor pricing on locks, exit devices, door closers, and more.
 ---
 
 <!-- Shop Hero -->
@@ -9,8 +9,8 @@ description: Browse our complete catalog of commercial door hardware and access 
     <div class="container">
         <div class="hero-content">
             <div class="hero-text">
-                <h1>Commercial Door Hardware & Access Control</h1>
-                <p class="subheadline">Authorized Dugmore & Duncan distributor with direct vendor pricing on the full ASSA ABLOY product line</p>
+                <h1>Commercial Door Hardware Catalog</h1>
+                <p class="subheadline">Authorized Dugmore & Duncan distributor -- browse our full catalog of {{ products | length }} ASSA ABLOY commercial products with direct vendor pricing</p>
             </div>
         </div>
     </div>
@@ -19,84 +19,239 @@ description: Browse our complete catalog of commercial door hardware and access 
 <!-- Product Catalog -->
 <section class="section section-light">
     <div class="container">
-        <div class="shop-header">
-            <p class="shop-label">OUR PRODUCTS</p>
-            <h2 class="shop-headline">Commercial Door Hardware & Access Control</h2>
-            <p class="shop-intro">As an authorized Dugmore & Duncan distributor, Monterey Bay Door provides direct access to the full ASSA ABLOY commercial product line. We offer competitive vendor pricing, expert product selection guidance, and professional installation for every product we sell.</p>
+
+        <!-- Search & Filters -->
+        <div class="catalog-controls">
+            <div class="catalog-search">
+                <svg class="catalog-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" class="catalog-search-input" id="catalogSearch" placeholder="Search products by name, description, or category..." aria-label="Search products">
+            </div>
+            <div class="catalog-filters" id="catalogFilters">
+                <button class="catalog-filter-btn active" data-category="all">All Products <span class="catalog-filter-count"></span></button>
+            </div>
+            <p class="catalog-result-count" id="catalogResultCount"></p>
         </div>
 
-        <div class="shop-grid">
-            <article class="shop-card">
-                <h3>Commercial Locksets</h3>
-                <p>Cylindrical locks, mortise locks, and auxiliary locks built for high-traffic commercial environments. Grade 1 and Grade 2 options for every application from office suites to institutional facilities.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> Sargent, Corbin Russwin</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
+        <!-- Product Grid (rendered by JS) -->
+        <div class="catalog-grid" id="catalogGrid"></div>
 
-            <article class="shop-card">
-                <h3>Access Control Systems</h3>
-                <p>Electronic locks, card readers, and mobile access solutions for modern building security. Networked and standalone options with cloud-based management and audit trail capabilities.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> Accentra/Yale, Centrios</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
-
-            <article class="shop-card">
-                <h3>Door Closers</h3>
-                <p>Surface-mounted, concealed, and fire-rated door closers engineered for reliable performance. ADA-compliant options with adjustable closing speed, latching speed, and backcheck.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> Sargent, Accentra</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
-
-            <article class="shop-card">
-                <h3>Exit Devices</h3>
-                <p>Panic bars, rim exits, and mortise exit devices for code-compliant egress. Fire-rated options available for labeled openings with electric latch retraction and alarm kits.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> Sargent, Corbin Russwin</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
-
-            <article class="shop-card">
-                <h3>Electric Strikes & Locking</h3>
-                <p>Electric strikes, electromagnetic locks, and power supplies for access-controlled openings. Fail-safe and fail-secure configurations for every security requirement and door type.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> HES, Securitron</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
-
-            <article class="shop-card">
-                <h3>High-Security Cylinders</h3>
-                <p>Interchangeable core (IC) cylinders, master key systems, and restricted keyways for facilities that demand the highest level of key control and pick resistance.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> Medeco, Sargent</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
-
-            <article class="shop-card">
-                <h3>Door Hardware & Accessories</h3>
-                <p>Hinges, weatherstripping, thresholds, and door protection plates. Complete finishing hardware for new construction and retrofit projects on commercial openings.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> McKinney, Pemko</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
-
-            <article class="shop-card">
-                <h3>Specialty & Maintenance</h3>
-                <p>Key machines, installation tools, and replacement parts for ongoing maintenance and service operations. Everything locksmiths and facility managers need to keep hardware running.</p>
-                <p class="shop-card-brands"><strong>Brands:</strong> Keedex</p>
-                <a href="/contact/" class="btn btn-secondary">Request Quote</a>
-            </article>
+        <!-- Empty State -->
+        <div class="catalog-empty" id="catalogEmpty" style="display:none;">
+            <h3>No products found</h3>
+            <p>Try adjusting your search or filter criteria.</p>
         </div>
 
-        <div class="shop-footer-note">
-            <p>Don't see what you need? We have access to the full Dugmore & Duncan catalog -- contact us for any commercial door hardware requirement.</p>
-            <a href="/contact/" class="btn btn-primary">Contact Us</a>
+        <!-- Load More -->
+        <div class="catalog-load-more" id="catalogLoadMore" style="display:none;">
+            <button class="btn btn-secondary" id="catalogLoadMoreBtn">Load More Products</button>
         </div>
+
     </div>
 </section>
+
+<!-- Placeholder SVG for products without images (hidden, referenced by JS) -->
+<svg id="placeholderSvg" style="display:none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><rect x="14" y="4" width="20" height="40" rx="2" stroke="#999" stroke-width="1.5" fill="none"/><circle cx="30" cy="24" r="3" stroke="#999" stroke-width="1.5" fill="none"/><line x1="30" y1="27" x2="30" y2="32" stroke="#999" stroke-width="1.5"/><rect x="18" y="10" width="12" height="4" rx="1" stroke="#999" stroke-width="1" fill="none"/></svg>
+
+<script>
+(function() {
+    // Category mapping: subcategory -> parent category
+    var PARENT_CATEGORIES = {
+        'Mortise Lock': 'Locks',
+        'Cylindrical Lock': 'Locks',
+        'Auxiliary Locks': 'Locks',
+        'Mortise Parts': 'Locks',
+        'Cylindrical Parts': 'Locks',
+        'Access Control': 'Access Control',
+        'Door Closer': 'Door Controls',
+        'Pivots': 'Door Controls',
+        'Door Magnets/Stops/Holders': 'Door Controls',
+        'Door Operators': 'Door Controls',
+        'Exit Device': 'Exit Devices',
+        'Exit Device Accessories': 'Exit Devices',
+        'Exit Trim': 'Exit Devices',
+        'Thresholds': 'Door Accessories',
+        'Adhesive Gasket': 'Door Accessories',
+        'Door Stops': 'Door Accessories',
+        'Door Pulls': 'Door Accessories',
+        'Perimeter Gasket': 'Door Accessories',
+        'Hinges': 'Door Accessories',
+        'Protection Plates': 'Door Accessories',
+        'Door Shoes': 'Door Accessories',
+        'Jamb Sets': 'Door Accessories',
+        'Door Top & Rain Drip': 'Door Accessories',
+        'Flush Bolts': 'Door Accessories',
+        'IC Cores': 'Key Systems',
+        'Cylinders & Plugs': 'Key Systems',
+        'Key Blanks': 'Key Systems',
+        'Health Care Solutions': 'Specialty Market',
+        'School Security': 'Specialty Market',
+        'Excessive Gap Solutions': 'Specialty Market'
+    };
+
+    var PARENT_ORDER = ['Locks', 'Access Control', 'Door Controls', 'Exit Devices', 'Door Accessories', 'Key Systems', 'Specialty Market'];
+
+    // Inline all products from 11ty data
+    var allProducts = {{ products | dump | safe }};
+
+    // Assign parent category to each product
+    allProducts.forEach(function(p) {
+        p._parentCat = 'Other';
+        if (p.categories && p.categories.length) {
+            for (var i = 0; i < p.categories.length; i++) {
+                var parent = PARENT_CATEGORIES[p.categories[i].name];
+                if (parent) { p._parentCat = parent; break; }
+            }
+        }
+        // Build searchable text
+        p._searchText = (p.name + ' ' + (p.description || '').replace(/<[^>]*>/g, '') + ' ' + (p.categories || []).map(function(c){return c.name;}).join(' ') + ' ' + p._parentCat).toLowerCase();
+    });
+
+    // Count per parent category
+    var catCounts = {};
+    PARENT_ORDER.forEach(function(c) { catCounts[c] = 0; });
+    allProducts.forEach(function(p) {
+        if (catCounts[p._parentCat] !== undefined) catCounts[p._parentCat]++;
+        else {
+            if (!catCounts['Other']) catCounts['Other'] = 0;
+            catCounts['Other']++;
+        }
+    });
+
+    // Build filter buttons
+    var filtersEl = document.getElementById('catalogFilters');
+    // Set count on "All" button
+    filtersEl.querySelector('[data-category="all"] .catalog-filter-count').textContent = '(' + allProducts.length + ')';
+    PARENT_ORDER.forEach(function(cat) {
+        if (catCounts[cat] > 0) {
+            var btn = document.createElement('button');
+            btn.className = 'catalog-filter-btn';
+            btn.setAttribute('data-category', cat);
+            btn.innerHTML = cat + ' <span class="catalog-filter-count">(' + catCounts[cat] + ')</span>';
+            filtersEl.appendChild(btn);
+        }
+    });
+
+    var PAGE_SIZE = 24;
+    var currentCategory = 'all';
+    var currentSearch = '';
+    var visibleCount = PAGE_SIZE;
+
+    var gridEl = document.getElementById('catalogGrid');
+    var loadMoreEl = document.getElementById('catalogLoadMore');
+    var loadMoreBtn = document.getElementById('catalogLoadMoreBtn');
+    var emptyEl = document.getElementById('catalogEmpty');
+    var resultCountEl = document.getElementById('catalogResultCount');
+    var placeholderSvg = document.getElementById('placeholderSvg').outerHTML.replace(' id="placeholderSvg"', '').replace(' style="display:none"', '');
+
+    function stripHtml(html) {
+        if (!html) return '';
+        return html.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
+    }
+
+    function truncate(text, len) {
+        if (!text) return '';
+        len = len || 100;
+        if (text.length <= len) return text;
+        return text.substring(0, len).replace(/\s+\S*$/, '') + '...';
+    }
+
+    function getFilteredProducts() {
+        return allProducts.filter(function(p) {
+            var catMatch = (currentCategory === 'all') || (p._parentCat === currentCategory);
+            var searchMatch = !currentSearch || p._searchText.indexOf(currentSearch) !== -1;
+            return catMatch && searchMatch;
+        });
+    }
+
+    function renderCard(p) {
+        var imageHtml;
+        if (p.images && p.images.length && p.images[0]) {
+            imageHtml = '<div class="product-card-image"><img src="' + p.images[0] + '" alt="' + p.name.replace(/"/g, '&quot;') + '" loading="lazy" onerror="this.parentElement.innerHTML=\'' + placeholderSvg.replace(/'/g, "\\'").replace(/\n/g, '') + '\';this.parentElement.classList.add(\'product-card-placeholder\');"></div>';
+        } else {
+            imageHtml = '<div class="product-card-image"><div class="product-card-placeholder">' + placeholderSvg + '</div></div>';
+        }
+
+        var catLabel = (p.categories && p.categories.length) ? p.categories[0].name : p._parentCat;
+        var desc = truncate(stripHtml(p.description), 100);
+        var dugmoreUrl = 'https://www.dugmore.com/' + p.url_component;
+
+        return '<article class="product-card">' +
+            imageHtml +
+            '<div class="product-card-body">' +
+                '<span class="product-card-category">' + catLabel + '</span>' +
+                '<h3>' + p.name + '</h3>' +
+                '<p>' + desc + '</p>' +
+                '<div class="product-card-actions">' +
+                    '<a href="' + dugmoreUrl + '" target="_blank" rel="noopener" class="btn btn-secondary">View Details</a>' +
+                    '<a href="/contact/" class="btn btn-primary">Request Quote</a>' +
+                '</div>' +
+            '</div>' +
+        '</article>';
+    }
+
+    function render() {
+        var filtered = getFilteredProducts();
+        var showing = filtered.slice(0, visibleCount);
+
+        if (filtered.length === 0) {
+            gridEl.innerHTML = '';
+            emptyEl.style.display = 'block';
+            loadMoreEl.style.display = 'none';
+            resultCountEl.textContent = 'No products found';
+        } else {
+            emptyEl.style.display = 'none';
+            gridEl.innerHTML = showing.map(renderCard).join('');
+            loadMoreEl.style.display = (visibleCount < filtered.length) ? 'block' : 'none';
+            resultCountEl.textContent = 'Showing ' + showing.length + ' of ' + filtered.length + ' products';
+        }
+    }
+
+    // Category filter clicks
+    filtersEl.addEventListener('click', function(e) {
+        var btn = e.target.closest('.catalog-filter-btn');
+        if (!btn) return;
+        filtersEl.querySelectorAll('.catalog-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        currentCategory = btn.getAttribute('data-category');
+        visibleCount = PAGE_SIZE;
+        render();
+    });
+
+    // Search
+    var searchTimeout;
+    document.getElementById('catalogSearch').addEventListener('input', function(e) {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(function() {
+            currentSearch = e.target.value.toLowerCase().trim();
+            visibleCount = PAGE_SIZE;
+            render();
+        }, 200);
+    });
+
+    // Load more
+    loadMoreBtn.addEventListener('click', function() {
+        visibleCount += PAGE_SIZE;
+        render();
+        // Scroll to new content smoothly
+        var cards = gridEl.querySelectorAll('.product-card');
+        if (cards.length > visibleCount - PAGE_SIZE) {
+            cards[visibleCount - PAGE_SIZE].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
+    // Initial render
+    render();
+})();
+</script>
 
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "OfferCatalog",
     "name": "Commercial Door Hardware & Access Control Products",
-    "description": "Complete catalog of commercial door hardware and access control products from authorized Dugmore & Duncan / ASSA ABLOY distributor.",
+    "description": "Complete catalog of {{ products | length }} commercial door hardware and access control products from authorized Dugmore & Duncan / ASSA ABLOY distributor.",
     "url": "https://montereybayoor.com/shop/",
+    "numberOfItems": {{ products | length }},
     "provider": {
         "@type": "LocalBusiness",
         "name": "Monterey Bay Door",
@@ -105,51 +260,45 @@ description: Browse our complete catalog of commercial door hardware and access 
     "itemListElement": [
         {
             "@type": "OfferCatalog",
-            "name": "Commercial Locksets",
-            "description": "Cylindrical locks, mortise locks, and auxiliary locks for commercial environments.",
-            "url": "https://montereybayoor.com/contact/"
+            "name": "Locks",
+            "description": "Mortise locks, cylindrical locks, auxiliary locks, and replacement parts for commercial applications.",
+            "numberOfItems": 112
         },
         {
             "@type": "OfferCatalog",
-            "name": "Access Control Systems",
-            "description": "Electronic locks, card readers, and mobile access solutions for modern building security.",
-            "url": "https://montereybayoor.com/contact/"
+            "name": "Access Control",
+            "description": "Electronic locks, card readers, mobile access, and power supplies for building security.",
+            "numberOfItems": 53
         },
         {
             "@type": "OfferCatalog",
-            "name": "Door Closers",
-            "description": "Surface-mounted, concealed, and fire-rated door closers for commercial applications.",
-            "url": "https://montereybayoor.com/contact/"
+            "name": "Door Controls",
+            "description": "Door closers, pivots, door magnets, stops, holders, and automatic operators.",
+            "numberOfItems": 58
         },
         {
             "@type": "OfferCatalog",
             "name": "Exit Devices",
-            "description": "Panic bars, rim exits, and mortise exit devices for code-compliant egress.",
-            "url": "https://montereybayoor.com/contact/"
+            "description": "Panic bars, exit device accessories, and exit trim for code-compliant egress.",
+            "numberOfItems": 18
         },
         {
             "@type": "OfferCatalog",
-            "name": "Electric Strikes & Locking",
-            "description": "Electric strikes, electromagnetic locks, and power supplies for access-controlled openings.",
-            "url": "https://montereybayoor.com/contact/"
+            "name": "Door Accessories",
+            "description": "Thresholds, gaskets, door stops, pulls, hinges, protection plates, shoes, and flush bolts.",
+            "numberOfItems": 249
         },
         {
             "@type": "OfferCatalog",
-            "name": "High-Security Cylinders",
-            "description": "IC cores, master key systems, and restricted keyways for high-security facilities.",
-            "url": "https://montereybayoor.com/contact/"
+            "name": "Key Systems",
+            "description": "IC cores, cylinders, plugs, and key blanks for master key systems.",
+            "numberOfItems": 15
         },
         {
             "@type": "OfferCatalog",
-            "name": "Door Hardware & Accessories",
-            "description": "Hinges, weatherstripping, thresholds, and door protection for commercial openings.",
-            "url": "https://montereybayoor.com/contact/"
-        },
-        {
-            "@type": "OfferCatalog",
-            "name": "Specialty & Maintenance",
-            "description": "Key machines, installation tools, and replacement parts for service operations.",
-            "url": "https://montereybayoor.com/contact/"
+            "name": "Specialty Market",
+            "description": "Health care solutions, school security products, and excessive gap solutions.",
+            "numberOfItems": 62
         }
     ]
 }
