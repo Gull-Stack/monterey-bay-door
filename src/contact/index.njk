@@ -23,8 +23,11 @@ description: Contact Monterey Bay Door for commercial access control and door ha
                 <h2 class="section-title">Request Quote</h2>
                 <p class="section-subtitle">Tell us about your project and we'll provide a detailed quote</p>
                 
-                <!-- TODO: Replace with SendGrid or Formspree endpoint -->
-                <form style="margin-top: 2rem;" action="https://formspree.io/f/PLACEHOLDER" method="POST">
+                <form style="margin-top: 2rem;" action="/api/contact" method="POST" id="contact-form">
+                    <!-- Honeypot -->
+                    <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0"><input type="text" name="fax_number" tabindex="-1" autocomplete="off"></div>
+                    <input type="hidden" name="_timestamp" id="_timestamp" value="">
+                    
                     <div style="margin-bottom: 1.5rem;">
                         <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>
                         <input type="text" id="name" name="name" required style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem;">
@@ -63,7 +66,40 @@ description: Contact Monterey Bay Door for commercial access control and door ha
                     </div>
                     
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
+                    <div id="form-status" style="margin-top:12px;text-align:center;font-weight:500;"></div>
                 </form>
+                <script>
+                document.getElementById('_timestamp').value = Date.now();
+                document.getElementById('contact-form').addEventListener('submit', async function(e) {
+                  e.preventDefault();
+                  const form = e.target;
+                  const btn = form.querySelector('[type="submit"]');
+                  const status = document.getElementById('form-status');
+                  const originalText = btn.textContent;
+                  btn.textContent = 'Sending...';
+                  btn.disabled = true;
+                  status.textContent = '';
+                  try {
+                    const fd = new FormData(form);
+                    const data = Object.fromEntries(fd);
+                    const res = await fetch('/api/contact', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(data)
+                    });
+                    if (res.ok) {
+                      status.innerHTML = '<span style="color:#22c55e">✓ Request sent! We\'ll be in touch within one business day.</span>';
+                      form.reset();
+                      document.getElementById('_timestamp').value = Date.now();
+                    } else { throw new Error(); }
+                  } catch(err) {
+                    status.innerHTML = '<span style="color:#dc2626">Error sending request. Please call (831) 975-0202.</span>';
+                  } finally {
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                  }
+                });
+                </script>
             </div>
             
             <!-- Contact Information -->
@@ -75,9 +111,9 @@ description: Contact Monterey Bay Door for commercial access control and door ha
                 <div style="margin-top: 2rem;">
                     <div style="background-color: white; padding: 2rem; border-radius: var(--border-radius); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); margin-bottom: 2rem;">
                         <h4 style="color: var(--color-accent); margin-bottom: 1rem;">Contact Information</h4>
-                        <p style="margin-bottom: 1rem;"><strong>Phone:</strong> <a href="tel:(831)555-0100" style="color: var(--color-accent); text-decoration: none;">(831) 555-0100</a></p>
+                        <p style="margin-bottom: 1rem;"><strong>Phone:</strong> <a href="tel:(831)975-0202" style="color: var(--color-accent); text-decoration: none;">(831) 975-0202</a></p>
                         <p style="margin-bottom: 1rem;"><strong>Email:</strong> <a href="mailto:info@mbdoor.com" style="color: var(--color-accent); text-decoration: none;">info@mbdoor.com</a></p>
-                        <p style="margin-bottom: 1rem;"><strong>Emergency:</strong> <a href="tel:(831)555-0100" style="color: var(--color-accent); text-decoration: none;">(831) 555-0100</a></p>
+                        <p style="margin-bottom: 1rem;"><strong>Emergency:</strong> <a href="tel:(831)975-0202" style="color: var(--color-accent); text-decoration: none;">(831) 975-0202</a></p>
                         <p><strong>Response Time:</strong> Same day in primary coverage areas</p>
                     </div>
                     
@@ -86,7 +122,7 @@ description: Contact Monterey Bay Door for commercial access control and door ha
                         <p style="margin-bottom: 0.5rem;"><strong>Monterey Bay Door</strong></p>
                         <p style="margin-bottom: 0.5rem;">Hollister, California</p>
                         <p style="margin-bottom: 0.5rem;">Licensed • Bonded • Insured</p>
-                        <p style="margin-bottom: 0.5rem;">California Contractor's License #123456</p>
+                        <p style="margin-bottom: 0.5rem;">California Contractor's License #TBD</p>
                         <p style="margin-bottom: 1rem;">Serving Central California since 2007</p>
                     </div>
                     
@@ -184,7 +220,7 @@ description: Contact Monterey Bay Door for commercial access control and door ha
             <p class="section-subtitle">Professional access control and door hardware solutions for your commercial project</p>
             
             <div class="hero-actions" style="justify-content: center; margin-top: 2rem;">
-                <a href="tel:(831)555-0100" class="btn btn-primary">Call Now: (831) 555-0100</a>
+                <a href="tel:(831)975-0202" class="btn btn-primary">Call Now: (831) 975-0202</a>
                 <a href="mailto:info@mbdoor.com" class="btn btn-secondary">Email: info@mbdoor.com</a>
             </div>
             
