@@ -1,15 +1,15 @@
 ---
 layout: layouts/base.njk
-title: Gallery
-description: Commercial access control and door hardware installations throughout Central California. Hotels, colleges, and commercial buildings.
+title: Projects
+description: Completed commercial door, access control, and hardware projects across Central California. Hotels, housing, education, healthcare, and commercial facilities.
 ---
 
 <!-- Hero Section (50% height) -->
 <section class="hero hero-half" style="background-image: linear-gradient(rgba(5, 30, 33, 0.7), rgba(5, 30, 33, 0.7)), url('/assets/images/buildings/college-campus-hero-1920w.jpg');">
     <div class="container">
         <div class="hero-text">
-            <h1>Gallery</h1>
-            <p class="subheadline">Commercial access control and door hardware installations throughout Central California.</p>
+            <h1>Our Projects</h1>
+            <p class="subheadline">Doors, access control, and hardware for commercial facilities throughout Central California.</p>
             <div class="hero-actions">
                 <a href="/contact/" class="btn btn-primary">Discuss Your Project</a>
                 <a href="/services/" class="btn btn-outline">Our Services</a>
@@ -25,7 +25,7 @@ description: Commercial access control and door hardware installations throughou
             <h2 class="section-title">Project Experience</h2>
             <p class="section-subtitle">Trusted by major commercial facilities throughout Central California</p>
         </div>
-        
+
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: center;">
             <div style="padding: 2rem;">
                 <h3 style="font-size: 2.5rem; color: var(--color-accent); font-weight: 700;">150+</h3>
@@ -51,14 +51,344 @@ description: Commercial access control and door hardware installations throughou
     </div>
 </section>
 
-<!-- Gallery (Dark Background) -->
+<!-- Scoped styles for projects page -->
+<style>
+    .featured-project {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+        overflow: hidden;
+        margin-top: 2rem;
+    }
+    .featured-project-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        min-height: 400px;
+    }
+    .featured-project-image {
+        background-image: linear-gradient(135deg, rgba(5, 30, 33, 0.3), rgba(5, 30, 33, 0.6)), url('/assets/images/hospitality/luxury-hotel-corridor-hallway-doors.jpg');
+        background-size: cover;
+        background-position: center;
+        min-height: 300px;
+        display: flex;
+        align-items: flex-end;
+        padding: 2rem;
+    }
+    .featured-project-badge {
+        display: inline-block;
+        background-color: var(--color-accent);
+        color: var(--color-white);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        padding: 0.35rem 0.75rem;
+        border-radius: 4px;
+    }
+    .featured-project-details {
+        padding: 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .featured-project-details h3 {
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        color: var(--color-white);
+        margin-bottom: 0.5rem;
+    }
+    .featured-project-details .project-category {
+        display: inline-block;
+        color: var(--color-accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        margin-bottom: 1.25rem;
+    }
+    .featured-project-details p {
+        color: var(--color-text-muted);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+    .featured-project-details .highlight-stat {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-accent);
+        margin-bottom: 0.25rem;
+    }
+    .featured-project-details .highlight-label {
+        color: var(--color-text-muted);
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+    }
+    .scope-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .scope-tag {
+        background: rgba(148, 171, 105, 0.15);
+        color: var(--color-accent);
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 0.3rem 0.6rem;
+        border-radius: 4px;
+        border: 1px solid rgba(148, 171, 105, 0.3);
+    }
+
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+    .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--color-border);
+        border-radius: var(--border-radius);
+        padding: 1.75rem;
+        transition: var(--transition);
+        display: flex;
+        flex-direction: column;
+    }
+    .project-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(148, 171, 105, 0.4);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    }
+    .project-card .project-category {
+        display: inline-block;
+        color: var(--color-accent);
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.1rem;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+    }
+    .project-card h3 {
+        color: var(--color-white);
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
+    .project-card p {
+        color: var(--color-text-muted);
+        font-size: 0.8rem;
+        line-height: 1.6;
+        flex-grow: 1;
+    }
+    .project-card .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--color-accent);
+        text-decoration: none;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-top: 1rem;
+        transition: var(--transition);
+    }
+    .project-card .project-link:hover {
+        gap: 0.6rem;
+    }
+    .project-card .project-link svg {
+        width: 14px;
+        height: 14px;
+        transition: var(--transition);
+    }
+
+    .category-heading {
+        color: var(--color-accent);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.15rem;
+        text-transform: uppercase;
+        margin-top: 3rem;
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 768px) {
+        .featured-project-content {
+            grid-template-columns: 1fr;
+        }
+        .featured-project-details {
+            padding: 2rem;
+        }
+        .project-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    @media (max-width: 480px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Featured Project: La Bahia Hotel (Dark Background) -->
 <section class="section section-dark">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Featured Project</h2>
+            <p class="section-subtitle">Our latest landmark installation</p>
+        </div>
+
+        <div class="featured-project">
+            <div class="featured-project-content">
+                <div class="featured-project-image">
+                    <span class="featured-project-badge">Just Completed</span>
+                </div>
+                <div class="featured-project-details">
+                    <span class="project-category">Hospitality</span>
+                    <h3>La Bahia Hotel</h3>
+                    <p>A signature installation featuring custom 16-foot tall entry doors at this historic Monterey Bay landmark. Each door represents a $100K investment in craftsmanship and precision engineering.</p>
+                    <div class="highlight-stat">16 ft</div>
+                    <div class="highlight-label">Custom entry doors — among the tallest commercial door installations in the region</div>
+                    <div class="scope-tags">
+                        <span class="scope-tag">Interior &amp; Exterior Doors</span>
+                        <span class="scope-tag">Hardware</span>
+                        <span class="scope-tag">Access Control</span>
+                        <span class="scope-tag">Moldings &amp; Trim</span>
+                    </div>
+                    <a href="https://labahiahotel.com/" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Visit La Bahia Hotel &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Portfolio (Dark Background continued) -->
+<section class="section section-dark" style="padding-top: 0;">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Project Portfolio</h2>
+            <p class="section-subtitle">Doors, access control, hardware, and more — delivered across Central California</p>
+        </div>
+
+        <!-- Housing -->
+        <h4 class="category-heading">Housing</h4>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-category">Affordable Housing</span>
+                <h3>Path Villas</h3>
+                <p>Full-scope door and hardware package for this affordable housing community, including interior/exterior doors, access control, and ADA-compliant operators.</p>
+                <a href="https://epath.org/ventures/villas-at-4th-street/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Affordable Housing</span>
+                <h3>Page Street Studios</h3>
+                <p>Comprehensive door hardware and access control systems for this affordable housing development by Charities Housing.</p>
+                <a href="https://charitieshousing.org/property/page-street-studios/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Luxury Apartments</span>
+                <h3>Century Center Towers</h3>
+                <p>Premium door hardware, interior glass, and access control for this luxury apartment community in San Jose by Essex.</p>
+                <a href="https://www.essexapartmenthomes.com/apartments/san-jose/century-towers" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Mixed-Use Apartments</span>
+                <h3>Mosaic on Mission</h3>
+                <p>Doors, hardware, bath accessories, and fire safety equipment for this mixed-use apartment community.</p>
+                <a href="https://www.mosaicaptsonmission.com/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Student Housing</span>
+                <h3>The Grad San Jose</h3>
+                <p>Access control, door hardware, and hollow metal doors for this student housing development near San Jose State University.</p>
+                <a href="https://www.thegradsanjose.com/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Affordable Housing</span>
+                <h3>Charles Apartments</h3>
+                <p>Interior and exterior doors, hardware, and ADA accessories for this Eden Housing affordable housing community.</p>
+                <a href="https://edenhousing.org/properties/charles-apartments/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Arts Center / Housing</span>
+                <h3>The Tannery</h3>
+                <p>Doors, hardware, and access control for this unique arts center and housing complex in Santa Cruz.</p>
+                <a href="https://www.tanneryartscenter.org/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Affordable Housing</span>
+                <h3>Sharmon Palms</h3>
+                <p>Complete door and hardware scope including ADA auto operators for this MidPen Housing affordable community.</p>
+                <a href="https://www.midpen-housing.org/property/sharmon-palms-lane/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Apartments</span>
+                <h3>Park Lane Monterey</h3>
+                <p>Interior/exterior doors, hardware, moldings and trim, and fire extinguishers for this Monterey apartment community.</p>
+                <a href="https://montereyparklane.com/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Apartments</span>
+                <h3>Kinsley Yard</h3>
+                <p>Door hardware, access control, and roll up doors for this apartment community.</p>
+                <a href="https://kinsleyyardapts.com/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <h4 class="category-heading">Education</h4>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-category">Education</span>
+                <h3>College of the Sequoias</h3>
+                <p>Campus-wide door hardware, access control, hollow metal doors, and ADA auto operators for this community college.</p>
+                <a href="https://www.cos.edu/en-us" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Education</span>
+                <h3>Fresno State University</h3>
+                <p>Door hardware, access control systems, and ADA-compliant operators for California State University, Fresno campus facilities.</p>
+                <a href="https://www.fresnostate.edu/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+        </div>
+
+        <!-- Healthcare -->
+        <h4 class="category-heading">Healthcare</h4>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-category">Healthcare</span>
+                <h3>Salinas Surgery Center</h3>
+                <p>Specialized door hardware, interior glass, hollow metal doors, and ADA accessories for this surgical facility.</p>
+                <a href="https://montereysurgerycenter.com/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+            <div class="project-card">
+                <span class="project-category">Healthcare</span>
+                <h3>Ohana Monterey</h3>
+                <p>Doors, hardware, access control, and ADA auto operators for this Montage Health wellness facility in Monterey.</p>
+                <a href="https://www.montagehealth.org/locations/profile/ohana/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+        </div>
+
+        <!-- Commercial -->
+        <h4 class="category-heading">Commercial</h4>
+        <div class="project-grid">
+            <div class="project-card">
+                <span class="project-category">Commercial / Industrial</span>
+                <h3>OK Produce</h3>
+                <p>Roll up doors, hollow metal doors, hardware, and access control for this commercial produce facility.</p>
+                <a href="https://okproduce.com/" target="_blank" rel="noopener" class="project-link">View Project <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd"/></svg></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery (Dark Background) -->
+<section class="section section-dark" style="padding-top: 0;">
     <div class="container">
         <div class="section-header">
             <h2 class="section-title">Gallery</h2>
             <p class="section-subtitle">A look at our work across hotels, campuses, and commercial facilities</p>
         </div>
-        
+
         <div class="gallery-grid">
             <div class="gallery-item">
                 <img src="/assets/images/hospitality/luxury-hotel-corridor-hallway-doors.jpg" alt="Luxury hotel corridor with access-controlled doors" loading="lazy">
@@ -129,8 +459,8 @@ description: Commercial access control and door hardware installations throughou
     <div class="container">
         <div class="text-center">
             <h2 class="section-title">Ready to Start Your Project?</h2>
-            <p class="section-subtitle">Professional design, installation, and support for your commercial access control project</p>
-            
+            <p class="section-subtitle">Professional design, installation, and support for your commercial door and access control project</p>
+
             <div class="hero-actions" style="justify-content: center; margin-top: 2rem;">
                 <a href="/contact/" class="btn btn-primary">Request Consultation</a>
                 <a href="tel:(831)975-0202" class="btn btn-secondary">Call: (831) 975-0202</a>
