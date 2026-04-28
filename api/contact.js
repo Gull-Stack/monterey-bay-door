@@ -127,10 +127,10 @@ export default async function handler(req, res) {
             ${projectType ? `<p style="font-size: 16px; color: #333;"><strong>Project Type:</strong> ${projectType}</p>` : ''}
             ${company ? `<p style="font-size: 16px; color: #333;"><strong>Company:</strong> ${company}</p>` : ''}
             ${message ? `<p style="font-size: 16px; color: #333;"><strong>Details:</strong> ${message}</p>` : ''}
-            <p style="font-size: 16px; color: #333; margin-top: 20px;">Need immediate assistance? Call us at <strong>(831) 975-0202</strong>.</p>
+            <p style="font-size: 16px; color: #333; margin-top: 20px;">Need immediate assistance? Call us at <strong>(831) 757-1878</strong>.</p>
           </div>
           <div style="background: #1a365d; padding: 20px; text-align: center;">
-            <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 14px;">Monterey Bay Door — Commercial Access Control & Door Hardware — Hollister, CA</p>
+            <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 14px;">Monterey Bay Door — Commercial Doors, Frames, Hardware, & Access Control — Hollister, CA</p>
           </div>
         </div>
       `;
@@ -179,6 +179,6 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Contact form error:', error);
-    return res.status(500).json({ error: 'Something went wrong. Please call us at (831) 975-0202.' });
+    return res.status(500).json({ error: 'Something went wrong. Please call us at (831) 757-1878.' });
   }
 }
