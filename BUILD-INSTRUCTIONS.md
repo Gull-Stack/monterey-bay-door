@@ -51,7 +51,7 @@ All assets are in `assets-source/`:
 ## Placeholder Info (client hasn't provided yet)
 - Phone: Use `(831) 555-0100` as placeholder
 - Email: Use `info@mbdoor.com`
-- Address: Use `Hollister, CA` (no street address yet)
+- Address: `1630 Lana Way Bldg B, Hollister, CA 95023`
 - License #: Use `[License #]` placeholder
 
 ## Copy

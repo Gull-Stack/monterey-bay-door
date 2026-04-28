@@ -4,6 +4,7 @@
     "foundingYear": 2007,
     "description": "Commercial doors, frames, hardware, & access control specialist serving Central California. Complete turnkey solutions and in-house locksmithing. Authorized Dugmore & Duncan / ASSA ABLOY distributor providing direct vendor pricing, professional installation, and ongoing service for hotels, colleges, and commercial buildings.",
     "location": {
+        "streetAddress": "1630 Lana Way Bldg B",
         "city": "Hollister",
         "state": "California",
         "postalCode": "95023",
