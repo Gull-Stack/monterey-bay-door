@@ -32,6 +32,13 @@ access control — Hollister, CA). GullStack client site.
 - Same-day: staleydoor.com got careers/sectors/service-area sections.
 - Verified live on www.mbdoor.com (careers 200, roll-up count 0).
 
+**Project intake workflow (2026-06-11):** Job Log Google Sheet
+(docs.google.com/spreadsheets/d/1Elimi3PELt88sazRnuiB2RwFp0NMk7G3_H-r-30Bx2k)
+— Erika logs one row per job; photos arrive via Tommy's Dropbox, folder per
+job. Friday pipeline: new rows + photos → optimized images in
+src/assets/images/projects/ → project pages → GMB/social drafts. 14 photos
+from the 6/5 emails already live under /assets/images/projects/.
+
 **Open items / next session:**
 - Project gallery write-ups: photos are inline in Tommy's three 6/5 emails
   ("Actions shots…", "More pics", untitled) — need job names per photo and
