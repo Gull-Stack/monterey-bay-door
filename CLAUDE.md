@@ -32,6 +32,16 @@ access control — Hollister, CA). GullStack client site.
 - Same-day: staleydoor.com got careers/sectors/service-area sections.
 - Verified live on www.mbdoor.com (careers 200, roll-up count 0).
 
+**Crew portal (2026-06-11, LIVE):** mbdoor.com/portal — PIN 1630
+(PORTAL_PIN env). Phone form: job name/city/type/notes + photos
+(client-side resized to 1600px). api/project-update.js stores photos in
+Vercel Blob store `mbd-project-photos` (public,
+`projects/<job-slug>/...` + meta-<ts>.json per submission) and emails
+bryce@gullstack.com via SendGrid. Verified end-to-end. Friday pipeline
+reads the Blob store (list by prefix `projects/`). NOTE: SUPABASE_* env
+vars on this project point at a DELETED project (NXDOMAIN) — contact.js
+lead logging is silently dead; lead emails unaffected.
+
 **Project intake workflow (2026-06-11):** Job Log Google Sheet
 (docs.google.com/spreadsheets/d/1Elimi3PELt88sazRnuiB2RwFp0NMk7G3_H-r-30Bx2k)
 — Erika logs one row per job; photos arrive via Tommy's Dropbox, folder per
