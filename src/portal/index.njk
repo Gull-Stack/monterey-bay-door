@@ -1,0 +1,212 @@
+---
+layout: layouts/base.njk
+title: Crew Portal
+description: Monterey Bay Door crew portal for submitting job photos.
+eleventyExcludeFromCollections: true
+---
+
+<section class="section section-light" style="min-height: 70vh;">
+    <div class="container" style="max-width: 640px;">
+        <div class="section-header">
+            <h1 class="section-title">Crew Portal</h1>
+            <p class="section-subtitle">Send job photos straight from the site. Takes about a minute.</p>
+        </div>
+
+        <!-- PIN gate -->
+        <div id="pin-gate" class="card" style="display: none;">
+            <h3>Enter the shop PIN</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem;">Ask Tommy or Erika if you don't have it.</p>
+            <input type="tel" id="pin-input" inputmode="numeric" maxlength="8" placeholder="PIN"
+                   style="width: 100%; padding: 0.9rem 1rem; font-size: 1.3rem; letter-spacing: 0.3em; text-align: center; border: 1px solid #ccc; border-radius: var(--border-radius); margin: 1rem 0;">
+            <button id="pin-btn" class="btn btn-primary" style="width: 100%;">Unlock</button>
+            <p id="pin-error" style="color: #b00020; display: none; margin-top: 0.75rem;">Wrong PIN — try again.</p>
+        </div>
+
+        <!-- Form -->
+        <form id="job-form" class="card" style="display: none;">
+            <div class="contact-form-field" style="margin-bottom: 1.25rem;">
+                <label for="job-name" style="font-weight: 600;">Job name *</label>
+                <input type="text" id="job-name" required placeholder='e.g. "La Bahia Hotel" or "Smith remodel"'
+                       style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: var(--border-radius);">
+            </div>
+            <div class="contact-form-field" style="margin-bottom: 1.25rem;">
+                <label for="job-city" style="font-weight: 600;">City</label>
+                <input type="text" id="job-city" placeholder="e.g. Salinas"
+                       style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: var(--border-radius);">
+            </div>
+            <div class="contact-form-field" style="margin-bottom: 1.25rem;">
+                <label for="job-type" style="font-weight: 600;">Type of work</label>
+                <select id="job-type" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: var(--border-radius); background: white;">
+                    <option>Doors</option>
+                    <option>Frames</option>
+                    <option>Hardware</option>
+                    <option>Access Control</option>
+                    <option>Trim & Millwork</option>
+                    <option>Service Call</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="contact-form-field" style="margin-bottom: 1.25rem;">
+                <label for="job-notes" style="font-weight: 600;">What did we do? (one line is fine)</label>
+                <textarea id="job-notes" rows="2" placeholder='e.g. "Hung 24 doors + hardware, 2nd floor"'
+                          style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: var(--border-radius);"></textarea>
+            </div>
+            <div class="contact-form-field" style="margin-bottom: 1.25rem;">
+                <label for="job-by" style="font-weight: 600;">Your name</label>
+                <input type="text" id="job-by" placeholder="Who's sending this?"
+                       style="width: 100%; padding: 0.75rem 1rem; border: 1px solid #ccc; border-radius: var(--border-radius);">
+            </div>
+
+            <div class="contact-form-field" style="margin-bottom: 1.25rem;">
+                <label style="font-weight: 600;">Photos</label>
+                <input type="file" id="job-photos" accept="image/*" multiple
+                       style="width: 100%; padding: 0.75rem 0;">
+                <div id="thumbs" style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.5rem;"></div>
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn btn-primary" style="width: 100%;">Send It</button>
+            <p id="progress" style="margin-top: 0.75rem; color: var(--color-text-muted); display: none;"></p>
+            <p id="form-error" style="color: #b00020; display: none; margin-top: 0.75rem;"></p>
+        </form>
+
+        <!-- Success -->
+        <div id="done" class="card" style="display: none; text-align: center;">
+            <h3>Got it. Thanks!</h3>
+            <p id="done-detail" style="color: var(--color-text-muted);"></p>
+            <button id="again-btn" class="btn btn-secondary" style="margin-top: 1rem;">Send Another Job</button>
+        </div>
+    </div>
+</section>
+
+<script>
+(function () {
+  var API = '/api/project-update';
+  var pinGate = document.getElementById('pin-gate');
+  var form = document.getElementById('job-form');
+  var done = document.getElementById('done');
+
+  function show(el) {
+    pinGate.style.display = 'none';
+    form.style.display = 'none';
+    done.style.display = 'none';
+    el.style.display = 'block';
+  }
+
+  function post(body) {
+    return fetch(API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      return r.json().then(function (j) {
+        if (!r.ok) throw new Error(j.error || ('HTTP ' + r.status));
+        return j;
+      });
+    });
+  }
+
+  var savedPin = localStorage.getItem('mbd_portal_pin');
+  if (savedPin) {
+    post({ action: 'verify', pin: savedPin }).then(function () { show(form); })
+      .catch(function () { localStorage.removeItem('mbd_portal_pin'); show(pinGate); });
+  } else {
+    show(pinGate);
+  }
+
+  document.getElementById('pin-btn').addEventListener('click', function () {
+    var pin = document.getElementById('pin-input').value.trim();
+    if (!pin) return;
+    post({ action: 'verify', pin: pin }).then(function () {
+      localStorage.setItem('mbd_portal_pin', pin);
+      show(form);
+    }).catch(function () {
+      document.getElementById('pin-error').style.display = 'block';
+    });
+  });
+
+  // Resize an image file to max 1600px JPEG, return base64 (no data: prefix)
+  function resize(file) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      var url = URL.createObjectURL(file);
+      img.onload = function () {
+        var max = 1600;
+        var scale = Math.min(1, max / Math.max(img.width, img.height));
+        var canvas = document.createElement('canvas');
+        canvas.width = Math.round(img.width * scale);
+        canvas.height = Math.round(img.height * scale);
+        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+        URL.revokeObjectURL(url);
+        var dataUrl = canvas.toDataURL('image/jpeg', 0.8);
+        resolve(dataUrl.split(',')[1]);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('Could not read ' + file.name)); };
+      img.src = url;
+    });
+  }
+
+  document.getElementById('job-photos').addEventListener('change', function () {
+    var thumbs = document.getElementById('thumbs');
+    thumbs.innerHTML = '';
+    Array.prototype.forEach.call(this.files, function (f) {
+      var img = document.createElement('img');
+      img.src = URL.createObjectURL(f);
+      img.style.cssText = 'width:64px;height:64px;object-fit:cover;border-radius:6px;';
+      thumbs.appendChild(img);
+    });
+  });
+
+  document.getElementById('job-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pin = localStorage.getItem('mbd_portal_pin');
+    var jobName = document.getElementById('job-name').value.trim();
+    if (!jobName) return;
+    var files = document.getElementById('job-photos').files;
+    var progress = document.getElementById('progress');
+    var errEl = document.getElementById('form-error');
+    var btn = document.getElementById('submit-btn');
+    errEl.style.display = 'none';
+    btn.disabled = true;
+    progress.style.display = 'block';
+
+    var job = {
+      jobName: jobName,
+      city: document.getElementById('job-city').value.trim(),
+      workType: document.getElementById('job-type').value,
+      notes: document.getElementById('job-notes').value.trim(),
+      submittedBy: document.getElementById('job-by').value.trim()
+    };
+    var urls = [];
+    var chain = Promise.resolve();
+    Array.prototype.forEach.call(files, function (f, i) {
+      chain = chain.then(function () {
+        progress.textContent = 'Uploading photo ' + (i + 1) + ' of ' + files.length + '…';
+        return resize(f).then(function (b64) {
+          return post({ action: 'photo', pin: pin, jobSlug: jobName, filename: f.name, data: b64 });
+        }).then(function (r) { urls.push(r.url); });
+      });
+    });
+    chain.then(function () {
+      progress.textContent = 'Finishing up…';
+      return post({ action: 'finish', pin: pin, job: job, photoUrls: urls });
+    }).then(function () {
+      document.getElementById('done-detail').textContent =
+        jobName + ' — ' + urls.length + ' photo(s) sent to GullStack.';
+      show(done);
+      btn.disabled = false;
+      progress.style.display = 'none';
+    }).catch(function (err) {
+      errEl.textContent = 'Something went wrong: ' + err.message + ' — try again or text the photos to Bryce.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      progress.style.display = 'none';
+    });
+  });
+
+  document.getElementById('again-btn').addEventListener('click', function () {
+    document.getElementById('job-form').reset();
+    document.getElementById('thumbs').innerHTML = '';
+    show(form);
+  });
+})();
+</script>
