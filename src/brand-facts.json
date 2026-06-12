@@ -16,6 +16,9 @@
         "San Benito County",
         "Monterey County",
         "Santa Cruz County",
+        "Salinas Valley",
+        "Silicon Valley",
+        "Central Valley (Fresno, Visalia)",
         "Central California"
     ],
     "phone": "(831) 757-1878",
@@ -23,6 +26,9 @@
     "url": "https://www.mbdoor.com",
     "industry": "Commercial Door Hardware & Access Control",
     "specialties": [
+        "Custom wood and commercial door sales",
+        "Door machining (including customer-supplied doors)",
+        "Custom trim and millwork supply",
         "Commercial access control systems",
         "Electronic lock installation",
         "Card reader and mobile access systems",
@@ -42,7 +48,14 @@
     "partnerships": [
         "Dugmore & Duncan (authorized distributor)",
         "ASSA ABLOY",
-        "Allegion"
+        "Allegion",
+        "TM Cobb",
+        "Metrie (El & El)",
+        "Kelleher",
+        "Ironwood Door",
+        "ABS (American Building Supply)",
+        "DCI Hollow Metal",
+        "Orepac"
     ],
     "brands": [
         "Sargent",
@@ -65,9 +78,13 @@
         "Enterprise-scale project experience (hotels, colleges, commercial buildings)"
     ],
     "targetMarkets": [
+        "Custom, tract, and modular home builders",
+        "Multifamily and apartment projects",
+        "Local contractors (doors, trim, and hardware supply)",
         "Hotels and hospitality",
         "Colleges and universities",
         "Commercial office buildings",
+        "Tenant improvements",
         "Healthcare facilities",
         "Government buildings",
         "Retail and mixed-use properties"

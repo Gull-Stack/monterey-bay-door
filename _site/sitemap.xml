@@ -5,7 +5,15 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://www.mbdoor.com/contact/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://www.mbdoor.com/products/sargent-8265-bhw-32d/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/projects/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -13,15 +21,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/contact/</loc>
+    <loc>https://www.mbdoor.com/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/service-areas/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/services/door-hardware/</loc>
+    <loc>https://www.mbdoor.com/services/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -29,7 +33,7 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/services/</loc>
+    <loc>https://www.mbdoor.com/services/door-hardware/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -41,15 +45,15 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/projects/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://www.mbdoor.com/partners/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/service-areas/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/careers/</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>
