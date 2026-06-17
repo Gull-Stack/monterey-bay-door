@@ -21,10 +21,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://www.mbdoor.com/services/</loc>
     <changefreq>monthly</changefreq>
   </url>
@@ -45,15 +41,19 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/partners/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://www.mbdoor.com/service-areas/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://www.mbdoor.com/careers/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/partners/</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

@@ -256,6 +256,13 @@ p {
 }
 
 /* Nav Phone */
+.nav-phones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    line-height: 1.2;
+}
+
 .nav-phone {
     color: var(--color-accent);
     text-decoration: none;
@@ -264,8 +271,31 @@ p {
     white-space: nowrap;
 }
 
+.nav-phone-label {
+    display: inline-block;
+    min-width: 3.25rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-light);
+    opacity: 0.7;
+    margin-right: 0.4rem;
+}
+
 .nav-phone:hover {
     color: var(--color-white);
+}
+
+/* Phone links inside the mobile menu (hidden on desktop) */
+.nav-mobile-phone {
+    display: none;
+}
+
+.nav-mobile-phone .nav-phone-label {
+    color: var(--color-accent);
+    opacity: 0.6;
+    min-width: 3.5rem;
 }
 
 .btn-sm {
@@ -799,6 +829,15 @@ p {
         display: block;
         padding: 0.75rem 0;
     }
+
+    .nav-menu .nav-mobile-phone {
+        display: list-item;
+    }
+
+    .nav-menu .nav-mobile-phone .nav-link {
+        color: var(--color-accent);
+        font-weight: 600;
+    }
     
     .nav-dropdown-menu {
         position: static;
@@ -889,7 +928,7 @@ p {
         grid-template-columns: 1fr;
     }
     
-    .nav-phone {
+    .nav-phones {
         display: none;
     }
     
