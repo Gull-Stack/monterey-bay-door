@@ -18,6 +18,30 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-06-17 — Ruby's service line + partner logos (commit 7e42edb, NOT yet pushed)
+
+- Header now shows a labeled phone stack: **Service (831) 717-8624** (Ruby,
+  per Erika's email) above **Office (831) 757-1878**, both tap-to-call.
+  base.njk `.nav-phones` + main.css.
+- Both numbers also added to the mobile menu (`.nav-mobile-phone`) — header
+  phones are desktop-only (`display:none` ≤768px), so the service line would
+  otherwise be unreachable on phones.
+- Authorized Partners marquee: replaced the six text-only placeholders
+  (Allegion, Schlage, Kwikset, Baldwin, Emtek, Taymor) with real wordmark
+  logos on homepage + /partners. Sourced into
+  src/assets/partner-logos/partner-logos-web-ready/: allegion/baldwin from
+  worldvectorlogo; schlage wordmark from schlage.com (stripped the metallic
+  plate paths so only the white wordmark survives the CSS white-silhouette
+  filter); kwikset wordmark from their Scene7 CDN (logo @ 600x61);
+  emtek inline SVG from emtek.com; taymor PNG from taymor.com. NOTE: the CSS
+  `.partner-logo { filter: brightness(0) invert(1) }` forces every logo to
+  white — square "badge" logos turn into solid white blocks, so wordmarks
+  with transparent bg are required.
+- Verified all 6 render clean (desktop strip + mobile menu) in preview.
+- **BLOCKER:** push to `main` was denied by the auto-mode classifier (direct
+  push to default branch). Commit 7e42edb is local only; needs Bryce's OK to
+  push → Vercel auto-deploys to www.mbdoor.com. Notion update pending deploy.
+
 ## 2026-06-11 — Tommy's 6/5 meeting updates (commit cb4b9f9, deployed)
 
 - Custom wood doors now lead the services everywhere; access control moved
