@@ -18,6 +18,29 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-06-24 — Invoices sent + photos/portal recap
+
+- **Billed Tommy (sent + done):** build invoice **$4,360** one-time (both
+  sites, due on receipt, no late fees) + **$875/mo auto-pay subscription**
+  anchored to the 1st, first charge **July 1, 2026** (Tommy authorizes card
+  once; month-to-month). Heads-up email to Tommy sent; Erika kept off the
+  money thread per Bryce. Final email archived at
+  ~/Documents/mbd-invoice-email-tommy.md.
+- Stripe note: Salty Caddie account hit an IRS tax-ID verification block
+  (legal-name "Sprewce"/EIN vs public "Salty Caddie"/"Cereal Growth LLC"
+  mismatch); billed via the working path instead. Memo line names GullStack
+  since the statement descriptor won't.
+- 14 surviving project photos from the 6/5 batch are live under
+  /assets/images/projects/ (renamed/optimized). La Bahia Hotel = the anchor
+  project; ready for gallery write-ups once Tommy sends job names.
+- Crew portal confirmed live: mbdoor.com/portal, PIN 1630 → Vercel Blob +
+  email notify. This is the primary photo-intake path going forward.
+- Notion (MBD Door + Staley client pages) updated with all of the above.
+- **Next:** GMB manager access for bryce@gullstack.com (asked since April —
+  gates the weekly-posts engine); job names for gallery pages; reviews from
+  Erika; arm the Friday GMB/social automation once the first real portal
+  submission lands.
+
 ## 2026-06-17 — Ruby's service line + partner logos (commit 7e42edb, NOT yet pushed)
 
 - Header now shows a labeled phone stack: **Service (831) 717-8624** (Ruby,
