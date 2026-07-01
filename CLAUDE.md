@@ -18,6 +18,38 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-07-01 — Field photos live + lead logging fixed + SEO meta (commit dac47a3, PUSHED)
+
+- Context: Tommy call today — wants site "more SEO friendly," lead-driving +
+  tracking, and 8 crew photos he texted 6/5 worked in. (Billing side — one-
+  time $4,360 vs the $875/mo sub — is Tommy's call to Bryce, not this repo.)
+- **Lead logging FIXED.** `api/contact.js` was writing leads to the deleted
+  Supabase project (NXDOMAIN) — every lead's record was silently lost, only
+  the email survived. Replaced with **Vercel Blob** logging under `leads/
+  YYYY-MM-DD/` (same store the crew portal uses; BLOB token already set).
+  Wrapped so it can never break the SendGrid email path.
+- **New `/leads` dashboard** (`api/leads.js` + `src/leads/index.njk`) — PIN-
+  gated (PORTAL_PIN, 1630), lists every inquiry newest-first (date, name,
+  contact, interest, message). Excluded from sitemap + robots. This is the
+  "keep track" surface.
+- **8 real crew installs added.** Exported from Bryce's Photos (they were
+  saved from Tommy's 6/5 text; capture-stamp 6/5 1:43 PM confirmed the set),
+  HEIC→JPG @1200px, SEO filenames under `/assets/images/projects/field-*`.
+  New **"From the Field"** section on /projects + a homepage **"Recent work"**
+  strip, all with alt text, captions, and ImageGallery/ImageObject schema.
+  Mix: commercial door-in-steel-frame + finished flush/bypass/louvered doors
+  + crew action shots. Beat the old stock gallery images.
+- **SEO meta.** Added canonical URLs + full Open Graph / Twitter card tags in
+  base.njk (site-wide; per-page `ogImage` override). Previously any shared
+  mbdoor.com link produced a blank preview — now rich name/desc/hero image.
+- Getting photos out was the hard part: macOS TCC blocks direct Photos/
+  Messages file reads, "Recently Saved" isn't AppleScript-scriptable, and
+  `media items` orders by capture date not date-added. Solution that worked:
+  Bryce selected the 8 in Photos, then `export (get selection)` via osascript.
+- **Next:** still waiting on GMB manager access (gates weekly posts); job
+  names/captions from Tommy for these 8 if he wants them titled by project;
+  reviews from Erika; consider a Friday digest email of new /leads.
+
 ## 2026-06-24 — Invoices sent + photos/portal recap
 
 - **Billed Tommy (sent + done):** build invoice **$4,360** one-time (both
