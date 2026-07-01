@@ -46,9 +46,26 @@ access control — Hollister, CA). GullStack client site.
   Messages file reads, "Recently Saved" isn't AppleScript-scriptable, and
   `media items` orders by capture date not date-added. Solution that worked:
   Bryce selected the 8 in Photos, then `export (get selection)` via osascript.
-- **Next:** still waiting on GMB manager access (gates weekly posts); job
-  names/captions from Tommy for these 8 if he wants them titled by project;
-  reviews from Erika; consider a Friday digest email of new /leads.
+- **GMB ACCESS UNBLOCKED (finally).** Bryce confirmed manager access on
+  **bryce@gullstack.com** — verified live: Google-search "Monterey Bay Door"
+  in that account shows the merchant panel ("You manage this Business
+  Profile"). NOTE: the account is signed into the Mac's **"Browser 2"** Chrome
+  (Browser 1 = capitalwealth/personal accounts, none are managers). GBP is
+  managed via Search now (no standalone business.google.com dashboard).
+- Drafted a GBP "What's new" post (recent-work copy + "Learn more" →
+  mbdoor.com/projects). LIMITATION: GBP photo upload only opens the native OS
+  file picker, which browser automation can't drive — so photos (profile
+  gallery + post images) must be added by Bryce by hand. Left the post
+  composed for Bryce to attach a photo + hit Post.
+- **Weekly automation LIVE:** scheduled task `mbd-weekly-gmb-post` (Fri
+  8:05am local) drafts a fresh GBP post + picks a rotating photo, writes it to
+  `gmb-drafts/gmb-YYYY-MM-DD.md`, and texts Bryce a heads-up. It does NOT
+  auto-publish (native-picker limit) — Bryce one-clicks to post. True
+  hands-off posting would need the GBP API (future project).
+- **Next:** Bryce to publish the composed post + bulk-add the 8 field photos
+  to the profile gallery (files staged in src/assets/images/projects/field-*);
+  job names/captions from Tommy if he wants the 8 titled by project; reviews
+  from Erika; consider a Friday digest email of new /leads.
 
 ## 2026-06-24 — Invoices sent + photos/portal recap
 
