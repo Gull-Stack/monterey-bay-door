@@ -13,10 +13,6 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/projects/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://www.mbdoor.com/shop/</loc>
     <changefreq>monthly</changefreq>
   </url>
@@ -49,11 +45,15 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/</loc>
+    <loc>https://www.mbdoor.com/partners/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/partners/</loc>
+    <loc>https://www.mbdoor.com/projects/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

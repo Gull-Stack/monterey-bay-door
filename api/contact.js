@@ -1,11 +1,20 @@
 // Monterey Bay Door - Contact Form Handler
-// Sends notification email to business + auto-reply to lead via SendGrid
+// Sends notification email to business + auto-reply to lead via SendGrid,
+// and logs every lead to Vercel Blob (leads/ prefix) so nothing is lost.
+
+import { put } from '@vercel/blob';
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const SITE_EMAIL = process.env.SITE_EMAIL || 'tomrehak@mbdoor.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'leads@gullstack.com';
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY;
+
+function slugify(s) {
+  return String(s || 'lead')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 50) || 'lead';
+}
 
 function isGibberish(text) {
   if (!text || text.length < 2) return false;
@@ -97,22 +106,20 @@ export default async function handler(req, res) {
       created_at: new Date().toISOString(),
     };
 
-    // Store in Supabase if configured
-    if (SUPABASE_URL && SUPABASE_KEY) {
-      try {
-        await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-            'Prefer': 'return=representation',
-          },
-          body: JSON.stringify(leadData),
-        });
-      } catch (e) {
-        console.error('Supabase insert error:', e);
-      }
+    // Log every lead to Vercel Blob so nothing is ever lost, even if email
+    // fails. One JSON file per lead under leads/YYYY-MM-DD/. The /leads
+    // dashboard reads these back (list by prefix 'leads/'). Never allowed to
+    // break the email path below.
+    try {
+      const day = leadData.created_at.slice(0, 10); // YYYY-MM-DD
+      const key = `leads/${day}/${Date.now()}-${slugify(leadData.name)}.json`;
+      await put(key, JSON.stringify(leadData, null, 2), {
+        access: 'public',
+        contentType: 'application/json',
+        addRandomSuffix: true, // unguessable URL — record is only listable with the store token
+      });
+    } catch (e) {
+      console.error('Lead blob log error:', e);
     }
 
     if (SENDGRID_API_KEY) {
