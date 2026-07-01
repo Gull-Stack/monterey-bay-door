@@ -62,6 +62,15 @@ access control — Hollister, CA). GullStack client site.
   `gmb-drafts/gmb-YYYY-MM-DD.md`, and texts Bryce a heads-up. It does NOT
   auto-publish (native-picker limit) — Bryce one-clicks to post. True
   hands-off posting would need the GBP API (future project).
+- **Billing corrected:** Tommy is NOT doing a subscription. He's paying the
+  one-time build (~$4,300) today; the $875/mo auto-pay is off. SEO continues
+  with no monthly charge; Tommy will pay more ad-hoc as it proves value. Don't
+  frame anything to him as a monthly retainer. Draft email to Tommy reframed
+  accordingly at ~/Documents/monterey-bay-door/monthly-seo-email-tommy.md.
+- **New opportunity:** Bryce planning an onsite visit (bundled with D1
+  Builders + Signatone) to scope CUSTOM SOFTWARE to run the inside of Tommy's
+  business — same as the Buildertrend replacement for Kyle/D1. Bigger build
+  than website + SEO if it lands.
 - **Next:** Bryce to publish the composed post + bulk-add the 8 field photos
   to the profile gallery (files staged in src/assets/images/projects/field-*);
   job names/captions from Tommy if he wants the 8 titled by project; reviews
