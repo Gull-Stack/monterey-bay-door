@@ -67,6 +67,11 @@ access control — Hollister, CA). GullStack client site.
   with no monthly charge; Tommy will pay more ad-hoc as it proves value. Don't
   frame anything to him as a monthly retainer. Draft email to Tommy reframed
   accordingly at ~/Documents/monterey-bay-door/monthly-seo-email-tommy.md.
+- **SEO/value tracking set up:** MBD Notion page now has an "SEO & Value
+  Tracker" section + a weekly task `mbd-weekly-seo-value` (Fri 8:24am) that
+  counts new /leads, logs work shipped, and appends a dated entry (flows to
+  hq.saltycaddie.com via the daily Notion sync). Since Tommy is prove-value-
+  then-pay-more, this keeps the ROI visible every week.
 - **New opportunity:** Bryce planning an onsite visit (bundled with D1
   Builders + Signatone) to scope CUSTOM SOFTWARE to run the inside of Tommy's
   business — same as the Buildertrend replacement for Kyle/D1. Bigger build
