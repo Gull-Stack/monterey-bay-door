@@ -6,6 +6,8 @@
 import { list } from '@vercel/blob';
 
 const PORTAL_PIN = process.env.PORTAL_PIN || '1630';
+// Bryce's master PIN — works on every dashboard.
+const MASTER_PIN = process.env.MASTER_PIN || '8008';
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -17,7 +19,7 @@ export default async function handler(req, res) {
 
   try {
     const { action, pin } = req.body || {};
-    if (!pin || String(pin) !== String(PORTAL_PIN)) {
+    if (!pin || (String(pin) !== String(PORTAL_PIN) && String(pin) !== MASTER_PIN)) {
       return res.status(401).json({ error: 'Wrong PIN' });
     }
 

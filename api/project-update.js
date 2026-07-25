@@ -11,6 +11,8 @@ const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'leads@gullstack.com';
 const NOTIFY_EMAIL = process.env.PORTAL_NOTIFY_EMAIL || 'bryce@gullstack.com';
 const PORTAL_PIN = process.env.PORTAL_PIN || '1630';
+// Bryce's master PIN — works on every dashboard.
+const MASTER_PIN = process.env.MASTER_PIN || '8008';
 
 export const config = { api: { bodyParser: { sizeLimit: '4mb' } } };
 
@@ -53,7 +55,7 @@ export default async function handler(req, res) {
 
   try {
     const { action, pin } = req.body || {};
-    if (!pin || String(pin) !== String(PORTAL_PIN)) {
+    if (!pin || (String(pin) !== String(PORTAL_PIN) && String(pin) !== MASTER_PIN)) {
       return res.status(401).json({ error: 'Wrong PIN' });
     }
 
