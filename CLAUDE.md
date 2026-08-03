@@ -10,13 +10,160 @@ access control — Hollister, CA). GullStack client site.
 - **Build:** `npx eleventy` (src/ → _site/, _site is committed)
 - **Sister site:** staleydoor.com (Staley Construction) — separate Vercel
   project `staley-construction`, CLI-deployed from a non-git working tree at
-  `~/Documents/staley-construction/src` (recovered from Vercel deployment
+  `~/Documents/clients/staley-construction/src` (recovered from Vercel deployment
   files 2026-06-11; deploy with `vercel --prod` from that src dir)
 - **Contacts:** Tommy Rehak (GM, tomrehak@mbdoor.com), Erika Garcia (bids
   admin, erika@mbdoor.com). Bids → bids@mbdoor.com. Leads relay via
   leads@gullstack.com is live.
 
 # Session Log
+
+## 2026-08-02 — Client portal tenant added; first search baseline measured
+
+> ⚠️ **This repo is PUBLIC.** Session notes here are kept technical on purpose.
+> Commercial detail, pricing and account strategy live in Notion (MBD Door) and
+> in the untracked working docs in this folder, not in this file.
+> **Pre-existing problem: the June/July entries below still contain billing
+> figures and call notes that should never have been committed here.** Worth a
+> history rewrite or a move to a private repo.
+
+- **Client portal tenant added** as `mbd` in `internal/client-portal` (one repo,
+  every client a registry entry — not a new repo per client). Four pages:
+  Overview, Enquiries, Getting found, What we've done. Reachable by path today;
+  `flight.mbdoor.com` is one A record away whenever we want the cutover.
+  Access details are in the portal repo's CLAUDE.md, not here.
+- Deliberately **not** an ops tenant: jobs, bids and material live in JobView and
+  we have no read into it, so there is nothing real to show and nothing was
+  invented. Deliberately no engagement block either.
+- **First Semrush baseline for mbdoor.com (2026-08-02):** 23 organic keywords,
+  17 visits/mo, $98/mo traffic value, Authority Score 7, 231 backlinks, 133
+  referring domains. Zero keywords in the top 3, three in positions 4–10.
+- **The keyword mix is the finding, not the totals.** Five of the 23 are other
+  door companies' brand names, four are homeowner garage-door searches, and one
+  is **"card access systems pasadena"** — `/services/access-control/` ranks in a
+  city 300 miles away because the page names no geography. Adding the counties it
+  actually serves is an edit, not a build, and it is the cheapest fix on the site.
+- Three pages compete against each other on "doors monterey" (`/`, `/about/`,
+  `/service-areas/`), which is part of why none of them wins it.
+- **Local commercial-door search demand is effectively nil** — Monterey, Salinas,
+  Santa Cruz and Gilroy all return no measurable volume; San Jose is 20/mo. Any
+  future plan for this site should not be built on those terms.
+- **Reachable demand is in service and repair**, all at difficulty low enough for
+  Authority Score 7: commercial door repair 6,600/mo (KD 11), commercial door
+  service 880 (KD 4), access control installation 1,900 (KD 12, $13.29 CPC),
+  commercial locksmith 5,400 (KD 13), fire door inspection 720 (KD 21), door
+  closer repair 590 (KD 22), panic bar repair 90 (KD 6), "commercial door repair
+  salinas" 50 (KD 0). None of these have a page today.
+- Competitive set is small and weak: mydoor.us 113 visits/mo, montereycoastdoor
+  89, coastdoor.net 81, rsdoorsmontereybay 38, mbdoor 17, coastaldoorsupply 13.
+  MBD's 133 referring domains beat four of the five.
+- Full research: `12-commercial-growth-plan.md` (untracked, stays out of git).
+
+**Next (site work):** build the commercial repair + service page · rewrite
+`/services/access-control/` with real service areas · resolve the three-page
+cannibalisation on "doors monterey" · reviews still open since April.
+
+## 2026-07-13 (PM) — Call happened; scope narrowed to inventory + Stripe
+
+- **Tommy call done (~1pm).** Two big corrections that reshape everything:
+  1. **No QuickBooks** — they migrated off it to a custom construction
+     platform called **JobView** (supply + install, runs both MBD and
+     Staley). We integrate, don't replace. Stripped all QuickBooks claims
+     from the teaser.
+  2. **Inventory is the urgent, critical need**, not the full platform.
+     He has lots of dead stock sitting idle; wants QR codes / handheld
+     Apple scanner → scan on the way out to a job → auto-decrement +
+     auto-populated log → **writes back into JobView.**
+- **Teaser rebuilt (v8) to match the call:** section 03 is now
+  "Inventory & QR scanning" — 4-step scan workflow (Tag → Scan → Counts
+  update + log → Back to your software/JobView), QR icons on every table
+  row, a "$38,400 sitting idle" dead-stock callout. Added a "The plan
+  from our call" band up top: **Start now** = QR inventory + Stripe;
+  **Later, in person** = leads/projects/office. QuickBooks removed from
+  the Money section (now "flows back into the software you already run").
+- **Payments:** Tommy is spinning up his own Stripe account today (Bryce
+  said do it regardless — it's the foundation). Pain = current processor
+  added hidden fees after ~2 months. Rates stayed verbal; still need his
+  statement to quote savings.
+- **Full platform ON HOLD** until Bryce visits and walks the floor.
+- **Tie-in:** Bryce + Kyle need MBD to build doors for their golf-sim
+  builds (Gilroy/Hollister) — that's the reason/《occasion》for the onsite
+  co-build.
+- Pricing pitched: ~1% of volume (usually passed to customer) + the ⅓-of-
+  incumbent software-replacement line. Detail in
+  ~/Documents/_docs/drafts/mbdoor-cinch-plan.md (CALL OUTCOME section at top).
+- **Texted Tommy the updated link** (Bryce promised on the call to send it
+  back within ~10 min).
+- **Open / next:** Tommy sending website inputs "from Jason at the counter"
+  this afternoon (mbdoor.com task); scope the custom QR→JobView build
+  (needs JobView's import format — API? CSV? spreadsheet?); schedule the
+  onsite visit bundled with the golf-sim door business.
+
+## 2026-07-13 (AM) — Ops-platform opportunity opened (Tommy's credit-card text)
+
+- Tommy texted 10:02am asking about credit card processing + a platform
+  recommendation; call set for 12:00 PT today. This is the wedge into the
+  custom ops software flagged in the 7/1 entry (BuilderTrend-replacement
+  play, same as D1 Builders).
+- Teaser text sent to Tommy (10:14am, delivered): one app for leads/
+  pipeline, inventory (doors/hardware/equipment), built-in card processing,
+  crew photo uploads feeding marketing, payroll later, $0 build.
+- **Teaser page LIVE: mbd-command.vercel.app** ("MBD Command") — MBD-branded
+  single-page preview with UI mockups of all four surfaces: leads kanban,
+  projects w/ crew photos, inventory table, payments/invoice. Source:
+  ~/Documents/clients/mbd-command (static HTML, CLI-deployed, gull-stack scope,
+  noindex). For Bryce to text Tommy before the 12:00 call.
+- **Jobber absorbed as the competitive benchmark** (Bryce: "we'll compete
+  with Jobber more and more"). Teaser v2 adds their best moves without
+  naming them: online quote approval + auto follow-ups, on-my-way texts +
+  install checklists, live job profit %, invoice auto-reminders + QuickBooks
+  sync, and a new "After the job" section (auto Google review asks, AI
+  receptionist, customer hub) + 5-step flow ending in "Get reviewed."
+  Full Jobber teardown + where-we-beat-them talk track in the plan doc.
+  Our edges: real inventory (Jobber has none), door-shop-specific, site+
+  GBP already ours, no $39–$349/mo tiers.
+- **Teaser v3: Flight Deck section added** (new 05, "The whole business on one
+  screen") per Bryce — stat tiles (billed & unpaid $61.9K, coming in this
+  week, bills due 30d, pre-sale pipeline), dither-pattern SVG charts
+  (money coming in by week, bills to be due), project-stage strip
+  (pre-sale/active/on hold/punch list), and an ongoing-projects table w/
+  billed vs unpaid per job. Dither look = CSS radial-gradient dots + SVG
+  dot patterns. After-the-job → 06, flow → 07.
+- **Teaser v7 (FINAL pre-call, meeting moved to 1:00 PT)** — clarity pass:
+  hero "answer box" restating Tommy's question and answering it in the
+  first screen (all methods, any crew phone, Stripe, live in days, link
+  → #money); header nav (Leads/Projects/Inventory/Money/Flight Deck) w/ anchor ids
+  for jumping during the screen-share; footer "short version" recap ($0
+  build, Stripe, payments this week, payroll later). Anchors verified
+  matching live via curl.
+- **Teaser v6: field payments made explicit** — Money section now has a
+  3-up strip answering Tommy's core question on the page: (1) "Every crew
+  phone is a terminal" (Stripe Tap to Pay, no hardware, payment tagged to
+  job + collector), (2) "Big invoices, smaller fees" (ACH vs card, both
+  offered per invoice), (3) "Live in days, not months" (processing can
+  start before the app). Lede now names Stripe explicitly.
+- **Teaser v5: payment methods made explicit** — Money lede reframed as
+  "state-of-the-art processing"; pill chips (Apple Pay, Google Pay, Visa/
+  MC/Amex/Discover, debit, ACH bank transfer, Tap to Pay) in the payments
+  section AND under the invoice Pay button; plan doc Phase 2 notes ACH
+  ~0.8% capped for big commercial invoices.
+- **Teaser v4: customer invoice mockup added** to Money (04) — paper-style
+  branded invoice (#2041-2, Award Homes progress billing): MBD letterhead,
+  line items w/ sub-descriptions, subtotal/tax/deposit-on-file/amount due,
+  sage "Pay this invoice" button, auto-receipt footer, "viewed by customer
+  2h ago" in the mock chrome. Deploy verified byte-identical via curl
+  (browser pane died mid-session — zero-width viewport; layout was
+  verified at 1280px before it broke).
+- Full architecture + strategy doc (private, NOT in this repo):
+  `~/Documents/_docs/drafts/mbdoor-cinch-plan.md`. Five phases: leads/pipeline →
+  Stripe Connect payments → inventory → jobs (absorbs the /portal photo
+  flow) → Gusto Embedded payroll. Multi-tenant from day one so D1 /
+  Northway / MHGDC can be later tenants.
+- Existing assets that fold in: /leads Blob log (seed data), /portal photo
+  intake (job photos), leads@gullstack.com relay, SendGrid.
+- **Next:** run the 12:00 call off the plan doc's demo script; capture
+  Tommy's current processor + card volume, SKU count, crew headcount; then
+  scaffold the app repo if he's in.
 
 ## 2026-07-01 — Field photos live + lead logging fixed + SEO meta (commit dac47a3, PUSHED)
 
@@ -66,11 +213,11 @@ access control — Hollister, CA). GullStack client site.
   one-time build (~$4,300) today; the $875/mo auto-pay is off. SEO continues
   with no monthly charge; Tommy will pay more ad-hoc as it proves value. Don't
   frame anything to him as a monthly retainer. Draft email to Tommy reframed
-  accordingly at ~/Documents/monterey-bay-door/monthly-seo-email-tommy.md.
+  accordingly at ~/Documents/clients/monterey-bay-door/monthly-seo-email-tommy.md.
 - **SEO/value tracking set up:** MBD Notion page now has an "SEO & Value
   Tracker" section + a weekly task `mbd-weekly-seo-value` (Fri 8:24am) that
   counts new /leads, logs work shipped, and appends a dated entry (flows to
-  hq.saltycaddie.com via the daily Notion sync). Since Tommy is prove-value-
+  hq.brycedmorgan.com via the daily Notion sync). Since Tommy is prove-value-
   then-pay-more, this keeps the ROI visible every week.
 - **New opportunity:** Bryce planning an onsite visit (bundled with D1
   Builders + Signatone) to scope CUSTOM SOFTWARE to run the inside of Tommy's
@@ -88,9 +235,9 @@ access control — Hollister, CA). GullStack client site.
   anchored to the 1st, first charge **July 1, 2026** (Tommy authorizes card
   once; month-to-month). Heads-up email to Tommy sent; Erika kept off the
   money thread per Bryce. Final email archived at
-  ~/Documents/mbd-invoice-email-tommy.md.
-- Stripe note: Salty Caddie account hit an IRS tax-ID verification block
-  (legal-name "Sprewce"/EIN vs public "Salty Caddie"/"Cereal Growth LLC"
+  ~/Documents/_docs/drafts/mbd-invoice-email-tommy.md.
+- Stripe note: Bryce Morgan account hit an IRS tax-ID verification block
+  (legal-name "Sprewce"/EIN vs public "Bryce Morgan"/"Cereal Growth LLC"
   mismatch); billed via the working path instead. Memo line names GullStack
   since the statement descriptor won't.
 - 14 surviving project photos from the 6/5 batch are live under
