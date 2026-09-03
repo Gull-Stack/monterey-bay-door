@@ -1,0 +1,57 @@
+# Monterey Bay Door
+
+> Commercial doors, frames, hardware, & access control specialist serving Central California. Complete turnkey solutions and in-house locksmithing. Authorized Dugmore & Duncan / ASSA ABLOY distributor providing direct vendor pricing, professional installation, and ongoing service for hotels, colleges, and commercial buildings.
+
+## Company
+- Founded: 2007
+- Address: 1630 Lana Way Bldg B, Hollister, CA 95023
+- Phone: (831) 757-1878
+- Email: bids@mbdoor.com
+- 30+ years combined experience in construction and access control
+- Licensed, bonded and insured
+
+## Services
+- Custom wood and commercial door sales
+- Door machining (including customer-supplied doors)
+- Custom trim and millwork supply
+- Commercial access control systems
+- Electronic lock installation
+- Card reader and mobile access systems
+- Commercial door hardware supply and installation
+- Exit device installation
+- High-security cylinder and key systems
+- Door closer installation and service
+- Electric strike and maglock systems
+- Master key system design
+- Commercial security maintenance and service
+
+## Service area
+- Monterey Bay
+- Central Coast
+- San Benito County
+- Monterey County
+- Santa Cruz County
+- Salinas Valley
+- Silicon Valley
+- Central Valley (Fresno, Visalia)
+- Central California
+
+## Brands and partners
+- Brands: Sargent, Corbin Russwin, Medeco, HES, Securitron, McKinney, Pemko, Keedex, Centrios, Accentra/Yale
+- Partners: Dugmore & Duncan (authorized distributor), ASSA ABLOY, Allegion, TM Cobb, Metrie (El & El), Kelleher, Ironwood Door, ABS (American Building Supply), DCI Hollow Metal, Orepac
+
+## Key pages
+- [Home](https://www.mbdoor.com/)
+- [Services](https://www.mbdoor.com/services/)
+- [Access control](https://www.mbdoor.com/services/access-control/)
+- [Door hardware](https://www.mbdoor.com/services/door-hardware/)
+- [Service & maintenance](https://www.mbdoor.com/services/service-maintenance/)
+- [Products](https://www.mbdoor.com/products/)
+- [Projects](https://www.mbdoor.com/projects/)
+- [Partners](https://www.mbdoor.com/partners/)
+- [Service areas](https://www.mbdoor.com/service-areas/)
+- [About](https://www.mbdoor.com/about/)
+- [Contact](https://www.mbdoor.com/contact/)
+
+## Full text
+- [llms-full.txt](https://www.mbdoor.com/llms-full.txt): the text of every public page.

@@ -1,6 +1,8 @@
 {
     "name": "Monterey Bay Door",
     "legalName": "Monterey Bay Door",
+    "type": "LocalBusiness",
+    "founded": "2007",
     "foundingYear": 2007,
     "description": "Commercial doors, frames, hardware, & access control specialist serving Central California. Complete turnkey solutions and in-house locksmithing. Authorized Dugmore & Duncan / ASSA ABLOY distributor providing direct vendor pricing, professional installation, and ongoing service for hotels, colleges, and commercial buildings.",
     "location": {
@@ -10,21 +12,37 @@
         "postalCode": "95023",
         "country": "US"
     },
-    "serviceArea": [
-        "Monterey Bay",
-        "Central Coast",
-        "San Benito County",
-        "Monterey County",
-        "Santa Cruz County",
-        "Salinas Valley",
-        "Silicon Valley",
-        "Central Valley (Fresno, Visalia)",
-        "Central California"
-    ],
+    "NAP": {
+        "name": "Monterey Bay Door",
+        "address": {
+            "street": "1630 Lana Way Bldg B",
+            "city": "Hollister",
+            "state": "CA",
+            "zip": "95023",
+            "country": "US"
+        },
+        "phone": "(831) 757-1878",
+        "email": "bids@mbdoor.com"
+    },
     "phone": "(831) 757-1878",
     "email": "bids@mbdoor.com",
     "url": "https://www.mbdoor.com",
     "industry": "Commercial Door Hardware & Access Control",
+    "services": [
+        "Custom wood and commercial door sales",
+        "Door machining (including customer-supplied doors)",
+        "Custom trim and millwork supply",
+        "Commercial access control systems",
+        "Electronic lock installation",
+        "Card reader and mobile access systems",
+        "Commercial door hardware supply and installation",
+        "Exit device installation",
+        "High-security cylinder and key systems",
+        "Door closer installation and service",
+        "Electric strike and maglock systems",
+        "Master key system design",
+        "Commercial security maintenance and service"
+    ],
     "specialties": [
         "Custom wood and commercial door sales",
         "Door machining (including customer-supplied doors)",
@@ -39,6 +57,28 @@
         "Electric strike and maglock systems",
         "Master key system design",
         "Commercial security maintenance and service"
+    ],
+    "differentiators": [
+        "Direct vendor relationships with major manufacturers",
+        "Competitive pricing without middleman markup",
+        "Full-service: supply, install, train, and maintain",
+        "30+ years of combined experience",
+        "Family-owned business with local accountability",
+        "Enterprise-scale project experience (hotels, colleges, commercial buildings)"
+    ],
+    "keyDifferentiators": [
+        "Direct vendor relationships with major manufacturers",
+        "Competitive pricing without middleman markup",
+        "Full-service: supply, install, train, and maintain",
+        "30+ years of combined experience",
+        "Family-owned business with local accountability",
+        "Enterprise-scale project experience (hotels, colleges, commercial buildings)"
+    ],
+    "credentials": [
+        "Licensed",
+        "Bonded",
+        "Insured",
+        "Authorized Dugmore & Duncan / ASSA ABLOY distributor"
     ],
     "certifications": [
         "Licensed",
@@ -69,13 +109,16 @@
         "Centrios",
         "Accentra/Yale"
     ],
-    "keyDifferentiators": [
-        "Direct vendor relationships with major manufacturers",
-        "Competitive pricing without middleman markup",
-        "Full-service: supply, install, train, and maintain",
-        "30+ years of combined experience",
-        "Family-owned business with local accountability",
-        "Enterprise-scale project experience (hotels, colleges, commercial buildings)"
+    "serviceArea": [
+        "Monterey Bay",
+        "Central Coast",
+        "San Benito County",
+        "Monterey County",
+        "Santa Cruz County",
+        "Salinas Valley",
+        "Silicon Valley",
+        "Central Valley (Fresno, Visalia)",
+        "Central California"
     ],
     "targetMarkets": [
         "Custom, tract, and modular home builders",
@@ -89,5 +132,6 @@
         "Government buildings",
         "Retail and mixed-use properties"
     ],
-    "experience": "30+ years combined experience in construction and access control"
+    "experience": "30+ years combined experience in construction and access control",
+    "last_updated": "2026-09-02"
 }
