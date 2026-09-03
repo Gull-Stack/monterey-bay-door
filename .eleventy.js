@@ -10,6 +10,8 @@ module.exports = function(eleventyConfig) {
 
   // Brand facts for AEO crawlers
   eleventyConfig.addPassthroughCopy("src/brand-facts.json");
+  eleventyConfig.addPassthroughCopy("src/.well-known");
+  eleventyConfig.addPassthroughCopy("src/llms.txt");
 
   // Strip HTML tags from product descriptions
   eleventyConfig.addFilter('stripHtml', function(value) {
