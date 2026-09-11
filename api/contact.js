@@ -3,6 +3,10 @@
 // and logs every lead to Vercel Blob (leads/ prefix) so nothing is lost.
 
 import { put } from '@vercel/blob';
+// Shared across every client lead endpoint. Canonical copy lives in
+// Gull-Stack/walkthru-labs → shared/lead-spam-filter.js; this is a synced copy,
+// so fix it there and re-run shared/sync-lead-spam-filter.sh, not here.
+import { classifyLead } from './lead-spam-filter.js';
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const SITE_EMAIL = process.env.SITE_EMAIL || 'tomrehak@mbdoor.com';
@@ -106,6 +110,21 @@ export default async function handler(req, res) {
       created_at: new Date().toISOString(),
     };
 
+    // Customer, or someone selling to Tom? Three of the recent "leads" here were
+    // outbound sales, including a VA agency that hit D One Builders in June under
+    // a different name from the same phone number. Flagged submissions are still
+    // logged to Blob — the record is never lost — but the alert comes to us.
+    const triage = classifyLead({
+      name, email, phone: leadData.phone, message,
+      extraText: [projectType, company].filter(Boolean).join(' '),
+    });
+    const isClean = triage.verdict === 'clean';
+    leadData.triage = triage.verdict;
+    if (!isClean) {
+      leadData.triage_reasons = triage.reasons;
+      console.log(`[LEAD TRIAGE] verdict=${triage.verdict} reasons=${triage.reasons.join('|')} name="${name}" — routed to Bryce, NOT the client`);
+    }
+
     // Log every lead to Vercel Blob so nothing is ever lost, even if email
     // fails. One JSON file per lead under leads/YYYY-MM-DD/. The /leads
     // dashboard reads these back (list by prefix 'leads/'). Never allowed to
@@ -142,12 +161,16 @@ export default async function handler(req, res) {
         </div>
       `;
 
-      await sendEmail({
-        to: email,
-        from: FROM_EMAIL,
-        subject: 'Thanks for contacting Monterey Bay Door!',
-        html: confirmationHtml,
-      });
+      // Skipped on a flagged submission: thanking a cold pitch confirms the
+      // mailbox is live and gets the address resold.
+      if (isClean) {
+        await sendEmail({
+          to: email,
+          from: FROM_EMAIL,
+          subject: 'Thanks for contacting Monterey Bay Door!',
+          html: confirmationHtml,
+        });
+      }
 
       // Notification to business
       const notificationHtml = `
@@ -172,10 +195,10 @@ export default async function handler(req, res) {
       `;
 
       await sendEmail({
-        to: SITE_EMAIL,
+        to: isClean ? SITE_EMAIL : 'bryce@gullstack.com',
         from: FROM_EMAIL,
         fromName: `${leadData.name} via Monterey Bay Door`,
-        subject: `New Lead: ${leadData.name}${projectType ? ' - ' + projectType : ''}`,
+        subject: `${isClean ? 'New Lead' : triage.verdict === 'test' ? '[OUR TEST — not a lead]' : '[NOT A LEAD — selling to Tom]'}: ${leadData.name}${projectType ? ' - ' + projectType : ''}`,
         html: notificationHtml,
         replyTo: email,
         cc: 'bryce@gullstack.com',
