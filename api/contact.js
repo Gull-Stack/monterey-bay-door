@@ -73,7 +73,15 @@ async function sendEmail({ to, from, fromName, subject, html, replyTo, cc }) {
       content: [{ type: 'text/html', value: html }],
     }),
   });
-  return response.ok;
+  // Return a RESULT, never a bare boolean that call sites can drop. `detail`
+  // carries SendGrid's own error body, which names the real cause (duplicate
+  // recipient across to/cc, unverified sender, revoked key) instead of a bare
+  // status. A silent send failure is how leads go missing for months.
+  let detail = '';
+  if (!response.ok) {
+    try { detail = (await response.text()).slice(0, 400); } catch (e) { detail = ''; }
+  }
+  return { ok: response.ok, status: response.status, detail };
 }
 
 export default async function handler(req, res) {
@@ -194,15 +202,25 @@ export default async function handler(req, res) {
         </div>
       `;
 
-      await sendEmail({
+      const notify = await sendEmail({
         to: isClean ? SITE_EMAIL : 'bryce@gullstack.com',
         from: FROM_EMAIL,
         fromName: `${leadData.name} via Monterey Bay Door`,
         subject: `${isClean ? 'New Lead' : triage.verdict === 'test' ? '[OUR TEST — not a lead]' : '[NOT A LEAD — selling to Tom]'}: ${leadData.name}${projectType ? ' - ' + projectType : ''}`,
         html: notificationHtml,
         replyTo: email,
-        cc: 'bryce@gullstack.com',
+        // No cc when the mail is already going to Bryce. SendGrid rejects a
+        // personalization whose to and cc are the same address, which fails the
+        // send outright — and silently, because the endpoint still returns 200.
+        cc: isClean ? 'bryce@gullstack.com' : undefined,
       });
+      console.log(`[LEAD] name="${leadData.name}" triage=${triage.verdict} notify=${notify.ok ? 'sent' : `FAILED ${notify.status} ${notify.detail}`}`);
+      if (!notify.ok) {
+        console.error(`[LEAD] 🔴 notification FAILED: ${notify.status} ${notify.detail}`);
+        // The lead is safe in Blob either way, but a visitor must not be told
+        // it worked when nobody was told about them.
+        return res.status(500).json({ error: 'Something went wrong. Please call us at (831) 757-1878.' });
+      }
     }
 
     return res.status(200).json({ success: true });
