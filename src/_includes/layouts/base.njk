@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if title %}{{ title }} | {% endif %}Monterey Bay Door - Commercial Doors, Frames, Hardware, & Access Control</title>
+    {# titleOverride lets one page set its whole title; without it the page keeps the brand-suffix pattern below. #}<title>{% if titleOverride %}{{ titleOverride }}{% else %}{% if title %}{{ title }} | {% endif %}Monterey Bay Door - Commercial Doors, Frames, Hardware, & Access Control{% endif %}</title>
     <meta name="description" content="{% if description %}{{ description }}{% else %}Commercial doors, frames, hardware, & access control specialist serving Central California since 2007. Complete turnkey solutions and in-house locksmithing for hotels, colleges, and commercial buildings.{% endif %}">
 
     <!-- Canonical -->
@@ -12,14 +12,14 @@
     <!-- Open Graph (link previews on Facebook, LinkedIn, iMessage, etc.) -->
     <meta property="og:type" content="{% if page.url == '/' %}website{% else %}article{% endif %}">
     <meta property="og:site_name" content="Monterey Bay Door">
-    <meta property="og:title" content="{% if title %}{{ title }} | {% endif %}Monterey Bay Door">
+    <meta property="og:title" content="{% if titleOverride %}{{ titleOverride }}{% else %}{% if title %}{{ title }} | {% endif %}Monterey Bay Door{% endif %}">
     <meta property="og:description" content="{% if description %}{{ description }}{% else %}Commercial doors, frames, hardware, & access control specialist serving Central California since 2007.{% endif %}">
     <meta property="og:url" content="https://www.mbdoor.com{{ page.url }}">
     <meta property="og:image" content="https://www.mbdoor.com{% if ogImage %}{{ ogImage }}{% else %}/assets/images/hero/hero-commercial-building-1920w.jpg{% endif %}">
 
     <!-- Twitter / X card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{% if title %}{{ title }} | {% endif %}Monterey Bay Door">
+    <meta name="twitter:title" content="{% if titleOverride %}{{ titleOverride }}{% else %}{% if title %}{{ title }} | {% endif %}Monterey Bay Door{% endif %}">
     <meta name="twitter:description" content="{% if description %}{{ description }}{% else %}Commercial doors, frames, hardware, & access control specialist serving Central California since 2007.{% endif %}">
     <meta name="twitter:image" content="https://www.mbdoor.com{% if ogImage %}{{ ogImage }}{% else %}/assets/images/hero/hero-commercial-building-1920w.jpg{% endif %}">
 
