@@ -25,7 +25,7 @@ description: Contact Monterey Bay Door for commercial doors, frames, hardware, a
                 
                 <form style="margin-top: 2rem;" action="/api/contact" method="POST" id="contact-form">
                     <!-- Honeypot -->
-                    <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0"><input type="text" name="fax_number" tabindex="-1" autocomplete="off"></div>
+                    <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true"><input type="text" name="fax_number" tabindex="-1" autocomplete="off" aria-label="Leave this field empty"></div>
                     <input type="hidden" name="_timestamp" id="_timestamp" value="">
                     
                     <div style="margin-bottom: 1.5rem;">

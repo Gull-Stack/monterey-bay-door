@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.mbdoor.com/about/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/assets/favicons/favicon-html-code/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/careers/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/contact/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/partners/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://www.mbdoor.com/products/sargent-8265-bhw-32d/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/projects/</loc>
+    <loc>https://www.mbdoor.com/shop/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/service-areas/</loc>
+    <loc>https://www.mbdoor.com/services/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
@@ -45,15 +21,35 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/services/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
     <loc>https://www.mbdoor.com/services/service-maintenance/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
-    <loc>https://www.mbdoor.com/shop/</loc>
+    <loc>https://www.mbdoor.com/service-areas/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/careers/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/projects/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/contact/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/partners/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://www.mbdoor.com/about/</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

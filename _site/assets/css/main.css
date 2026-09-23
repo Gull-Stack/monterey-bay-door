@@ -9,7 +9,9 @@
 :root {
     /* Colors */
     --color-primary-dark: #051E21;     /* Dark Teal - Primary dark background */
-    --color-accent: #94AB69;           /* Sage Green - CTAs and highlights */
+    --color-accent: #566A33;           /* Sage Green, darkened for WCAG 4.5:1 on light backgrounds */
+    --color-accent-bright: #94AB69;    /* Brand sage — only on dark backgrounds (see a11y block at end) */
+    --color-accent-fill: #566A33;      /* Button fills: white text passes 6:1 */
     --color-light: #f5f5f0;            /* Light background */
     --color-white: #ffffff;
     --color-text-dark: #333333;
@@ -717,7 +719,7 @@ p {
 
 .footer-copy {
     font-size: 0.8rem;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.65);
 }
 
 .footer-bottom-content {
@@ -739,7 +741,7 @@ p {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.65);
     font-size: 0.8rem;
 }
 
@@ -1002,7 +1004,7 @@ p {
 
 .catalog-result-count {
     font-size: 0.825rem;
-    color: #777;
+    color: #555;
     margin-bottom: 0;
 }
 
@@ -1197,7 +1199,7 @@ p {
 }
 
 .catalog-empty h3 {
-    color: #777;
+    color: #555;
     margin-bottom: 0.5rem;
 }
 
@@ -1542,7 +1544,7 @@ p {
 
 .pdp-sku {
     font-size: 0.8rem;
-    color: #888;
+    color: #666;
     margin-bottom: 1rem;
     font-weight: 500;
 }
@@ -1567,7 +1569,7 @@ p {
 
 .pdp-quote-only {
     background: rgba(148, 171, 105, 0.12);
-    color: #6b7c3e;
+    color: #56652f;
 }
 
 .pdp-short-desc {
@@ -1690,4 +1692,30 @@ p {
         width: 56px;
         height: 56px;
     }
+}
+/* ===== Accessibility (WCAG 2.1 AA contrast), 2026-09-23 =====
+   --color-accent is dark sage (#566A33) on light backgrounds.
+   Dark areas switch it back to brand sage (#94AB69), which passes on #051E21.
+   Filled buttons and badges always use --color-accent-fill so white text passes. */
+.header, .nav, .nav-menu, .hero, .footer, .section-dark, .breadcrumb {
+    --color-accent: var(--color-accent-bright);
+}
+.btn-primary,
+.btn-secondary:hover,
+.catalog-filter-btn.active,
+[style*="background-color: var(--color-accent)"] {
+    background-color: var(--color-accent-fill) !important;
+    border-color: var(--color-accent-fill);
+}
+.featured-project-badge {
+    background-color: var(--color-accent-fill) !important;
+}
+.catalog-filter-btn.active .catalog-filter-count {
+    opacity: 1;
+}
+[style*="background-color: var(--color-accent)"][style*="color: white"] :is(h1, h2, h3, h4, h5, p, li) {
+    color: #ffffff;
+}
+.breadcrumb li span:not(.breadcrumb-sep) {
+    color: var(--color-text-light);
 }
