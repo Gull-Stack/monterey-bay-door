@@ -202,6 +202,15 @@ export default async function handler(req, res) {
         </div>
       `;
 
+      // A solicitation gets no email at all — not to the client, not to Bryce.
+      // It is already in the log above; nobody needs to read a cold pitch to
+      // know one arrived. Test submissions still mail Bryce so the pipe is
+      // provably alive. (Bryce, 2026-09-23: "don't let me even see it.")
+      if (triage.verdict === 'solicitation') {
+        console.log(`[LEAD] name="${leadData.name}" triage=solicitation notify=skipped`);
+        return res.status(200).json({ success: true });
+      }
+
       const notify = await sendEmail({
         to: isClean ? SITE_EMAIL : 'bryce@gullstack.com',
         from: FROM_EMAIL,
