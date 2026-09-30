@@ -8,8 +8,8 @@ Never put passwords, API keys, or tokens in this file.
 
 ## Who
 
-- Tommy Rehak (GM, tomrehak@mbdoor.com) approves everything and holds the money.
-- Erika Garcia (bids admin, erika@mbdoor.com). Keep her off money threads.
+- Tommy Rehak (GM, tomrehak@mbdoor.com) approves the work.
+- Erika Garcia (bids admin, erika@mbdoor.com).
 - Bids desk: bids@mbdoor.com. Tommy wants leads and plans sent there (30 Sept 2026).
 - Kyle Dickson (D One Builders) runs his company on hq.donebuilders.com. The plan page points Tommy to him.
 

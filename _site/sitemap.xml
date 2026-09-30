@@ -41,15 +41,15 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://www.mbdoor.com/about/</loc>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://www.mbdoor.com/contact/</loc>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://www.mbdoor.com/partners/</loc>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://www.mbdoor.com/about/</loc>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>
