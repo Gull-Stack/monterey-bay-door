@@ -8,16 +8,24 @@ Never put passwords, API keys, or tokens in this file.
 
 ## Who
 
-- (client contacts, who asks for what, who approves)
+- Tommy Rehak (GM, tomrehak@mbdoor.com) approves everything and holds the money.
+- Erika Garcia (bids admin, erika@mbdoor.com). Keep her off money threads.
+- Bids desk: bids@mbdoor.com. Tommy wants leads and plans sent there (30 Sept 2026).
+- Kyle Dickson (D One Builders) runs his company on hq.donebuilders.com. The plan page points Tommy to him.
 
 ## Decisions
 
-- (what we chose, and why — the why is the part that ages well)
+- Lead email routing is hardcoded in api/contact.js, not the SITE_EMAIL env var, so a stale env value can't send leads to the wrong box.
+- Commercial terms (prices, invoices) stay out of this public repo. They live in Notion (MBD Door) and untracked drafts in this folder.
 
 ## Gotchas
 
-- (things that broke, and what actually fixed them)
+- SendGrid rejects a send when one address appears twice across to/cc/bcc. Flagged leads go to Bryce alone with no cc/bcc for that reason.
+- The site has no visitor analytics as of 30 Sept 2026. Semrush traffic is an estimate.
 
 ## Links
 
-- (dashboards, live URLs, Notion pages, ticket queues)
+- Plan page: https://www.mbdoor.com/plan/ (noindex)
+- Lead log: https://www.mbdoor.com/leads/ (PIN-gated)
+- Crew photo portal: https://www.mbdoor.com/portal/
+- July HQ teaser: mbd-command.vercel.app (repo ~/Documents/clients/mbd-command)

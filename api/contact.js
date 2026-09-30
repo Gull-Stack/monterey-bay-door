@@ -7,10 +7,16 @@ import { put } from '@vercel/blob';
 // Gull-Stack/walkthru-labs → shared/lead-spam-filter.js; this is a synced copy,
 // so fix it there and re-run shared/sync-lead-spam-filter.sh, not here.
 import { classifyLead } from './lead-spam-filter.js';
+import { notificationEmail, confirmationEmail, projectLabel, BIDS_EMAIL } from './_lead-emails.js';
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
-const SITE_EMAIL = process.env.SITE_EMAIL || 'tomrehak@mbdoor.com';
 const FROM_EMAIL = process.env.FROM_EMAIL || 'leads@gullstack.com';
+// Routing, per Tommy (text, 2026-09-30): leads and plans go to the bids desk.
+// Tommy stays on cc; GullStack gets a bcc so we can prove delivery.
+// Hardcoded on purpose: the old SITE_EMAIL env var pointed at Tommy alone.
+const LEAD_TO = BIDS_EMAIL;
+const LEAD_CC = 'tomrehak@mbdoor.com';
+const LEAD_BCC = 'bryce@gullstack.com';
 
 function slugify(s) {
   return String(s || 'lead')
@@ -58,7 +64,7 @@ function looksLikeSpam(data) {
   return false;
 }
 
-async function sendEmail({ to, from, fromName, subject, html, replyTo, cc }) {
+async function sendEmail({ to, from, fromName, subject, html, replyTo, cc, bcc }) {
   const response = await fetch('https://api.sendgrid.com/v3/mail/send', {
     method: 'POST',
     headers: {
@@ -66,7 +72,11 @@ async function sendEmail({ to, from, fromName, subject, html, replyTo, cc }) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      personalizations: [{ to: [{ email: to }], ...(cc ? { cc: [{ email: cc }] } : {}) }],
+      personalizations: [{
+        to: [{ email: to }],
+        ...(cc ? { cc: [{ email: cc }] } : {}),
+        ...(bcc ? { bcc: [{ email: bcc }] } : {}),
+      }],
       from: { email: from, name: fromName || 'Monterey Bay Door' },
       reply_to: replyTo ? { email: replyTo } : undefined,
       subject,
@@ -150,24 +160,8 @@ export default async function handler(req, res) {
     }
 
     if (SENDGRID_API_KEY) {
-      // Auto-reply to lead
-      const confirmationHtml = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #1a365d 0%, #2a4a7f 100%); padding: 30px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Thank You, ${name}!</h1>
-          </div>
-          <div style="padding: 30px; background: #f9f9f9;">
-            <p style="font-size: 16px; color: #333; line-height: 1.6;">We've received your inquiry and our team will get back to you within one business day.</p>
-            ${projectType ? `<p style="font-size: 16px; color: #333;"><strong>Project Type:</strong> ${projectType}</p>` : ''}
-            ${company ? `<p style="font-size: 16px; color: #333;"><strong>Company:</strong> ${company}</p>` : ''}
-            ${message ? `<p style="font-size: 16px; color: #333;"><strong>Details:</strong> ${message}</p>` : ''}
-            <p style="font-size: 16px; color: #333; margin-top: 20px;">Need immediate assistance? Call us at <strong>(831) 757-1878</strong>.</p>
-          </div>
-          <div style="background: #1a365d; padding: 20px; text-align: center;">
-            <p style="color: rgba(255,255,255,0.7); margin: 0; font-size: 14px;">Monterey Bay Door — Commercial Doors, Frames, Hardware, & Access Control — Hollister, CA</p>
-          </div>
-        </div>
-      `;
+      const emailData = { name: leadData.name, company, email: leadData.email, phone: leadData.phone, projectType, message: leadData.message, triage: triage.verdict };
+      const confirmationHtml = confirmationEmail(emailData);
 
       // Skipped on a flagged submission: thanking a cold pitch confirms the
       // mailbox is live and gets the address resold.
@@ -175,32 +169,14 @@ export default async function handler(req, res) {
         await sendEmail({
           to: email,
           from: FROM_EMAIL,
-          subject: 'Thanks for contacting Monterey Bay Door!',
+          subject: 'We got your request - Monterey Bay Door',
           html: confirmationHtml,
+          // Plans sent back by reply land on the bids desk, not a no-reply box.
+          replyTo: BIDS_EMAIL,
         });
       }
 
-      // Notification to business
-      const notificationHtml = `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <div style="background: #1a365d; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">New Lead from mbdoor.com</h1>
-          </div>
-          <div style="padding: 30px; background: #f9f9f9;">
-            <table style="width: 100%; border-collapse: collapse;">
-              <tr><td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Name:</strong></td><td style="padding: 10px; border-bottom: 1px solid #ddd;">${leadData.name}</td></tr>
-              <tr><td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Company:</strong></td><td style="padding: 10px; border-bottom: 1px solid #ddd;">${company || 'Not provided'}</td></tr>
-              <tr><td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Email:</strong></td><td style="padding: 10px; border-bottom: 1px solid #ddd;"><a href="mailto:${leadData.email}">${leadData.email}</a></td></tr>
-              <tr><td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Phone:</strong></td><td style="padding: 10px; border-bottom: 1px solid #ddd;">${leadData.phone || 'Not provided'}</td></tr>
-              <tr><td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Project Type:</strong></td><td style="padding: 10px; border-bottom: 1px solid #ddd;">${projectType || 'Not specified'}</td></tr>
-            </table>
-            ${message ? `<div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border: 1px solid #ddd;"><strong>Details:</strong><br/><p style="margin: 10px 0 0 0;">${message}</p></div>` : ''}
-          </div>
-          <div style="background: #1a1a1a; padding: 15px; text-align: center;">
-            <p style="color: #888; margin: 0; font-size: 12px;">Lead from mbdoor.com</p>
-          </div>
-        </div>
-      `;
+      const notificationHtml = notificationEmail(emailData);
 
       // A solicitation gets no email at all — not to the client, not to Bryce.
       // It is already in the log above; nobody needs to read a cold pitch to
@@ -211,17 +187,22 @@ export default async function handler(req, res) {
         return res.status(200).json({ success: true });
       }
 
+      const label = projectLabel(projectType);
+      const who = company ? `${leadData.name}, ${company}` : leadData.name;
       const notify = await sendEmail({
-        to: isClean ? SITE_EMAIL : 'bryce@gullstack.com',
+        to: isClean ? LEAD_TO : LEAD_BCC,
         from: FROM_EMAIL,
         fromName: `${leadData.name} via Monterey Bay Door`,
-        subject: `${isClean ? 'New Lead' : triage.verdict === 'test' ? '[OUR TEST — not a lead]' : '[NOT A LEAD — selling to Tom]'}: ${leadData.name}${projectType ? ' - ' + projectType : ''}`,
+        subject: isClean
+          ? `New lead: ${who}${label ? ' - ' + label : ''}`
+          : `[OUR TEST - not a lead]: ${leadData.name}`,
         html: notificationHtml,
         replyTo: email,
-        // No cc when the mail is already going to Bryce. SendGrid rejects a
-        // personalization whose to and cc are the same address, which fails the
-        // send outright — and silently, because the endpoint still returns 200.
-        cc: isClean ? 'bryce@gullstack.com' : undefined,
+        // Flagged mail goes to GullStack only. SendGrid rejects a
+        // personalization that repeats an address across to/cc/bcc, which
+        // fails the send outright, so no cc/bcc on that path.
+        cc: isClean ? LEAD_CC : undefined,
+        bcc: isClean ? LEAD_BCC : undefined,
       });
       console.log(`[LEAD] name="${leadData.name}" triage=${triage.verdict} notify=${notify.ok ? 'sent' : `FAILED ${notify.status} ${notify.detail}`}`);
       if (!notify.ok) {

@@ -18,6 +18,32 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-09-30 — Leads to bids@, branded lead emails, /plan page for Tommy
+
+- **Lead routing (Tommy's text, 30 Sept: "Bids@mbdoor.com"):** `api/contact.js`
+  now sends the alert to bids@mbdoor.com, cc tomrehak@, bcc bryce@gullstack.com.
+  Hardcoded; the `SITE_EMAIL` env var (Tommy only) is no longer read.
+  The customer thank-you has Reply-To bids@ and tells them to send plans there.
+- **Both lead emails rebuilt** in `api/_lead-emails.js` (teal/sage brand, logo
+  `src/assets/logos/logo-email-white.png`, reply/call buttons, readable project
+  labels, all form values HTML-escaped). Underscore prefix keeps it off the routes.
+- **`/plan` page** (`src/plan/index.html`, passthrough, noindex, robots-disallowed,
+  in `.eleventyignore`): Walkthru plan format. SEO numbers since 2 Aug, lead
+  counts, work timeline, 15 HQ rows (leads/projects/team/money/getting found),
+  "Ask Kyle" (D One HQ), price, what we need. axe 0 at 1280/390, light + dark.
+- **Search, 30 Sept vs 2 Aug (Semrush):** keywords 23 → 29, backlinks 231 → 389,
+  referring domains 133 → 288, AS 7 flat, ~17 visits/mo flat. Still no service
+  keywords ranked. No site analytics exist (Vercel Web Analytics off, no GSC/GA4).
+- **Lead log:** 44 forms Jul–Sep (6/14/24); 4 real buyer requests.
+- **/plan leads with the upside:** a card-vs-bank-transfer fee calculator
+  (Stripe ACH 0.8% capped $5 vs a typical 3% card), the software it replaces
+  (Buildertrend/Jobber list prices, July 2026), dead stock back to cash.
+  The lead email screenshot uses a made-up lead; no real lead's details are
+  on the page (the QA gate caught the first version before push).
+- Email for Tommy: `plan-email-tommy.md` (untracked; commercial terms stay out of git).
+- **Next:** send Tommy the page; turn on Vercel Web Analytics; build the
+  commercial door repair page; access-control page with real counties.
+
 ## 2026-09-23 — Solicitations no longer email anyone
 
 - `api/contact.js`: a submission the shared filter classifies `solicitation`

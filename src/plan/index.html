@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Monterey Bay Door: the plan</title>
+<meta name="description" content="What's working on search, what we fixed, and the HQ that puts leads, jobs, team and money in one place.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="/plan/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --paper:#FFFEFB; --panel:#FFFFFF; --ink:#161310; --on-ink:#FFFEFB;
+    --ink-60:rgba(22,19,16,.64); --ink-30:rgba(22,19,16,.30);
+    --ink-12:rgba(22,19,16,.12); --ink-06:rgba(22,19,16,.055);
+    --tape:#F5C518; --tape-wash:#FDF4D4; --tape-line:#E3B412;
+    --red:#9E1B32; --red-text:#161310; --red-wash:#FDF4D4; --red-line:#E3B412; --on-red:#FFFFFF;
+    --gray:#F5F2EA;
+    --good:#166B3F; --good-wash:#E6F4EC;
+    --amber:#8A5A00; --amber-wash:#FBEFD5;
+    --net:#2F5DA8; --net-wash:#E7EEF9;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#14120F; --panel:#1C1A16; --ink:#F6F3ED; --on-ink:#14120F;
+      --ink-60:rgba(246,243,237,.66); --ink-30:rgba(246,243,237,.32);
+      --ink-12:rgba(246,243,237,.14); --ink-06:rgba(246,243,237,.06);
+      --tape:#F5C518; --tape-wash:#332B10; --tape-line:#8A6F12;
+      --red:#9E1B32; --red-text:#F6F3ED; --red-wash:#332B10; --red-line:#8A6F12; --on-red:#FFFFFF;
+      --gray:#24211C;
+      --good:#5BC98A; --good-wash:#173324;
+      --amber:#F0B952; --amber-wash:#3A2C10;
+      --net:#8AB4F8; --net-wash:#172338;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#14120F; --panel:#1C1A16; --ink:#F6F3ED; --on-ink:#14120F;
+    --ink-60:rgba(246,243,237,.66); --ink-30:rgba(246,243,237,.32);
+    --ink-12:rgba(246,243,237,.14); --ink-06:rgba(246,243,237,.06);
+    --tape:#F5C518; --tape-wash:#332B10; --tape-line:#8A6F12;
+    --red:#9E1B32; --red-text:#F6F3ED; --red-wash:#332B10; --red-line:#8A6F12; --on-red:#FFFFFF;
+    --gray:#24211C;
+    --good:#5BC98A; --good-wash:#173324;
+    --amber:#F0B952; --amber-wash:#3A2C10;
+    --net:#8AB4F8; --net-wash:#172338;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;scroll-padding-top:20px;}
+  @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto;}*{transition:none!important;animation:none!important;}}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,system-ui,sans-serif;
+    font-size:16.5px;line-height:1.62;padding:0 16px 80px;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  .narrow{max-width:820px;}
+  a{color:var(--ink);text-underline-offset:3px;}
+  .skip{position:absolute;left:-9999px;top:8px;background:var(--ink);color:var(--on-ink);padding:8px 12px;border-radius:3px;z-index:10;}
+  .skip:focus{left:16px;}
+  .brand{display:flex;align-items:center;gap:11px;padding-top:24px;flex-wrap:wrap;}
+  .brand .stan{width:34px;height:auto;display:block;}
+  .brand .client{margin-left:auto;display:flex;align-items:center;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-60);}
+  .brand .logo{background:#FFFFFF;border-radius:4px;padding:5px 8px;display:block;line-height:0;}
+  .brand img{width:88px;height:auto;display:block;}
+  .brand .name{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;line-height:1.35;}
+  .brand .name em{display:block;font-style:normal;color:var(--ink-60);font-size:10.5px;letter-spacing:.07em;}
+
+  .intro{border-bottom:1.5px solid var(--ink);padding:16px 0 20px;}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-60);margin:0 0 10px;}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:clamp(30px,4.6vw,44px);line-height:1.05;letter-spacing:-.02em;margin:0;text-wrap:balance;}
+  .hero{display:grid;grid-template-columns:1.3fr 1fr;gap:34px;align-items:end;}
+  @media(max-width:820px){.hero{grid-template-columns:1fr;gap:18px;}}
+  .subline{margin:12px 0 0;font-size:18px;line-height:1.45;color:var(--ink-60);max-width:56ch;}
+  .quote{margin:0;background:var(--red-wash);border:1px solid var(--red-line);border-left:5px solid var(--red);border-radius:2px;padding:16px 18px;}
+  .quote p{margin:0;font-family:Fraunces,serif;font-size:20px;line-height:1.3;letter-spacing:-.01em;max-width:none;}
+  .quote cite{display:block;margin-top:8px;font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-60);letter-spacing:.04em;}
+  .quote .qnote{margin-top:10px;font-family:Inter,sans-serif;font-size:14px;line-height:1.45;color:var(--ink);}
+  .actions{display:flex;flex-wrap:wrap;gap:10px 12px;margin-top:18px;align-items:center;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:3px;font-weight:600;font-size:15.5px;text-decoration:none;border:1.5px solid var(--ink);line-height:1.2;}
+  .btn.primary{background:var(--ink);border-color:var(--ink);color:var(--on-ink);}
+  .btn.ghost{background:transparent;color:var(--ink);}
+  .btn:hover{opacity:.9;}
+  .btn:focus-visible,summary:focus-visible,a:focus-visible,button:focus-visible{outline:3px solid var(--tape-line);outline-offset:2px;}
+  .note{font-size:13.5px;color:var(--ink-60);margin:10px 0 0;}
+  .stamp{margin-top:12px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-60);line-height:1.8;}
+  .stamp b{color:var(--ink);font-weight:500;}
+
+  .strip{margin-top:20px;border:1px solid var(--ink-12);border-radius:2px;display:grid;grid-template-columns:repeat(3,1fr);background:var(--panel);}
+  .strip>div{padding:14px 18px;border-right:1px solid var(--ink-12);}
+  .strip>div:last-child{border-right:0;}
+  .strip .lab{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);display:block;margin-bottom:4px;}
+  .strip .val{font-family:Fraunces,serif;font-weight:600;font-size:clamp(20px,3vw,25px);letter-spacing:-.018em;display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-variant-numeric:tabular-nums;line-height:1.1;}
+  .strip .sub{display:block;margin-top:5px;font-size:13.5px;color:var(--ink-60);line-height:1.42;}
+  @media(max-width:660px){.strip{grid-template-columns:1fr;}.strip>div{border-right:0;border-bottom:1px solid var(--ink-12);}.strip>div:last-child{border-bottom:0;}}
+
+  section{margin-top:60px;}
+  h2{font-family:Fraunces,serif;font-weight:600;font-size:clamp(24px,3.4vw,30px);letter-spacing:-.015em;margin:0;text-wrap:balance;}
+  .num{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-60);letter-spacing:.1em;display:block;margin-bottom:6px;}
+  .rule{height:1px;background:var(--ink-12);margin-top:14px;}
+  p{margin:16px 0 0;max-width:66ch;}
+  .lead{font-size:19px;line-height:1.5;max-width:62ch;}
+  .quiet{color:var(--ink-60);font-size:15px;}
+
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:2px;margin-top:24px;overflow:hidden;list-style:none;padding:0;}
+  .steps li{background:var(--panel);padding:18px 16px;}
+  .steps .n{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-60);}
+  .steps b{display:block;margin-top:6px;font-size:16px;line-height:1.3;}
+  .steps span{display:block;margin-top:6px;font-size:14px;color:var(--ink-60);line-height:1.45;}
+  @media(max-width:820px){.steps{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr;}}
+
+  .chip{display:inline-flex;align-items:center;gap:5px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;line-height:1.4;}
+  .chip.live{background:var(--good-wash);color:var(--good);}
+  .chip.access{background:var(--amber-wash);color:var(--amber);}
+  .chip.net{background:var(--net-wash);color:var(--net);}
+  .chip.draft{background:var(--red-wash);color:var(--red-text);border:1px solid var(--red-line);font-size:11px;}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:14px;color:var(--ink-60);}
+  .legend>span{display:inline-flex;align-items:center;gap:8px;}
+
+  .board{display:grid;grid-template-columns:230px 1fr;gap:36px;margin-top:26px;align-items:start;}
+  @media(max-width:900px){.board{grid-template-columns:1fr;gap:10px;}.index ul,.index h3{display:none;}}
+  .index{position:sticky;top:18px;font-size:13.5px;}
+  @media(max-width:900px){.index{position:static;}}
+  .index h3{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin:0 0 6px;}
+  .index h3+ul{margin-bottom:16px;}
+  .index ul{list-style:none;margin:0;padding:0;}
+  .index li a{display:grid;grid-template-columns:30px 1fr 10px;gap:6px;align-items:center;padding:5px 6px;border-radius:2px;text-decoration:none;color:var(--ink);line-height:1.3;}
+  .index li a:hover,.index li a.on{background:var(--ink-06);}
+  .index .id{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-60);}
+  .dot{width:8px;height:8px;border-radius:50%;}
+  .dot.live{background:var(--good);} .dot.access{background:var(--amber);} .dot.net{background:var(--net);}
+  .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+  .tools button{font:inherit;font-size:13px;background:transparent;color:var(--ink);border:1px solid var(--ink-30);border-radius:2px;padding:6px 11px;cursor:pointer;}
+  .tools button:hover{background:var(--ink-06);}
+
+  .group{margin-top:8px;}
+  .group+.group{margin-top:38px;}
+  .group h3{font-family:Fraunces,serif;font-weight:600;font-size:21px;margin:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .group h3 small{font-family:Inter,sans-serif;font-size:14px;font-weight:400;color:var(--ink-60);}
+  details.item{border:1px solid var(--ink-12);border-radius:3px;background:var(--panel);margin-top:10px;}
+  details.item[open]{border-color:var(--ink-30);}
+  details.item summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:38px 1fr auto 18px;gap:12px;align-items:center;padding:14px 16px;}
+  details.item summary::-webkit-details-marker{display:none;}
+  .item .id{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-60);}
+  .item .ask{font-weight:600;font-size:16px;line-height:1.3;}
+  .item .chev{width:10px;height:10px;border-right:1.5px solid var(--ink-60);border-bottom:1.5px solid var(--ink-60);transform:rotate(45deg);margin-top:-4px;transition:transform .15s;}
+  details.item[open] .chev{transform:rotate(225deg);margin-top:4px;}
+  @media(max-width:560px){
+    details.item summary{grid-template-columns:34px 1fr 14px;row-gap:6px;}
+    details.item summary .chip{grid-column:2;grid-row:2;justify-self:start;}
+    details.item summary .chev{grid-column:3;grid-row:1;}
+  }
+  .body{padding:0 16px 16px 66px;}
+  @media(max-width:560px){.body{padding:0 16px 16px;}}
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-top:1px solid var(--ink-12);padding-top:14px;}
+  @media(max-width:700px){.pair{grid-template-columns:1fr;gap:12px;}}
+  .pair .lab{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);display:block;margin-bottom:4px;}
+  .pair p{margin:0;font-size:15px;line-height:1.5;}
+  .row-foot{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;margin-top:14px;font-size:14px;}
+  .row-foot .gate{color:var(--ink-60);}
+  .row-foot .gate b{color:var(--ink);font-weight:600;}
+  .row-foot .links{display:flex;gap:14px;flex-wrap:wrap;}
+  .row-foot a{font-weight:600;color:var(--ink);}
+  .row-foot .next{background:none;border:0;padding:0;font:inherit;font-size:14px;color:var(--ink-60);cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+  .callout{max-width:none;margin-top:12px;background:var(--ink-06);border-left:3px solid var(--ink);padding:10px 14px;font-size:14.5px;border-radius:0 2px 2px 0;}
+
+  .flag{margin-top:24px;background:var(--ink-06);border-left:3px solid var(--ink);padding:16px 20px;border-radius:0 2px 2px 0;}
+  .flag p{margin:0;max-width:none;font-size:15.5px;}
+  .flag p+p{margin-top:10px;}
+
+  /* savings */
+  .tbl-wrap{margin-top:22px;overflow-x:auto;border:1px solid var(--ink-12);border-radius:2px;background:var(--panel);}
+  table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums;}
+  caption{text-align:left;padding:12px 14px 4px;font-size:14px;color:var(--ink-60);}
+  th,td{padding:10px 14px;text-align:right;border-bottom:1px solid var(--ink-12);white-space:nowrap;}
+  th:first-child,td:first-child{text-align:left;white-space:normal;}
+  thead th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0;}
+  tbody th{font-weight:600;}
+  td.hi{font-weight:600;}
+  .math{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--ink-12);}
+  .math li{display:grid;grid-template-columns:1fr auto;gap:16px;padding:10px 0;border-bottom:1px solid var(--ink-12);font-size:15.5px;}
+  .math li span:last-child{font-variant-numeric:tabular-nums;font-weight:600;text-align:right;}
+  .math small{display:block;color:var(--ink-60);font-size:13.5px;}
+
+  /* price */
+  .price{margin-top:24px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;border:1.5px solid var(--ink);border-radius:3px;padding:22px 24px;background:var(--panel);}
+  .price .big{font-family:Fraunces,serif;font-weight:600;font-size:clamp(40px,7vw,60px);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;}
+  .price .big small{font-size:.38em;font-weight:400;color:var(--ink-60);letter-spacing:0;}
+  .price .chip{margin-top:10px;}
+  .price ul{margin:0;padding:0 0 0 18px;font-size:15.5px;}
+  .price li+li{margin-top:4px;}
+  @media(max-width:640px){.price{grid-template-columns:1fr;gap:14px;}}
+
+  ul.check{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--ink-12);}
+  ul.check li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--ink-12);}
+  ul.check li::before{content:"";width:16px;height:16px;border:1.5px solid var(--ink-30);border-radius:2px;margin-top:4px;}
+  ul.check b{font-weight:600;}
+  ul.check span{display:block;color:var(--ink-60);font-size:14.5px;}
+  ol.go{list-style:none;padding:0;margin:22px 0 0;counter-reset:g;}
+  ol.go li{counter-increment:g;display:grid;grid-template-columns:36px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--ink-12);}
+  ol.go li::before{content:counter(g,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-60);padding-top:3px;}
+  ol.go b{display:block;font-size:16.5px;}
+  ol.go span{display:block;margin-top:3px;color:var(--ink-60);font-size:15px;}
+  h2.sub{font-size:21px;margin-top:40px;}
+
+  footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--ink-12);font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-60);line-height:1.85;}
+  footer .sig{font-family:Inter,sans-serif;font-size:15px;color:var(--ink);line-height:1.55;margin-bottom:18px;}
+  footer .sig a{color:var(--ink);}
+
+  /* live today */
+  .shots{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;}
+  @media(max-width:820px){.shots{grid-template-columns:1fr;}}
+  .shot{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--ink-12);border-radius:6px;overflow:hidden;background:var(--panel);}
+  .shot:hover{border-color:var(--ink-30);}
+  .shot .chrome{display:flex;align-items:center;gap:6px;padding:7px 10px;background:var(--gray);border-bottom:1px solid var(--ink-12);font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-60);}
+  .shot .chrome i{width:8px;height:8px;border-radius:50%;background:var(--ink-30);display:inline-block;}
+  .shot .chrome span{margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .shot img{display:block;width:100%;height:auto;aspect-ratio:1280/800;object-fit:cover;object-position:top;}
+  .shot .cap{display:block;padding:10px 12px 12px;font-size:14.5px;line-height:1.4;}
+  .shot .cap b{display:block;font-size:15.5px;color:var(--red-text);}
+  .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:2px;margin-top:18px;overflow:hidden;}
+  .facts>div{background:var(--panel);padding:14px;}
+  .facts b{display:block;font-family:Fraunces,serif;font-size:24px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums;}
+  .facts span{display:block;margin-top:4px;font-size:13.5px;color:var(--ink-60);line-height:1.4;}
+  @media(max-width:700px){.facts{grid-template-columns:1fr 1fr;}}
+
+  /* timeline */
+  ol.tl{list-style:none;margin:24px 0 0;padding:0;border-left:2px solid var(--ink-12);}
+  ol.tl li{position:relative;padding:0 0 20px 22px;}
+  ol.tl li::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--panel);border:2px solid var(--ink-30);}
+  ol.tl li.done::before{background:var(--good);border-color:var(--good);}
+  ol.tl li.now::before{background:var(--tape);border-color:var(--ink);box-shadow:0 0 0 4px var(--tape-wash);}
+  ol.tl li.big::before{background:var(--panel);border-color:var(--ink);border-width:3px;}
+  ol.tl .when{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-60);}
+  ol.tl li.now .when,ol.tl li.big .when{color:var(--red-text);}
+  ol.tl b{display:block;font-size:16.5px;line-height:1.35;margin-top:2px;}
+  ol.tl span.d{display:block;margin-top:3px;color:var(--ink-60);font-size:15px;line-height:1.5;}
+  .tl-h{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin:30px 0 0;}
+
+  /* access */
+  ul.access{list-style:none;padding:0;margin:20px 0 0;border-top:1px solid var(--ink-12);}
+  ul.access li{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--ink-12);}
+  ul.access b{font-weight:600;}
+  ul.access span.s{display:block;color:var(--ink-60);font-size:14.5px;}
+  @media(max-width:520px){ul.access li{grid-template-columns:1fr;}ul.access .chip{justify-self:start;}}
+
+  /* before / after */
+  .ba{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:stretch;margin-top:24px;}
+  @media(max-width:700px){.ba{grid-template-columns:1fr;}.ba .arrow{transform:rotate(90deg);justify-self:center;}}
+  .ba .col{border:1px solid var(--ink-12);border-radius:3px;background:var(--panel);padding:16px 18px;}
+  .ba .col.after{border:1.5px solid var(--ink);}
+  .ba h3{font-family:"IBM Plex Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin:0 0 8px;}
+  .ba .col.after h3{color:var(--red-text);}
+  .ba ul{margin:0;padding:0;list-style:none;}
+  .ba li{padding:8px 0;border-bottom:1px solid var(--ink-12);font-size:15px;line-height:1.45;}
+  .ba li:last-child{border-bottom:0;}
+  .ba li b{display:block;font-size:13px;font-weight:600;color:var(--ink-60);}
+  .ba .arrow{align-self:center;font-size:28px;color:var(--red-text);}
+
+  footer .prep{display:block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-bottom:6px;}
+  /* about */
+  .about{margin-top:24px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;border-top:1.5px solid var(--ink);padding-top:22px;}
+  .about img{width:64px;height:auto;display:block;}
+  .about p{margin:10px 0 0;}
+  .about p:first-child{margin-top:0;}
+  @media(max-width:520px){.about{grid-template-columns:1fr;}}
+
+  .chip.build{background:var(--ink-06);color:var(--ink);border:1px solid var(--ink-30);}
+  .dot.build{background:var(--panel);border:1.5px solid var(--ink);}
+  /* HQ mock */
+  .hq{margin-top:24px;border:1px solid var(--ink-12);border-radius:8px;overflow:hidden;background:var(--panel);}
+  .hq .chrome{display:flex;align-items:center;gap:6px;padding:8px 12px;background:var(--gray);border-bottom:1px solid var(--ink-12);font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-60);}
+  .hq .chrome i{width:8px;height:8px;border-radius:50%;background:var(--ink-30);display:inline-block;}
+  .hq .chrome span{margin-left:6px;}
+  .hq .in{display:grid;grid-template-columns:170px 1fr;min-height:340px;}
+  .hq nav{background:#051E21;color:#fff;padding:14px 10px;font-size:13.5px;}
+  .hq nav .mark{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#94AB69;padding:4px 8px 12px;display:block;}
+  .hq nav ul{list-style:none;margin:0;padding:0;}
+  .hq nav li{padding:7px 8px;border-radius:4px;color:rgba(255,255,255,.82);}
+  .hq nav li.on{background:rgba(148,171,105,.22);color:#fff;font-weight:600;}
+  .hq .main{padding:16px;}
+  .hq .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .hq .kpi{border:1px solid var(--ink-12);border-radius:6px;padding:10px 12px;}
+  .hq .kpi b{display:block;font-family:Fraunces,serif;font-size:22px;line-height:1.1;font-variant-numeric:tabular-nums;}
+  .hq .kpi span{font-size:12px;color:var(--ink-60);}
+  .hq .cols{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px;}
+  .hq .col h4{margin:0 0 6px;font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);}
+  .hq .card{border:1px solid var(--ink-12);border-left:3px solid #566A33;border-radius:4px;padding:8px 9px;font-size:13px;line-height:1.35;margin-bottom:8px;background:var(--paper);}
+  .hq .card small{display:block;color:var(--ink-60);font-size:11.5px;margin-top:3px;}
+  @media(max-width:760px){.hq .in{grid-template-columns:1fr;}.hq nav ul{display:flex;flex-wrap:wrap;gap:4px;}.hq .kpis,.hq .cols{grid-template-columns:1fr 1fr;}}
+  .tbl-wrap td:last-child{white-space:normal;text-align:left;}
+  .wrapcells th,.wrapcells td{white-space:normal;text-align:left;}
+  .calc{margin-top:18px;border:1.5px solid var(--ink);border-radius:3px;background:var(--panel);padding:18px 20px;display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;align-items:center;}
+  .calc label{font-weight:600;font-size:15px;}
+  .calc-in{display:flex;align-items:center;gap:6px;border:1px solid var(--ink-30);border-radius:3px;padding:8px 10px;background:var(--paper);font-size:18px;}
+  .calc-in input{border:0;background:transparent;color:var(--ink);font:inherit;font-variant-numeric:tabular-nums;width:100%;min-width:0;}
+  .calc-in:focus-within{outline:3px solid var(--tape-line);outline-offset:2px;}
+  .calc-in input:focus{outline:none;}
+  .calc-out{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink-12);border:1px solid var(--ink-12);border-radius:2px;margin-top:8px;overflow:hidden;}
+  .calc-out>div{background:var(--panel);padding:12px 14px;}
+  .calc-out .lab{display:block;font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-60);}
+  .calc-out b{display:block;font-family:Fraunces,serif;font-size:26px;line-height:1.15;font-variant-numeric:tabular-nums;}
+  .calc-out .win{background:var(--good-wash);}
+  .calc-out .win b{color:var(--good);}
+  @media(max-width:600px){.calc{grid-template-columns:1fr;}.calc-out{grid-template-columns:1fr;}}
+  .kyle{margin-top:24px;border:1.5px solid var(--ink);border-radius:3px;padding:20px 22px;background:var(--panel);}
+  .kyle p{margin:10px 0 0;}
+  .kyle p:first-child{margin-top:0;}
+</style>
+
+<body>
+<a class="skip" href="#main">Skip to the plan</a>
+<div class="wrap">
+<header class="brand">
+  <img class="stan" src="/plan/stanley.png" alt="Walkthru Labs" width="1025" height="750">
+  <span class="name">Walkthru&nbsp;Labs<em>The plan for Monterey Bay Door</em></span>
+  <span class="client">For <span class="logo"><img src="/plan/mbd-logo.png" alt="Monterey Bay Door" width="400" height="106"></span></span>
+</header>
+
+<main id="main">
+<div class="intro">
+  <p class="eyebrow">The plan · Prepared for Tommy Rehak</p>
+  <div class="hero">
+    <div>
+      <h1>More jobs in. Less money out. One login for the whole shop.</h1>
+      <p class="subline">The website is starting to pull real jobs. Here's what's working, what the HQ saves you on fees and software, and the big searches nobody local owns yet.</p>
+      <div class="actions">
+        <a class="btn primary" href="#upside">See what you save &rarr;</a>
+        <a class="btn ghost" href="#hq">Walk the HQ</a>
+        <a class="btn ghost" href="#kyle">Ask Kyle</a>
+      </div>
+      <p class="note">Nothing changes for your office or crews until you say go.</p>
+    </div>
+    <blockquote class="quote">
+      <p>&ldquo;Ya have him send them to us. Bids@mbdoor.com&rdquo;</p>
+      <cite>Tommy Rehak, 30 September 2026</cite>
+      <p class="qnote">Done the same morning. Every website lead now goes to bids@, with you copied, in a cleaner email.</p>
+    </blockquote>
+  </div>
+  <p class="stamp"><b>Prepared 30 September 2026</b> · Bryce Morgan, Walkthru Labs · For Tommy Rehak</p>
+</div>
+
+<div class="strip">
+  <div>
+    <span class="lab">Real jobs asking</span>
+    <span class="val">4 since July</span>
+    <span class="sub">2 of them in the last two days. 44 forms in all; the rest were pitches and spam, filtered out.</span>
+  </div>
+  <div>
+    <span class="lab">Sites linking to you</span>
+    <span class="val">133 &rarr; 288</span>
+    <span class="sub">More than doubled since 2 August. Links are how Google decides who to trust.</span>
+  </div>
+  <div>
+    <span class="lab">The price</span>
+    <span class="val">$773 a month</span>
+    <span class="sub">Marketing, plus the HQ built and run for you.</span>
+  </div>
+</div>
+
+<section id="working" aria-labelledby="working-h">
+  <span class="num">01</span>
+  <h2 id="working-h">What's working: the numbers since August</h2>
+  <div class="rule"></div>
+  <p class="lead">We measured where you stood on 2 August and again today. The foundation is growing. The traffic isn't yet, and we say so plainly below.</p>
+  <div class="facts">
+    <div><b>23 &rarr; 29</b><span>Google searches you show up for</span></div>
+    <div><b>231 &rarr; 389</b><span>links pointing at mbdoor.com</span></div>
+    <div><b>#5</b><span>for "monterey doors", about 170 searches a month</span></div>
+    <div><b>15 &rarr; 0</b><span>pages failing accessibility checks, the kind ADA suits cite</span></div>
+  </div>
+  <div class="tbl-wrap" role="region" aria-label="Forms from the website, by month" tabindex="0">
+    <table>
+      <caption>Forms from the website, by month</caption>
+      <thead><tr><th scope="col">Month</th><th scope="col">Forms</th><th scope="col">Real job requests</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">July</th><td>6</td><td>1 &middot; a public agency, glass doors that won't latch</td></tr>
+        <tr><th scope="row">August</th><td>14</td><td>1 &middot; a door and frame replacement</td></tr>
+        <tr><th scope="row">September</th><td>24</td><td class="hi">2 &middot; interior doors with plans; 14 ADA door openers</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="flag">
+    <p><b>The best part is what's still open.</b> Search visits are small today, about 17 a month by Semrush's estimate. You don't have a page yet for the searches that pay:</p>
+    <p>"commercial door repair" gets <b>6,600</b> searches a month. "Commercial locksmith" gets <b>5,400</b>. "Access control installation" gets <b>1,900</b>. All three are easy to win at your site's strength, and your local competitors barely show up either. Row G2 goes after them.</p>
+    <p>We're also turning on visitor counts this week, so the next report shows real visits, not estimates.</p>
+  </div>
+  <h2 class="sub">The new lead email</h2>
+  <p>Cleaner, in your colors, with one-tap reply and call buttons. It goes to bids@ with you copied.</p>
+  <div class="shots" style="grid-template-columns:minmax(0,560px);">
+    <span class="shot">
+      <span class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>New lead: Jordan Sample (a sample lead)</span></span>
+      <img src="/plan/shot-lead-email.jpg" alt="The new lead email, shown with a sample lead: the Monterey Bay Door logo on dark teal, the request in a highlighted box, Reply and Call buttons, then email, phone, company and project." width="640" height="760" loading="lazy" style="aspect-ratio:640/760;">
+    </span>
+  </div>
+</section>
+
+<section id="upside" aria-labelledby="upside-h">
+  <span class="num">02</span>
+  <h2 id="upside-h">The upside: money you stop leaving on the table</h2>
+  <div class="rule"></div>
+  <p class="lead">Three places the HQ pays for itself. We only used published prices. Where the real number depends on you, we say so.</p>
+
+  <h2 class="sub">1. Big invoices, tiny fees</h2>
+  <p>You told us your card processor added fees after two months. In the HQ, a customer can pay a big invoice by bank transfer through your own Stripe account: 0.8%, and never more than $5. Try your own number.</p>
+  <div class="calc">
+    <label for="inv">Invoice amount</label>
+    <div class="calc-in"><span aria-hidden="true">$</span><input id="inv" type="number" inputmode="numeric" min="0" step="500" value="20000"></div>
+    <label for="per">Invoices like this a year</label>
+    <div class="calc-in"><input id="per" type="number" inputmode="numeric" min="0" step="1" value="10"></div>
+    <div class="calc-out" aria-live="polite">
+      <div><span class="lab">By card, at a typical 3%</span><b id="c-card">$600</b></div>
+      <div><span class="lab">By bank transfer</span><b id="c-ach">$5</b></div>
+      <div class="win"><span class="lab">You keep, per year</span><b id="c-save">$5,950</b></div>
+    </div>
+  </div>
+  <p class="quiet">Stripe's published bank-transfer price is 0.8%, capped at $5. Card rates vary. Send us one recent processor statement and we'll show your real rate, hidden fees included.</p>
+
+  <h2 class="sub">2. Software you don't have to buy</h2>
+  <p>Shops your size pay monthly for each of these pieces. In the HQ they're included, and they connect to JobView instead of replacing it.</p>
+  <div class="tbl-wrap wrapcells" role="region" aria-label="Software the HQ replaces" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">What it does</th><th scope="col">What others charge</th><th scope="col">In your HQ</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Contractor project software (Buildertrend)</th><td>$499&ndash;$1,099 a month</td><td class="hi">Included</td></tr>
+        <tr><th scope="row">Field-service app (Jobber)</th><td>$39&ndash;$349 a month, plus paid add-ons</td><td class="hi">Included</td></tr>
+        <tr><th scope="row">Inventory with QR scanning</th><td>Jobber has none. Most add it as another app.</td><td class="hi">Included</td></tr>
+        <tr><th scope="row">Website, search and Google profile</th><td>A separate agency</td><td class="hi">Included</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="quiet">List prices we checked in July 2026. You keep JobView. The HQ sits on top of it.</p>
+
+  <h2 class="sub">3. Dead stock back into cash</h2>
+  <p>You said a lot of stock "just sits here doing nothing." That's cash on a shelf. The HQ tags it, counts it as it goes out to jobs, and lists everything that hasn't moved in 90 days. Then you can sell it, or use it on the next bid first.</p>
+  <p class="quiet">We don't know the dollar value yet. The first count will tell us.</p>
+</section>
+
+<section id="done" class="narrow" aria-labelledby="done-h">
+  <span class="num">03</span>
+  <h2 id="done-h">What we've done so far</h2>
+  <div class="rule"></div>
+  <ol class="tl">
+    <li class="done"><span class="when">June</span><b>Service pages rebuilt, a "Submit your plans" button, and a crew photo portal</b><span class="d">14 job photos went up from the field.</span></li>
+    <li class="done"><span class="when">July</span><b>Every lead saved, and a lead list you can open</b><span class="d">Before this, a lead that failed to email was lost. Google Business Profile access sorted out.</span></li>
+    <li class="done"><span class="when">2 August</span><b>First search measurement</b><span class="d">It showed where the real searches are: repair, service and access control.</span></li>
+    <li class="done"><span class="when">2 September</span><b>The site made readable by ChatGPT and other AI tools</b><span class="d">Your services, towns and contact facts in a form they can quote.</span></li>
+    <li class="done"><span class="when">11–23 September</span><b>Sales pitches stopped reaching you, and every page passes accessibility checks</b><span class="d">Failing pages went from 15 to 0.</span></li>
+    <li class="now"><span class="when">30 September · today</span><b>Leads to bids@, and a better lead email</b><span class="d">You asked in the morning. It's live the same day.</span></li>
+  </ol>
+</section>
+
+<section id="hq" aria-labelledby="hq-h">
+  <span class="num">04</span>
+  <h2 id="hq-h">The HQ: one login for the whole shop</h2>
+  <div class="rule"></div>
+  <p class="lead">One place that holds your leads, jobs, team, stock and money, with the numbers on top. JobView stays. The HQ connects to it, so nobody types anything twice.</p>
+  <div class="hq" role="img" aria-label="A sketch of the Monterey Bay Door HQ. A dark teal menu on the left lists Leads, Jobs, Team, Inventory, Money and Getting found. The main area shows four numbers and a lead board with New, Quoted, Won and Scheduled columns.">
+    <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span>hq.mbdoor.com · a sketch, not live yet</span></div>
+    <div class="in" aria-hidden="true">
+      <nav><span class="mark">MBD HQ</span><ul><li class="on">Leads</li><li>Jobs</li><li>Team</li><li>Inventory</li><li>Money</li><li>Getting found</li></ul></nav>
+      <div class="main">
+        <div class="kpis">
+          <div class="kpi"><b>2</b><span>New this week</span></div>
+          <div class="kpi"><b>&mdash;</b><span>Bids out ($)</span></div>
+          <div class="kpi"><b>&mdash;</b><span>Won this month</span></div>
+          <div class="kpi"><b>#5</b><span>"monterey doors"</span></div>
+        </div>
+        <div class="cols">
+          <div class="col"><h4>New</h4><div class="card">14 ADA door openers<small>Non-profit &middot; bids@ &middot; today</small></div><div class="card">Interior doors, has plans<small>Commercial &middot; bids@</small></div></div>
+          <div class="col"><h4>Quoted</h4><div class="card">Glass doors to metal frames<small>Public agency</small></div></div>
+          <div class="col"><h4>Won</h4><div class="card">Door + frame replacement<small>Sample</small></div></div>
+          <div class="col"><h4>Scheduled</h4><div class="card">Crew + date from JobView<small>Sample</small></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="quiet">Dashes are numbers we can't see yet. They fill in once JobView is connected. We don't guess them.</p>
+
+  <h2 class="sub" id="rows-h">Everything in it: 15 rows</h2>
+  <p>Open a row to see the problem today, what the HQ does, and what it waits on. 5 are already live.</p>
+  <div class="legend">
+    <span><span class="chip live">&#10003; Live now</span> working today</span>
+    <span><span class="chip build">&#9650; We build it</span> on us, no wait</span>
+    <span><span class="chip access">&#9679; Needs you</span> waits on an answer from you</span>
+    <span><span class="chip net">&#8644; Needs connection</span> waits on linking JobView or payments</span>
+  </div>
+  <div class="board">
+    <nav class="index" aria-label="The 15 rows">
+      <h3>Leads · 5</h3>
+      <ul>
+        <li><a href="#L1"><span class="id">L1</span>Leads go to the bids desk<span class="dot live"></span></a></li>
+        <li><a href="#L2"><span class="id">L2</span>Every lead logged, nothing lost<span class="dot live"></span></a></li>
+        <li><a href="#L3"><span class="id">L3</span>Junk kept out<span class="dot live"></span></a></li>
+        <li><a href="#L4"><span class="id">L4</span>One board: new, quoted, won<span class="dot build"></span></a></li>
+        <li><a href="#L5"><span class="id">L5</span>Phone calls become leads too<span class="dot access"></span></a></li>
+      </ul>
+      <h3>Projects · 3</h3>
+      <ul>
+        <li><a href="#P1"><span class="id">P1</span>A won bid becomes a job<span class="dot net"></span></a></li>
+        <li><a href="#P2"><span class="id">P2</span>Crew photos on every job<span class="dot live"></span></a></li>
+        <li><a href="#P3"><span class="id">P3</span>Inventory: scan it out, see what sits<span class="dot access"></span></a></li>
+      </ul>
+      <h3>Team · 2</h3>
+      <ul>
+        <li><a href="#T1"><span class="id">T1</span>Everyone's work on one screen<span class="dot access"></span></a></li>
+        <li><a href="#T2"><span class="id">T2</span>A login for each person<span class="dot access"></span></a></li>
+      </ul>
+      <h3>Money · 2</h3>
+      <ul>
+        <li><a href="#M1"><span class="id">M1</span>The money on one screen<span class="dot net"></span></a></li>
+        <li><a href="#M2"><span class="id">M2</span>Take a card, no hidden fees<span class="dot access"></span></a></li>
+      </ul>
+      <h3>Getting found · 3</h3>
+      <ul>
+        <li><a href="#G1"><span class="id">G1</span>A search report you can read<span class="dot live"></span></a></li>
+        <li><a href="#G2"><span class="id">G2</span>Pages for the work people search for<span class="dot build"></span></a></li>
+        <li><a href="#G3"><span class="id">G3</span>More Google reviews<span class="dot access"></span></a></li>
+      </ul>
+      <div class="tools">
+        <button type="button" data-act="open">Open all</button>
+        <button type="button" data-act="close">Close all</button>
+      </div>
+    </nav>
+    <div>
+      <div class="group">
+        <h3>Leads <small>Every enquiry, one list</small></h3>
+        <details class="item" id="L1">
+          <summary><span class="id">L1</span><span class="ask">Leads go to the bids desk</span><span class="chip live">&#10003; Live now</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Website leads went to your inbox only. Plans and drawings had nowhere to go.</p></div>
+              <div><span class="lab">In your HQ</span><p>Every website lead now goes to bids@mbdoor.com, with you copied. The customer's thank-you tells them to send plans to bids@. If they hit reply, it lands there too.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> nothing. It went live today, the same morning you asked.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="L2">
+          <summary><span class="id">L2</span><span class="ask">Every lead logged, nothing lost</span><span class="chip live">&#10003; Live now</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Leads lived in email. If an email bounced or got buried, the lead was gone.</p></div>
+              <div><span class="lab">In your HQ</span><p>Every form is saved the moment it arrives, even if email fails. 44 forms since July, all on file.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> nothing. This is the first page of your HQ.</span><span class="links"><a href="https://www.mbdoor.com/leads/">Show me &rarr;</a><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="L3">
+          <summary><span class="id">L3</span><span class="ask">Junk kept out</span><span class="chip live">&#10003; Live now</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Sales pitches, SEO offers and fake "bid invites" came in dressed as leads.</p></div>
+              <div><span class="lab">In your HQ</span><p>A filter reads every form. Pitches go to the log, not to you. Since 23 September, spam emails nobody.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> nothing.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="L4">
+          <summary><span class="id">L4</span><span class="ask">One board: new, quoted, won</span><span class="chip build">&#9650; We build it</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>A lead is an email. Nobody can see who called back, who has a quote, or what's been won.</p></div>
+              <div><span class="lab">In your HQ</span><p>Every lead on one board. Each one has an owner, a status and a follow-up date. A reminder goes out if a lead sits too long.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> your OK. We build it first, and it runs on the leads already logged.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="L5">
+          <summary><span class="id">L5</span><span class="ask">Phone calls become leads too</span><span class="chip access">&#9679; Needs you</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Calls are most of your work. They never reach any list.</p></div>
+              <div><span class="lab">In your HQ</span><p>Each call to the office lands on the same board as the web leads, with the number and a note.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> a quick look at your phone setup: who carries the office line.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+      </div>
+      <div class="group">
+        <h3>Projects <small>Won work, start to finish</small></h3>
+        <details class="item" id="P1">
+          <summary><span class="id">P1</span><span class="ask">A won bid becomes a job</span><span class="chip net">&#8644; Needs connection</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>The job lives in JobView. Leads live in email. Nothing links the two.</p></div>
+              <div><span class="lab">In your HQ</span><p>The lead turns into a job with one click. Customer, bid value, dates and plans come with it. JobView stays your system for the job itself.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> how JobView lets data in and out: an export, a report, or an API.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="P2">
+          <summary><span class="id">P2</span><span class="ask">Crew photos on every job</span><span class="chip live">&#10003; Live now</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Job photos sit on the crew's phones.</p></div>
+              <div><span class="lab">In your HQ</span><p>Crews upload from their phone to the job. The best shots go on your website and Google profile, which helps you rank.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> more photos from the crews.</span><span class="links"><a href="https://www.mbdoor.com/portal/">Show me &rarr;</a><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="P3">
+          <summary><span class="id">P3</span><span class="ask">Inventory: scan it out, see what sits</span><span class="chip access">&#9679; Needs you</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Stock sits on shelves and nobody knows the count. Dead stock ties up cash.</p></div>
+              <div><span class="lab">In your HQ</span><p>A QR tag on each item. Scan it out to a job and the count drops. A list shows what hasn't moved in 90 days, so you can sell it.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> a walk of the floor with you, and the JobView import format.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+      </div>
+      <div class="group">
+        <h3>Team <small>Who is on what</small></h3>
+        <details class="item" id="T1">
+          <summary><span class="id">T1</span><span class="ask">Everyone's work on one screen</span><span class="chip access">&#9679; Needs you</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Who owns a bid or a job lives in people's heads.</p></div>
+              <div><span class="lab">In your HQ</span><p>Each lead and job has a name on it. You see each person's open work, and what's overdue.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> your team list and what each person does.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="T2">
+          <summary><span class="id">T2</span><span class="ask">A login for each person</span><span class="chip access">&#9679; Needs you</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Shared passwords, or nothing.</p></div>
+              <div><span class="lab">In your HQ</span><p>Each person gets their own login. Office sees the office. Crews see their jobs. You see everything.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> the same team list.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+      </div>
+      <div class="group">
+        <h3>Money <small>Bids, invoices, paid</small></h3>
+        <details class="item" id="M1">
+          <summary><span class="id">M1</span><span class="ask">The money on one screen</span><span class="chip net">&#8644; Needs connection</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Bids out, jobs won, invoices sent and paid live in different places.</p></div>
+              <div><span class="lab">In your HQ</span><p>One screen: bids out, won this month, invoiced, paid and past due.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> the JobView connection above, plus your payment account.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="M2">
+          <summary><span class="id">M2</span><span class="ask">Take a card, no hidden fees</span><span class="chip access">&#9679; Needs you</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>In July your processor added fees after two months.</p></div>
+              <div><span class="lab">In your HQ</span><p>Card and bank payments through your own Stripe account, at posted rates. Paid invoices show up in the HQ.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> whether your Stripe account is open, and one recent processor statement.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+      </div>
+      <div class="group">
+        <h3>Getting found <small>Marketing that fills the board</small></h3>
+        <details class="item" id="G1">
+          <summary><span class="id">G1</span><span class="ask">A search report you can read</span><span class="chip live">&#10003; Live now</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>Nobody measured how you show up on Google.</p></div>
+              <div><span class="lab">In your HQ</span><p>A weekly check of where you rank and who links to you. The numbers in section 01 come from it.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> nothing. It's running.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="G2">
+          <summary><span class="id">G2</span><span class="ask">Pages for the work people search for</span><span class="chip build">&#9650; We build it</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>People search "commercial door repair" 6,600 times a month. You have no page for it. The access control page names no towns, so it ranked in Pasadena.</p></div>
+              <div><span class="lab">In your HQ</span><p>New pages for door repair and service, access control with your real counties, and fire door inspection. Each one can bring its own leads.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> nothing. We write them. You check them before they go up.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+        <details class="item" id="G3">
+          <summary><span class="id">G3</span><span class="ask">More Google reviews</span><span class="chip access">&#9679; Needs you</span><span class="chev"></span></summary>
+          <div class="body">
+            <div class="pair">
+              <div><span class="lab">The problem today</span><p>You have 1 review. Reviews move you up the map faster than anything.</p></div>
+              <div><span class="lab">In your HQ</span><p>A short review link we send after each finished job, and a weekly post on your Google profile.</p></div>
+            </div>
+            <div class="row-foot"><span class="gate"><b>Waits on:</b> the crew or office asking each happy customer. We make it one tap.</span><span class="links"><button type="button" class="next">Next row</button></span></div>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="kyle" class="narrow" aria-labelledby="kyle-h">
+  <span class="num">05</span>
+  <h2 id="kyle-h">Ask Kyle what it's like</h2>
+  <div class="rule"></div>
+  <div class="kyle">
+    <p><b>Kyle Dickson at D One Builders in Gilroy already runs his company on one of these.</b> His HQ shows his pipeline, his bid close rate, and each job's budget against what it cost. Calls to his office land in his lead list.</p>
+    <p>He's a builder, not a software guy. Ask him what it's done for him, and what he'd change. Then tell us what you'd want in yours.</p>
+  </div>
+</section>
+
+<section id="how" class="narrow" aria-labelledby="how-h">
+  <span class="num">06</span>
+  <h2 id="how-h">How it works</h2>
+  <div class="rule"></div>
+  <ol class="steps">
+    <li><span class="n">01</span><b>We build</b><span>Leads first, on the leads you already have. Each row above turns to "live".</span></li>
+    <li><span class="n">02</span><b>You walk it</b><span>Open it on your phone. Tell us what's wrong in your own words.</span></li>
+    <li><span class="n">03</span><b>Run side by side</b><span>JobView, email and the phones all stay as they are.</span></li>
+    <li><span class="n">04</span><b>Add one piece at a time</b><span>Jobs, then team, then stock and money. Each one waits on your OK.</span></li>
+  </ol>
+</section>
+
+<section id="timeline" class="narrow" aria-labelledby="timeline-h">
+  <span class="num">07</span>
+  <h2 id="timeline-h">What's next</h2>
+  <div class="rule"></div>
+  <p>Dates are targets. Each step waits on your OK.</p>
+  <ol class="tl">
+    <li class="now"><span class="when">This week</span><b>Visitor counts on the site, and the door repair page</b><span class="d">So the next report shows real visits, and you start showing up for repair searches.</span></li>
+    <li><span class="when">October</span><b>The HQ lead board, live</b><span class="d">Every web lead on one board with an owner and a follow-up. Access control page with your real counties. Review link after each job.</span></li>
+    <li><span class="when">November</span><b>Jobs and team</b><span class="d">Won leads turn into jobs, linked to JobView. A login for each person.</span></li>
+    <li class="big"><span class="when">By year end</span><b>Stock and money</b><span class="d">QR scan-out, the dead-stock list, and the money screen. Then we check the numbers together: leads, jobs won, and where they came from.</span></li>
+  </ol>
+</section>
+
+<section id="price" class="narrow" aria-labelledby="price-h">
+  <span class="num">08</span>
+  <h2 id="price-h">The price</h2>
+  <div class="rule"></div>
+  <div class="price">
+    <div><div class="big">$773<small> / month</small></div></div>
+    <ul>
+      <li>Marketing: new service pages, Google profile posts, the review push, and a weekly search check.</li>
+      <li>A short report each month: leads, rankings, and what we shipped.</li>
+      <li>The HQ, built and hosted for you. No separate build fee.</li>
+      <li><b>The math:</b> one $20,000 invoice paid by bank transfer instead of card saves about $595. That's most of a month, from one job.</li>
+      <li>Changes you ask for, like today's bids@ switch, the same day where we can.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="need" class="narrow" aria-labelledby="need-h">
+  <span class="num">09</span>
+  <h2 id="need-h">What we need from Tommy</h2>
+  <div class="rule"></div>
+  <ul class="check">
+    <li><div><b>Your OK on the plan</b><span>Reply to the email or text Bryce. That starts the HQ lead board.</span></div></li>
+    <li><div><b>Ten minutes with Kyle</b><span>So you hear it from a builder, not from us.</span></div></li>
+    <li><div><b>How JobView gets data in and out</b><span>An export, a report or an API. Whoever set up JobView will know.</span></div></li>
+    <li><div><b>Your team list</b><span>Names and what each person does. That sets up logins.</span></div></li>
+    <li><div><b>Photos and reviews</b><span>Crews keep sending job photos. The office asks happy customers for a review; we make the link.</span></div></li>
+  </ul>
+  <p class="quiet">Logins are shared privately, never on this page.</p>
+</section>
+</main>
+
+<footer>
+  <div class="sig">Questions? Text or email Bryce. <a href="mailto:bryce@gullstack.com">bryce@gullstack.com</a></div>
+  <span class="prep">Prepared by Walkthru Labs · Bryce Morgan</span>
+  Search numbers: Semrush, US database, 2 August and 30 September 2026. Lead counts: the mbdoor.com lead log.
+</footer>
+</div>
+<script>
+(function(){
+  var inv=document.getElementById('inv'),per=document.getElementById('per');
+  var f=function(v){return '$'+Math.round(v).toLocaleString('en-US');};
+  function calc(){ var a=Math.max(0,+inv.value||0), k=Math.max(0,+per.value||0);
+    var card=a*0.03, ach=Math.min(a*0.008,5);
+    document.getElementById('c-card').textContent=f(card);
+    document.getElementById('c-ach').textContent=f(ach);
+    document.getElementById('c-save').textContent=f((card-ach)*k); }
+  if(inv&&per){ inv.addEventListener('input',calc); per.addEventListener('input',calc); calc(); }
+})();
+(function(){
+  var items=[].slice.call(document.querySelectorAll('details.item'));
+  var links=[].slice.call(document.querySelectorAll('.index a'));
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function go(el){ el.open=true; el.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'}); var s=el.querySelector('summary'); if(s) s.focus({preventScroll:true}); }
+  links.forEach(function(a){ a.addEventListener('click',function(e){ var t=document.getElementById(a.getAttribute('href').slice(1)); if(t){ e.preventDefault(); go(t); history.replaceState(null,'','#'+t.id); } }); });
+  if(location.hash){ var t=document.getElementById(location.hash.slice(1)); if(t&&t.tagName==='DETAILS') t.open=true; }
+  items.forEach(function(d,i){ var b=d.querySelector('.next'); if(b&&items[i+1]) b.addEventListener('click',function(){ d.open=false; go(items[i+1]); }); });
+  document.querySelectorAll('.tools button').forEach(function(b){ b.addEventListener('click',function(){ var o=b.dataset.act==='open'; items.forEach(function(d){ d.open=o; }); }); });
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){ a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id); }); } }); },{rootMargin:'-20% 0px -70% 0px'});
+    items.forEach(function(d){ io.observe(d); });
+  }
+})();
+</script>
+</body>
+</html>

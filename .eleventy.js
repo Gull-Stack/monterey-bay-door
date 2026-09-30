@@ -13,6 +13,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/.well-known");
   eleventyConfig.addPassthroughCopy("src/llms.txt");
 
+  // The client plan page: hand-written HTML, noindex, kept out of the sitemap
+  eleventyConfig.addPassthroughCopy("src/plan");
+
   // Strip HTML tags from product descriptions
   eleventyConfig.addFilter('stripHtml', function(value) {
     if (!value) return '';
