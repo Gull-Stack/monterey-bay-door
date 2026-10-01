@@ -40,8 +40,8 @@ access control — Hollister, CA). GullStack client site.
   (Buildertrend/Jobber list prices, July 2026), dead stock back to cash.
   The lead email screenshot uses a made-up lead; no real lead's details are
   on the page (the QA gate caught the first version before push).
-- Email for Tommy: `plan-email-tommy.md` (untracked; commercial terms stay out of git).
-- **Next:** send Tommy the page; turn on Vercel Web Analytics; build the
+- Email with the /plan link sent to Tommy from bryce@gullstack.com on 1 Oct 2026 (text in `plan-email-tommy.md`, untracked).
+- **Next:** wait for Tommy's reply; turn on Vercel Web Analytics; build the
   commercial door repair page; access-control page with real counties.
 
 ## 2026-09-23 — Solicitations no longer email anyone
