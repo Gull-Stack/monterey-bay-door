@@ -18,6 +18,18 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-10-03 — Real leads resent to bids@
+
+- Tommy (email, 2 Oct): MBD never saw the 14-door-operator lead (30 Sept). It
+  went to Tommy's inbox only, before the bids@ switch.
+- Resent all real leads from the Blob log to bids@ (cc Tommy, bcc Bryce)
+  through SendGrid with the new template, subject "Resent lead (<date>): ...".
+  All four accepted (202) and arrived in Bryce's bcc. One per lead: Carmel
+  Foundation (14 ADA openers), J Mac general contractor (two forms combined),
+  water district glass doors (27 Jul), residential door and frame (8 Aug).
+- Open question: whether MBD's mail system files leads@gullstack.com mail as
+  junk. Tommy missing the 30 Sept lead suggests it might.
+
 ## 2026-09-30 — Leads to bids@, branded lead emails, /plan page for Tommy
 
 - **Lead routing (Tommy's text, 30 Sept: "Bids@mbdoor.com"):** `api/contact.js`
