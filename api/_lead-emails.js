@@ -18,6 +18,21 @@ const LOGO = 'https://www.mbdoor.com/assets/logos/logo-email-white.png';
 const OFFICE_PHONE = '(831) 757-1878';
 const OFFICE_TEL = '+18317571878';
 export const BIDS_EMAIL = 'bids@mbdoor.com';
+export const SERVICE_EMAIL = 'service@mbdoor.com';
+// Tito's service line, from his signature ("call or text"), 8 Oct 2026.
+const SERVICE_PHONE = '(831) 717-8624';
+const SERVICE_TEL = '+18317178624';
+
+// The form's "What do you need?" choice. Service calls go to the service desk,
+// bids to the bids desk (Tito, 8 Oct 2026: a service lead sat in bids@ for
+// three days and the customer hired someone else).
+export const REQUEST_LABELS = { service: 'Service call', bid: 'Bid with plans or specs' };
+export function isServiceRequest(requestType, projectType) {
+  if (requestType === 'service') return true;
+  if (requestType === 'bid') return false;
+  // Old cached form with no choice: the two repair project types are service.
+  return projectType === 'service-maintenance' || projectType === 'emergency-repair';
+}
 
 // The contact form's <select> values, as the form shows them.
 const PROJECT_LABELS = {
@@ -95,8 +110,9 @@ function row(label, valueHtml) {
 }
 
 // The internal alert: goes to bids@mbdoor.com with Tommy on cc.
-export function notificationEmail({ name, company, email, phone, projectType, message, triage }) {
+export function notificationEmail({ name, company, email, phone, projectType, message, triage, service }) {
   const project = projectLabel(projectType);
+  const kind = service ? REQUEST_LABELS.service : REQUEST_LABELS.bid;
   const link = `color:${SAGE};text-decoration:underline;`;
   const banner = triage && triage !== 'clean'
     ? `<tr><td style="background:#fff4d6;padding:12px 28px;font-family:${FONT};font-size:14px;color:#6b4e00;border-bottom:1px solid #f0dc9e;"><strong>Flagged by the filter (${esc(triage)}).</strong> This one went to GullStack only, not to Monterey Bay Door.</td></tr>`
@@ -109,7 +125,7 @@ export function notificationEmail({ name, company, email, phone, projectType, me
 
   const body = `${banner}
 <tr><td style="padding:28px 28px 8px;font-family:${FONT};">
-<p style="margin:0 0 6px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${SAGE};font-weight:700;">New website lead${project ? ` &middot; ${esc(project)}` : ''}</p>
+<p style="margin:0 0 6px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${SAGE};font-weight:700;">${service ? 'Service call' : 'New website lead'}${project ? ` &middot; ${esc(project)}` : ''}</p>
 <h1 style="margin:0 0 4px;font-size:24px;line-height:1.25;color:${INK};">${esc(name)}</h1>
 ${company ? `<p style="margin:0;font-size:15px;color:${MUTED};">${esc(company)}</p>` : ''}
 </td></tr>
@@ -124,9 +140,10 @@ ${message ? `<tr><td style="padding:16px 28px 4px;">
 ${row('Email', `<a href="mailto:${esc(email)}" style="${link}">${esc(email)}</a>`)}
 ${row('Phone', phone ? `<a href="${telHref(phone)}" style="${link}">${esc(prettyPhone(phone))}</a>` : '<span style="color:#8a9293;">Not given</span>')}
 ${row('Company', company ? esc(company) : '<span style="color:#8a9293;">Not given</span>')}
+${row('Needs', esc(kind))}
 ${row('Project', project ? esc(project) : '<span style="color:#8a9293;">Not chosen</span>')}
 </table>
-<p style="margin:16px 0 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">Hitting <strong>Reply</strong> answers ${esc(firstName(name))} directly. We told them to send plans and specs to ${BIDS_EMAIL}.</p>
+<p style="margin:16px 0 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">Hitting <strong>Reply</strong> answers ${esc(firstName(name))} directly. ${service ? `We told them the service line is ${SERVICE_PHONE}.` : `We told them to send plans and specs to ${BIDS_EMAIL}.`}</p>
 </td></tr>`;
 
   return shell({
@@ -137,8 +154,13 @@ ${row('Project', project ? esc(project) : '<span style="color:#8a9293;">Not chos
 }
 
 // The thank-you the customer gets. Reply-To is bids@, so plans sent back land there.
-export function confirmationEmail({ name, projectType, message }) {
+export function confirmationEmail({ name, projectType, message, service }) {
   const project = projectLabel(projectType);
+  const nextStep = service
+    ? `<p style="margin:0 0 6px;font-size:15px;font-weight:700;color:${INK};">Need it fixed today?</p>
+<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">Call or text our service line at <a href="tel:${SERVICE_TEL}" style="color:${SAGE};font-weight:600;">${SERVICE_PHONE}</a>. Photos of the door help, so reply to this email with them attached.</p>`
+    : `<p style="margin:0 0 6px;font-size:15px;font-weight:700;color:${INK};">Have plans, drawings or a door schedule?</p>
+<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">Reply to this email with them attached, or send them to <a href="mailto:${BIDS_EMAIL}" style="color:${SAGE};font-weight:600;">${BIDS_EMAIL}</a>. It goes straight to our bids team.</p>`;
   const body = `
 <tr><td style="padding:32px 28px 8px;font-family:${FONT};">
 <h1 style="margin:0 0 12px;font-size:24px;line-height:1.25;color:${INK};">Thanks, ${esc(firstName(name))}. We have your request.</h1>
@@ -147,8 +169,7 @@ export function confirmationEmail({ name, projectType, message }) {
 <tr><td style="padding:20px 28px 4px;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
 <td style="background:${PAPER};border:1px solid ${RULE};border-radius:8px;padding:18px 20px;font-family:${FONT};">
-<p style="margin:0 0 6px;font-size:15px;font-weight:700;color:${INK};">Have plans, drawings or a door schedule?</p>
-<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">Reply to this email with them attached, or send them to <a href="mailto:${BIDS_EMAIL}" style="color:${SAGE};font-weight:600;">${BIDS_EMAIL}</a>. It goes straight to our bids team.</p>
+${nextStep}
 </td></tr></table>
 </td></tr>
 ${project || message ? `<tr><td style="padding:20px 28px 0;font-family:${FONT};">
@@ -158,11 +179,11 @@ ${message ? `<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">$
 </td></tr>` : ''}
 <tr><td style="padding:24px 28px 28px;font-family:${FONT};">
 <p style="margin:0 0 12px;font-size:15px;color:${INK};">Need us sooner?</p>
-${button(`tel:${OFFICE_TEL}`, `Call ${OFFICE_PHONE}`)}
+${service ? button(`tel:${SERVICE_TEL}`, `Call ${SERVICE_PHONE}`) : button(`tel:${OFFICE_TEL}`, `Call ${OFFICE_PHONE}`)}
 </td></tr>`;
 
   return shell({
-    preheader: 'We have your request. Send plans or specs to bids@mbdoor.com.',
+    preheader: service ? `We have your service request. Call or text ${SERVICE_PHONE} if it can't wait.` : 'We have your request. Send plans or specs to bids@mbdoor.com.',
     body,
     footer: `<strong style="color:#ffffff;">Monterey Bay Door</strong><br>Commercial doors, frames, hardware and access control &middot; Hollister, CA<br><a href="https://www.mbdoor.com/" style="color:${SAGE_BRIGHT};">mbdoor.com</a> &middot; <a href="tel:${OFFICE_TEL}" style="color:${SAGE_BRIGHT};">${OFFICE_PHONE}</a>`,
   });
