@@ -18,6 +18,22 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-10-21 — Service calls and bids split on the contact form (Tito's ask)
+
+- **Why:** Tito (8 Oct, "Lost Lead"): a service lead from the site landed in bids@ on
+  3 Oct, reached him 6 Oct, and the customer had already hired someone else.
+- **Form:** a required "What do you need?" choice, A service call / A bid, at the top
+  of `/contact`. Field `request-type` = `service` | `bid`.
+- **Routing (`api/contact.js`):** service → service@mbdoor.com, cc tito@staleydoor.com;
+  bid → bids@mbdoor.com, cc tomrehak@ (unchanged). bcc bryce@ on both. Subject
+  starts `SERVICE CALL:` or `New bid request:`. An old cached form with no choice
+  counts as service when the project type is Service & maintenance or Emergency repair.
+- **Customer thank-you:** a service request gets the service line (831) 717-8624 and
+  Reply-To service@; a bid keeps the plans/specs box and Reply-To bids@.
+- Verified locally with SendGrid stubbed: all three cases route as above.
+- **Next:** staleydoor.com has no form, only mailto bids@; it needs a visible
+  service-call line (service@mbdoor.com, (831) 717-8624). Reply to Tito once live.
+
 ## 2026-09-30 — Leads to bids@, branded lead emails, /plan page for Tommy
 
 - **Lead routing (Tommy's text, 30 Sept: "Bids@mbdoor.com"):** `api/contact.js`
