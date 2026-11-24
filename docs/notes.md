@@ -18,7 +18,23 @@ Never put passwords, API keys, or tokens in this file.
 - Lead email routing is hardcoded in api/contact.js, not the SITE_EMAIL env var, so a stale env value can't send leads to the wrong box.
 - Commercial terms (prices, invoices) stay out of this public repo. They live in Notion (MBD Door) and untracked drafts in this folder.
 
+## What the client said
+
+- Erika Garcia, 23 Nov 2026 (email): the whole team meets on 12 Dec 2026. She sends
+  the CEO portrait and the team photo after that. She asked how to send photos; the
+  answer given is email to Bryce.
+- Erika Garcia, 23 Nov 2026 (email): the contact page shows "Installs by Staley
+  Construction" with California Contractor's License #858597. Not checked against
+  the state license board.
+- Erika's quote and service option lists came from her own mock-up screenshots.
+  Change the options in both `src/contact/index.njk` and `api/_lead-emails.js`.
+
 ## Gotchas
+
+- The form's spam check drops any message with an outside URL. The plan link has its
+  own field (`plan-link`) so a real plan link does not trip it.
+- Service photos live in Blob under `lead-photos/`. Never store them under `leads/`:
+  the /leads dashboard fetches every file there as lead JSON.
 
 - SendGrid rejects a send when one address appears twice across to/cc/bcc. Flagged leads go to Bryce alone with no cc/bcc for that reason.
 - The site has no visitor analytics as of 30 Sept 2026. Semrush traffic is an estimate.

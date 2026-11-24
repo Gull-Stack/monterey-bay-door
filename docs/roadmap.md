@@ -14,6 +14,10 @@ Update this when priorities change. Keep it short enough to read in a minute.
 - Turn on visitor analytics (Vercel Web Analytics) so reports show real visits.
 - Build the commercial door repair + service page (6,600 searches/mo).
 
+- After 12 Dec 2026: add the CEO portrait and team photo to /about/ when Erika
+  sends them (swap the two placeholder boxes; see the comment in src/about/index.njk).
+- Send one real service request with a photo and confirm the photo shows in the email.
+
 ## Next
 
 - HQ lead board (leads already in the Blob log become the first data).
@@ -30,6 +34,8 @@ Update this when priorities change. Keep it short enough to read in a minute.
 
 ## Done
 
+- 2026-11-24: quote and service forms with Erika's fields and service photos; CEO
+  and team photo spaces on /about/; license number on /contact/.
 - 2026-10-03: four real leads resent to bids@ (cc Tommy); reply sent to Tommy.
 - 2026-09-30: leads route to bids@mbdoor.com (Tommy cc); branded lead emails;
   /plan page; plan email sent to Tommy.

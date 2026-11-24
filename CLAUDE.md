@@ -18,6 +18,33 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-11-24 — Erika's three asks: bigger forms, About photo spaces, license number
+
+- **Source:** Erika Garcia, three emails on 23 Nov 2026 ("MBD Website Photos"), with
+  eight mock-up screenshots. Shipped in PR #4 (`09f9f81`), merged to main.
+- **Contact form (`src/contact/index.njk`):** "A project quote" shows project name,
+  city / ZIP, scope, supply / installation, bid due date and a plan link. "A service
+  call" shows property, door location, address, issue, how soon, on-site contact and
+  up to 5 photos. A hidden group is `disabled`, so the browser does not send it.
+- **Photos:** the browser shrinks each to a JPEG (1400 px edge) and sends data URLs.
+  `api/contact.js` keeps only small JPEGs and stores them in Blob under
+  `lead-photos/` (not `leads/`, which the /leads dashboard reads as leads). The
+  service email shows them as thumbnails.
+- **Emails:** new rows in the alert; "URGENT SERVICE CALL" subject when the customer
+  picks urgent. Routing is unchanged. Option labels live in `api/_lead-emails.js`.
+- **About:** "Meet Our Team" has a CEO portrait space and a full-team photo space.
+- **Contact:** "Installs by Staley Construction" and license #858597 replace "TBD".
+- **Tested:** handler with SendGrid stubbed (service, quote, hostile values, old
+  cached form, URL in message); photo shrink and submit in headless Chrome with the
+  request intercepted. **Not tested:** a real photo landing in Blob. The live test
+  sends an email, and the session's permission check blocked it. An upload failure
+  does not block the lead.
+- **Not verified:** license 858597 against the state license board (the lookup page
+  did not load by script). The number is Erika's.
+- **Next:** send Erika the reply (Gmail draft in the gullstack thread). Send one real
+  service request with a photo and confirm the photo shows in the email. After
+  12 Dec 2026, add the CEO and team photos Erika sends.
+
 ## 2026-10-21 — Service calls and bids split on the contact form (Tito's ask)
 
 - **Why:** Tito (8 Oct, "Lost Lead"): a service lead from the site landed in bids@ on
