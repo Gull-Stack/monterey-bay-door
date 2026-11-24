@@ -7,7 +7,7 @@ import { put } from '@vercel/blob';
 // Gull-Stack/walkthru-labs → shared/lead-spam-filter.js; this is a synced copy,
 // so fix it there and re-run shared/sync-lead-spam-filter.sh, not here.
 import { classifyLead } from './lead-spam-filter.js';
-import { notificationEmail, confirmationEmail, projectLabel, BIDS_EMAIL, SERVICE_EMAIL, isServiceRequest } from './_lead-emails.js';
+import { notificationEmail, confirmationEmail, projectLabel, BIDS_EMAIL, SERVICE_EMAIL, isServiceRequest, SCOPE_LABELS, SUPPLY_LABELS, ISSUE_LABELS, URGENCY_LABELS } from './_lead-emails.js';
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'leads@gullstack.com';
@@ -26,6 +26,55 @@ function slugify(s) {
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 50) || 'lead';
+}
+
+// One line of form text: trimmed, single-spaced, capped.
+function clean(value, max = 200) {
+  if (typeof value !== 'string') return null;
+  const s = value.replace(/\s+/g, ' ').trim().slice(0, max);
+  return s || null;
+}
+
+// A plan link is the one place a customer is asked for a URL, so it has its
+// own field and is checked here. (URLs in the message are still spam.)
+function cleanPlanLink(value) {
+  let s = clean(value, 500);
+  if (!s) return null;
+  if (!/^https?:\/\//i.test(s)) s = `https://${s}`;
+  try {
+    const u = new URL(s);
+    if (!/^https?:$/.test(u.protocol) || !u.hostname.includes('.')) return null;
+    return u.href;
+  } catch (e) {
+    return null;
+  }
+}
+
+function prettyDate(value) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(value || ''));
+  if (!m) return null;
+  const d = new Date(Date.UTC(+m[1], +m[2] - 1, +m[3]));
+  if (isNaN(d) || d.getUTCMonth() !== +m[2] - 1) return null;
+  return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+}
+
+// Service-call photos. The form shrinks each one to a JPEG in the browser and
+// sends it as a data URL. Anything that is not a small JPEG is dropped.
+const MAX_PHOTOS = 5;
+const MAX_PHOTO_BYTES = 1024 * 1024;
+function decodePhotos(value) {
+  if (!Array.isArray(value)) return [];
+  const out = [];
+  for (const item of value.slice(0, MAX_PHOTOS)) {
+    if (typeof item !== 'string') continue;
+    const m = /^data:image\/jpeg;base64,([A-Za-z0-9+/=]+)$/.exec(item);
+    if (!m) continue;
+    const buf = Buffer.from(m[1], 'base64');
+    if (buf.length < 100 || buf.length > MAX_PHOTO_BYTES) continue;
+    if (buf[0] !== 0xff || buf[1] !== 0xd8 || buf[2] !== 0xff) continue; // JPEG magic bytes
+    out.push(buf);
+  }
+  return out;
 }
 
 function isGibberish(text) {
@@ -106,9 +155,35 @@ export default async function handler(req, res) {
 
   try {
     const { name, company, email, phone, message, fax_number, _timestamp } = req.body;
-    const projectType = req.body['project-type'] || req.body.projectType;
     const requestType = req.body['request-type'] || req.body.requestType || null;
-    const service = isServiceRequest(requestType, projectType);
+    const legacyType = req.body['project-type'] || req.body.projectType;
+    const service = isServiceRequest(requestType, legacyType);
+
+    // The choices added for Erika (23 Nov 2026). Only known option values count.
+    const pick = (labels, key) => (Object.hasOwn(labels, req.body[key]) ? labels[req.body[key]] : null);
+    const scope = pick(SCOPE_LABELS, 'bid-scope');
+    const issue = pick(ISSUE_LABELS, 'service-issue');
+    const urgency = pick(URGENCY_LABELS, 'service-urgency');
+    const urgent = service && req.body['service-urgency'] === 'urgent';
+    // What the emails and the lead log show as the request's subject. A cached
+    // copy of the old form still sends `project-type`.
+    const projectType = (service ? issue : scope) || legacyType;
+    const planLink = service ? null : cleanPlanLink(req.body['plan-link']);
+    const details = (service
+      ? [
+          ['How soon', urgency],
+          ['Property', clean(req.body['property-name'], 120)],
+          ['Address', clean(req.body['service-address'], 200)],
+          ['Door / opening', clean(req.body['door-location'], 120)],
+          ['On-site contact', [clean(req.body['onsite-name'], 120), clean(req.body['onsite-phone'], 40)].filter(Boolean).join(', ')],
+        ]
+      : [
+          ['Project', clean(req.body['project-name'], 120)],
+          ['City / ZIP', clean(req.body['project-city'], 80)],
+          ['Supply / install', pick(SUPPLY_LABELS, 'supply-install')],
+          ['Bid due', prettyDate(req.body['bid-due'])],
+        ]
+    ).filter(([, value]) => value);
 
     const spamReason = looksLikeSpam({ name, fax_number, _timestamp, email, message });
     if (spamReason) {
@@ -124,8 +199,12 @@ export default async function handler(req, res) {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       phone: phone?.trim() || null,
-      interest: projectType || null,
+      company: clean(company, 120),
+      interest: projectLabel(projectType) || null,
       request_type: service ? 'service' : 'bid',
+      details: Object.fromEntries(details),
+      plan_link: planLink,
+      photos: [],
       message: message?.trim() || null,
       source: 'mbdoor.com',
       status: 'new',
@@ -139,13 +218,37 @@ export default async function handler(req, res) {
     // logged to Blob — the record is never lost — but the alert comes to us.
     const triage = classifyLead({
       name, email, phone: leadData.phone, message,
-      extraText: [projectType, company].filter(Boolean).join(' '),
+      extraText: [projectType, company, ...details.map(([, value]) => value)].filter(Boolean).join(' '),
     });
     const isClean = triage.verdict === 'clean';
     leadData.triage = triage.verdict;
     if (!isClean) {
       leadData.triage_reasons = triage.reasons;
       console.log(`[LEAD TRIAGE] verdict=${triage.verdict} reasons=${triage.reasons.join('|')} name="${name}" — routed to Bryce, NOT the client`);
+    }
+
+    // Service-call photos go to Blob first, so their links are in the log and
+    // the email. Kept off the leads/ prefix: the /leads dashboard lists that
+    // prefix and reads every file in it as a lead. A cold pitch stores nothing.
+    // A failed upload never blocks the lead.
+    const photoUrls = [];
+    if (service && triage.verdict !== 'solicitation') {
+      const day = leadData.created_at.slice(0, 10);
+      const stamp = Date.now();
+      const photos = decodePhotos(req.body.photos);
+      for (let i = 0; i < photos.length; i++) {
+        try {
+          const blob = await put(`lead-photos/${day}/${stamp}-${slugify(leadData.name)}-${i + 1}.jpg`, photos[i], {
+            access: 'public',
+            contentType: 'image/jpeg',
+            addRandomSuffix: true,
+          });
+          photoUrls.push(blob.url);
+        } catch (e) {
+          console.error('Lead photo upload error:', e);
+        }
+      }
+      leadData.photos = photoUrls;
     }
 
     // Log every lead to Vercel Blob so nothing is ever lost, even if email
@@ -165,7 +268,7 @@ export default async function handler(req, res) {
     }
 
     if (SENDGRID_API_KEY) {
-      const emailData = { name: leadData.name, company, email: leadData.email, phone: leadData.phone, projectType, message: leadData.message, triage: triage.verdict, service };
+      const emailData = { name: leadData.name, company, email: leadData.email, phone: leadData.phone, projectType, message: leadData.message, triage: triage.verdict, service, details, planLink, photos: photoUrls, urgent };
       const confirmationHtml = confirmationEmail(emailData);
 
       // Skipped on a flagged submission: thanking a cold pitch confirms the
@@ -199,7 +302,7 @@ export default async function handler(req, res) {
         from: FROM_EMAIL,
         fromName: `${leadData.name} via Monterey Bay Door`,
         subject: isClean
-          ? `${service ? 'SERVICE CALL' : 'New bid request'}: ${who}${label ? ' - ' + label : ''}`
+          ? `${service ? (urgent ? 'URGENT SERVICE CALL' : 'SERVICE CALL') : 'New bid request'}: ${who}${label ? ' - ' + label : ''}`
           : `[OUR TEST - not a lead]: ${leadData.name}`,
         html: notificationHtml,
         replyTo: email,

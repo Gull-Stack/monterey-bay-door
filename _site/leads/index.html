@@ -297,6 +297,21 @@
       ', ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
   }
 
+  // The quote and service fields added 24 Nov 2026. Older leads have none.
+  function extras(l) {
+    var lines = [];
+    Object.keys(l.details || {}).forEach(function (k) {
+      lines.push('<strong>' + esc(k) + ':</strong> ' + esc(l.details[k]));
+    });
+    if (l.plan_link && /^https?:\/\//.test(l.plan_link)) {
+      lines.push('<a href="' + esc(l.plan_link) + '" target="_blank" rel="noopener noreferrer">Plan link</a>');
+    }
+    (l.photos || []).forEach(function (url, i) {
+      if (/^https:\/\//.test(url)) lines.push('<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">Photo ' + (i + 1) + '</a>');
+    });
+    return lines.length ? '<div style="margin-top:0.4rem; font-size:0.85rem; color:#555;">' + lines.join('<br>') + '</div>' : '';
+  }
+
   function render(leads) {
     var body = document.getElementById('leads-body');
     var table = document.getElementById('leads-table');
@@ -314,7 +329,7 @@
         '<td style="padding:0.6rem 0.5rem; font-weight:600;">' + esc(l.name) + '</td>' +
         '<td style="padding:0.6rem 0.5rem;">' + (contact.join('<br>') || '—') + '</td>' +
         '<td style="padding:0.6rem 0.5rem;">' + esc(l.interest || '—') + '</td>' +
-        '<td style="padding:0.6rem 0.5rem; max-width:320px;">' + esc(l.message || '') + '</td>' +
+        '<td style="padding:0.6rem 0.5rem; max-width:320px;">' + esc(l.message || '') + extras(l) + '</td>' +
         '</tr>';
     }).join('');
     table.style.display = 'table';
