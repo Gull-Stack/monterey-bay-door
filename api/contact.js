@@ -7,7 +7,7 @@ import { put } from '@vercel/blob';
 // Gull-Stack/walkthru-labs → shared/lead-spam-filter.js; this is a synced copy,
 // so fix it there and re-run shared/sync-lead-spam-filter.sh, not here.
 import { classifyLead } from './lead-spam-filter.js';
-import { notificationEmail, confirmationEmail, projectLabel, BIDS_EMAIL } from './_lead-emails.js';
+import { notificationEmail, confirmationEmail, projectLabel, BIDS_EMAIL, SERVICE_EMAIL, isServiceRequest } from './_lead-emails.js';
 
 const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY;
 const FROM_EMAIL = process.env.FROM_EMAIL || 'leads@gullstack.com';
@@ -16,6 +16,8 @@ const FROM_EMAIL = process.env.FROM_EMAIL || 'leads@gullstack.com';
 // Hardcoded on purpose: the old SITE_EMAIL env var pointed at Tommy alone.
 const LEAD_TO = BIDS_EMAIL;
 const LEAD_CC = 'tomrehak@mbdoor.com';
+// Service calls (Tito, email 8 Oct 2026): to service@mbdoor.com with Tito on cc.
+const SERVICE_CC = 'tito@staleydoor.com';
 const LEAD_BCC = 'bryce@gullstack.com';
 
 function slugify(s) {
@@ -105,6 +107,8 @@ export default async function handler(req, res) {
   try {
     const { name, company, email, phone, message, fax_number, _timestamp } = req.body;
     const projectType = req.body['project-type'] || req.body.projectType;
+    const requestType = req.body['request-type'] || req.body.requestType || null;
+    const service = isServiceRequest(requestType, projectType);
 
     const spamReason = looksLikeSpam({ name, fax_number, _timestamp, email, message });
     if (spamReason) {
@@ -121,6 +125,7 @@ export default async function handler(req, res) {
       email: email.trim().toLowerCase(),
       phone: phone?.trim() || null,
       interest: projectType || null,
+      request_type: service ? 'service' : 'bid',
       message: message?.trim() || null,
       source: 'mbdoor.com',
       status: 'new',
@@ -160,7 +165,7 @@ export default async function handler(req, res) {
     }
 
     if (SENDGRID_API_KEY) {
-      const emailData = { name: leadData.name, company, email: leadData.email, phone: leadData.phone, projectType, message: leadData.message, triage: triage.verdict };
+      const emailData = { name: leadData.name, company, email: leadData.email, phone: leadData.phone, projectType, message: leadData.message, triage: triage.verdict, service };
       const confirmationHtml = confirmationEmail(emailData);
 
       // Skipped on a flagged submission: thanking a cold pitch confirms the
@@ -171,8 +176,8 @@ export default async function handler(req, res) {
           from: FROM_EMAIL,
           subject: 'We got your request - Monterey Bay Door',
           html: confirmationHtml,
-          // Plans sent back by reply land on the bids desk, not a no-reply box.
-          replyTo: BIDS_EMAIL,
+          // Replies land on the desk that owns the request, not a no-reply box.
+          replyTo: service ? SERVICE_EMAIL : BIDS_EMAIL,
         });
       }
 
@@ -190,21 +195,21 @@ export default async function handler(req, res) {
       const label = projectLabel(projectType);
       const who = company ? `${leadData.name}, ${company}` : leadData.name;
       const notify = await sendEmail({
-        to: isClean ? LEAD_TO : LEAD_BCC,
+        to: isClean ? (service ? SERVICE_EMAIL : LEAD_TO) : LEAD_BCC,
         from: FROM_EMAIL,
         fromName: `${leadData.name} via Monterey Bay Door`,
         subject: isClean
-          ? `New lead: ${who}${label ? ' - ' + label : ''}`
+          ? `${service ? 'SERVICE CALL' : 'New bid request'}: ${who}${label ? ' - ' + label : ''}`
           : `[OUR TEST - not a lead]: ${leadData.name}`,
         html: notificationHtml,
         replyTo: email,
         // Flagged mail goes to GullStack only. SendGrid rejects a
         // personalization that repeats an address across to/cc/bcc, which
         // fails the send outright, so no cc/bcc on that path.
-        cc: isClean ? LEAD_CC : undefined,
+        cc: isClean ? (service ? SERVICE_CC : LEAD_CC) : undefined,
         bcc: isClean ? LEAD_BCC : undefined,
       });
-      console.log(`[LEAD] name="${leadData.name}" triage=${triage.verdict} notify=${notify.ok ? 'sent' : `FAILED ${notify.status} ${notify.detail}`}`);
+      console.log(`[LEAD] name="${leadData.name}" triage=${triage.verdict} request=${leadData.request_type} notify=${notify.ok ? 'sent' : `FAILED ${notify.status} ${notify.detail}`}`);
       if (!notify.ok) {
         console.error(`[LEAD] 🔴 notification FAILED: ${notify.status} ${notify.detail}`);
         // The lead is safe in Blob either way, but a visitor must not be told

@@ -27,6 +27,18 @@ description: Contact Monterey Bay Door for commercial doors, frames, hardware, a
                     <!-- Honeypot -->
                     <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true"><input type="text" name="fax_number" tabindex="-1" autocomplete="off" aria-label="Leave this field empty"></div>
                     <input type="hidden" name="_timestamp" id="_timestamp" value="">
+
+                    <fieldset style="margin: 0 0 1.5rem; padding: 0; border: 0;">
+                        <legend style="margin-bottom: 0.5rem; font-weight: 500;">What do you need? *</legend>
+                        <label style="display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.9rem 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); margin-bottom: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="request-type" value="service" required style="margin-top: 0.25rem;">
+                            <span><strong>A service call</strong><br><span style="font-size: 0.95rem; opacity: 0.8;">Something is broken or needs repair, and you want someone out soon.</span></span>
+                        </label>
+                        <label style="display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.9rem 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
+                            <input type="radio" name="request-type" value="bid" required style="margin-top: 0.25rem;">
+                            <span><strong>A bid</strong><br><span style="font-size: 0.95rem; opacity: 0.8;">You have plans, specs or a door schedule and want a price.</span></span>
+                        </label>
+                    </fieldset>
                     
                     <div style="margin-bottom: 1.5rem;">
                         <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>

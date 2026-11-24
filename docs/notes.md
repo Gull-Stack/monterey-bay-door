@@ -29,3 +29,12 @@ Never put passwords, API keys, or tokens in this file.
 - Lead log: https://www.mbdoor.com/leads/ (PIN-gated)
 - Crew photo portal: https://www.mbdoor.com/portal/
 - July HQ teaser: mbd-command.vercel.app (repo ~/Documents/clients/mbd-command)
+
+## Service vs bid routing (shipped 2026-10-21)
+
+The contact form asks "What do you need?" (service or bid). Service goes to
+service@mbdoor.com, cc tito@staleydoor.com. Bid goes to bids@mbdoor.com, cc
+tomrehak@mbdoor.com. With no choice, the project types service-maintenance and
+emergency-repair count as service. Logic lives in `api/_lead-emails.js`
+(`isServiceRequest`) and `api/contact.js`. Built after Tito's "Lost Lead" email:
+a repair request went to the bids desk.
