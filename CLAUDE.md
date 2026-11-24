@@ -41,7 +41,9 @@ access control — Hollister, CA). GullStack client site.
   does not block the lead.
 - **Not verified:** license 858597 against the state license board (the lookup page
   did not load by script). The number is Erika's.
-- **Next:** send Erika the reply (Gmail draft in the gullstack thread). Send one real
+- Reply sent to Erika from bryce@gullstack.com on 24 Nov 2026: all three are live,
+  email the photos after 12 Dec.
+- **Next:** wait for Erika's feedback on the form. Send one real
   service request with a photo and confirm the photo shows in the email. After
   12 Dec 2026, add the CEO and team photos Erika sends.
 
