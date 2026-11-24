@@ -43,6 +43,38 @@ const PROJECT_LABELS = {
   'consultation': 'Consultation',
 };
 
+// The quote and service choices Erika asked for (email, 23 Nov 2026). Keys are
+// the form's <option> values. A value that is not a key is dropped, so a
+// hand-built request cannot put its own text in these rows.
+export const SCOPE_LABELS = {
+  'complete-opening': 'Complete opening package',
+  'doors-frames': 'Doors & frames',
+  'hardware': 'Hardware',
+  'access-control': 'Access control',
+  'trim-millwork': 'Trim & millwork',
+  'project-documents': 'Project documents',
+  'not-sure': 'Not sure yet',
+};
+export const SUPPLY_LABELS = {
+  'supply-only': 'Supply only',
+  'supply-install': 'Supply and installation',
+  'not-sure': 'Not sure yet',
+  'documents-only': 'Documents only',
+};
+export const ISSUE_LABELS = {
+  'wont-close': 'Door will not close or latch',
+  'closer-operator': 'Closer or automatic operator problem',
+  'lock-exit-device': 'Lock or exit-device problem',
+  'damaged': 'Damaged door, frame, or hinges',
+  'access-control': 'Access-control problem',
+  'other': 'Something else',
+};
+export const URGENCY_LABELS = {
+  'routine': 'Routine / planning ahead',
+  'soon': 'Needs attention soon',
+  'urgent': 'Urgent, please contact me',
+};
+
 export function projectLabel(value) {
   if (!value) return '';
   return PROJECT_LABELS[value] || String(value);
@@ -110,7 +142,9 @@ function row(label, valueHtml) {
 }
 
 // The internal alert: goes to bids@mbdoor.com with Tommy on cc.
-export function notificationEmail({ name, company, email, phone, projectType, message, triage, service }) {
+// `details` is a list of [label, value] pairs (plain text, escaped here).
+// `planLink` and `photos` are URLs the handler already checked.
+export function notificationEmail({ name, company, email, phone, projectType, message, triage, service, details = [], planLink = null, photos = [], urgent = false }) {
   const project = projectLabel(projectType);
   const kind = service ? REQUEST_LABELS.service : REQUEST_LABELS.bid;
   const link = `color:${SAGE};text-decoration:underline;`;
@@ -125,6 +159,7 @@ export function notificationEmail({ name, company, email, phone, projectType, me
 
   const body = `${banner}
 <tr><td style="padding:28px 28px 8px;font-family:${FONT};">
+${urgent ? `<p style="margin:0 0 12px;"><span style="display:inline-block;background:#b3261e;color:#ffffff;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:6px 12px;border-radius:4px;">Urgent. Customer asked for a call.</span></p>` : ''}
 <p style="margin:0 0 6px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${SAGE};font-weight:700;">${service ? 'Service call' : 'New website lead'}${project ? ` &middot; ${esc(project)}` : ''}</p>
 <h1 style="margin:0 0 4px;font-size:24px;line-height:1.25;color:${INK};">${esc(name)}</h1>
 ${company ? `<p style="margin:0;font-size:15px;color:${MUTED};">${esc(company)}</p>` : ''}
@@ -141,9 +176,14 @@ ${row('Email', `<a href="mailto:${esc(email)}" style="${link}">${esc(email)}</a>
 ${row('Phone', phone ? `<a href="${telHref(phone)}" style="${link}">${esc(prettyPhone(phone))}</a>` : '<span style="color:#8a9293;">Not given</span>')}
 ${row('Company', company ? esc(company) : '<span style="color:#8a9293;">Not given</span>')}
 ${row('Needs', esc(kind))}
-${row('Project', project ? esc(project) : '<span style="color:#8a9293;">Not chosen</span>')}
+${row(service ? 'Issue' : 'Scope', project ? esc(project) : '<span style="color:#8a9293;">Not chosen</span>')}
+${details.map(([label, value]) => row(esc(label), esc(value))).join('')}
+${planLink ? row('Plan link', `<a href="${esc(planLink)}" style="${link}word-break:break-all;">${esc(planLink)}</a>`) : ''}
 </table>
-<p style="margin:16px 0 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">Hitting <strong>Reply</strong> answers ${esc(firstName(name))} directly. ${service ? `We told them the service line is ${SERVICE_PHONE}.` : `We told them to send plans and specs to ${BIDS_EMAIL}.`}</p>
+${photos.length ? `<p style="margin:20px 0 8px;font-family:${FONT};font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED};font-weight:700;">${photos.length} photo${photos.length === 1 ? '' : 's'} from the customer</p>
+${photos.map((url, i) => `<a href="${esc(url)}" style="display:inline-block;margin:0 8px 8px 0;"><img src="${esc(url)}" width="170" alt="Customer photo ${i + 1}" style="display:block;width:170px;height:auto;border:1px solid ${RULE};border-radius:6px;"></a>`).join('')}
+<p style="margin:0;font-family:${FONT};font-size:13px;color:${MUTED};">Tap a photo to open it full size.</p>` : ''}
+<p style="margin:16px 0 0;font-family:${FONT};font-size:13px;line-height:1.5;color:${MUTED};">Hitting <strong>Reply</strong> answers ${esc(firstName(name))} directly. ${service ? `We told them the service line is ${SERVICE_PHONE}.` : `We told them to send ${planLink ? 'any other' : ''} plans and specs to ${BIDS_EMAIL}.`}</p>
 </td></tr>`;
 
   return shell({
@@ -154,12 +194,12 @@ ${row('Project', project ? esc(project) : '<span style="color:#8a9293;">Not chos
 }
 
 // The thank-you the customer gets. Reply-To is bids@, so plans sent back land there.
-export function confirmationEmail({ name, projectType, message, service }) {
+export function confirmationEmail({ name, projectType, message, service, planLink = null, photos = [] }) {
   const project = projectLabel(projectType);
   const nextStep = service
     ? `<p style="margin:0 0 6px;font-size:15px;font-weight:700;color:${INK};">Need it fixed today?</p>
-<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">Call or text our service line at <a href="tel:${SERVICE_TEL}" style="color:${SAGE};font-weight:600;">${SERVICE_PHONE}</a>. Photos of the door help, so reply to this email with them attached.</p>`
-    : `<p style="margin:0 0 6px;font-size:15px;font-weight:700;color:${INK};">Have plans, drawings or a door schedule?</p>
+<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">Call or text our service line at <a href="tel:${SERVICE_TEL}" style="color:${SAGE};font-weight:600;">${SERVICE_PHONE}</a>. ${photos.length ? `We have your ${photos.length === 1 ? 'photo' : `${photos.length} photos`}. Reply to this email if you want to send more.` : 'Photos of the door help, so reply to this email with them attached.'}</p>`
+    : `<p style="margin:0 0 6px;font-size:15px;font-weight:700;color:${INK};">${planLink ? 'We have your plan link. More drawings or a door schedule?' : 'Have plans, drawings or a door schedule?'}</p>
 <p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">Reply to this email with them attached, or send them to <a href="mailto:${BIDS_EMAIL}" style="color:${SAGE};font-weight:600;">${BIDS_EMAIL}</a>. It goes straight to our bids team.</p>`;
   const body = `
 <tr><td style="padding:32px 28px 8px;font-family:${FONT};">
@@ -174,7 +214,7 @@ ${nextStep}
 </td></tr>
 ${project || message ? `<tr><td style="padding:20px 28px 0;font-family:${FONT};">
 <p style="margin:0 0 8px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:${MUTED};font-weight:700;">What you sent us</p>
-${project ? `<p style="margin:0 0 6px;font-size:15px;color:${INK};"><strong>Project:</strong> ${esc(project)}</p>` : ''}
+${project ? `<p style="margin:0 0 6px;font-size:15px;color:${INK};"><strong>${service ? 'Issue' : 'Scope'}:</strong> ${esc(project)}</p>` : ''}
 ${message ? `<p style="margin:0;font-size:15px;line-height:1.55;color:${INK};">${esc(message).replace(/\n/g, '<br>')}</p>` : ''}
 </td></tr>` : ''}
 <tr><td style="padding:24px 28px 28px;font-family:${FONT};">

@@ -230,100 +230,342 @@
 <!-- Contact Form & Info (Light Background) -->
 <section class="section section-light">
     <div class="container">
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;">
+        <div class="mbd-two-col">
             <!-- Contact Form -->
             <div>
-                <h2 class="section-title">Request Quote</h2>
-                <p class="section-subtitle">Tell us about your project and we'll provide a detailed quote</p>
+                <h2 class="section-title">Request a Quote or Service</h2>
+                <p class="section-subtitle">Pick one below and tell us what you have. We can help with the rest.</p>
                 
-                <form style="margin-top: 2rem;" action="/api/contact" method="POST" id="contact-form">
+                <style>
+                .mbd-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+                .mbd-form .f { margin-bottom: 1.25rem; }
+                .mbd-form label, .mbd-form legend { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+                .mbd-form input[type="text"], .mbd-form input[type="email"], .mbd-form input[type="tel"],
+                .mbd-form input[type="url"], .mbd-form input[type="date"], .mbd-form select, .mbd-form textarea {
+                    width: 100%; padding: 0.9rem 1rem; border: 1px solid #b9b9b0; border-radius: var(--border-radius);
+                    font: inherit; font-size: 1rem; background: #fff; color: var(--color-text-dark); box-sizing: border-box;
+                }
+                .mbd-form textarea { resize: vertical; }
+                .mbd-form :is(input, select, textarea):focus-visible { outline: 3px solid var(--color-accent); outline-offset: 1px; }
+                .mbd-form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+                .mbd-form fieldset { margin: 0; padding: 0; border: 0; min-width: 0; }
+                .mbd-form .group-title { font-size: 1.15rem; font-weight: 700; color: var(--color-primary-dark); margin: 1.75rem 0 1rem; }
+                .mbd-form .choice { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.9rem 1rem; border: 1px solid #b9b9b0; border-radius: var(--border-radius); margin-bottom: 0.5rem; cursor: pointer; font-weight: 400; }
+                .mbd-form .choice:has(input:checked) { border-color: var(--color-accent); background: #eef1e6; }
+                .mbd-form .choice input { margin-top: 0.25rem; }
+                .mbd-form .hint { font-size: 0.9rem; color: #555; margin: 0.35rem 0 0; }
+                .mbd-form .drop { border: 1px dashed #8d9a78; border-radius: var(--border-radius); background: #eef1e6; padding: 1.25rem; text-align: center; }
+                .mbd-form .drop strong { display: block; margin-bottom: 0.25rem; }
+                .mbd-form .thumbs { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.75rem; justify-content: center; }
+                .mbd-form .thumb { position: relative; }
+                .mbd-form .thumb img { width: 84px; height: 84px; object-fit: cover; border-radius: 0.5rem; display: block; }
+                .mbd-form .thumb button { position: absolute; top: -8px; right: -8px; width: 28px; height: 28px; border-radius: 50%; border: 0; background: var(--color-primary-dark); color: #fff; font-size: 1rem; line-height: 1; cursor: pointer; }
+                .mbd-form details { margin-bottom: 1.25rem; }
+                .mbd-form summary { cursor: pointer; color: var(--color-accent); text-decoration: underline; margin-bottom: 0.75rem; }
+                .mbd-form [hidden] { display: none !important; }
+                @media (max-width: 860px) { .mbd-two-col { grid-template-columns: 1fr; gap: 2.5rem; } }
+                @media (max-width: 560px) { .mbd-form .row2 { grid-template-columns: 1fr; gap: 0; } }
+                </style>
+
+                <form class="mbd-form" style="margin-top: 2rem;" action="/api/contact" method="POST" id="contact-form">
                     <!-- Honeypot -->
                     <div style="position:absolute;left:-9999px;opacity:0;height:0;width:0" aria-hidden="true"><input type="text" name="fax_number" tabindex="-1" autocomplete="off" aria-label="Leave this field empty"></div>
                     <input type="hidden" name="_timestamp" id="_timestamp" value="">
 
-                    <fieldset style="margin: 0 0 1.5rem; padding: 0; border: 0;">
-                        <legend style="margin-bottom: 0.5rem; font-weight: 500;">What do you need? *</legend>
-                        <label style="display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.9rem 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); margin-bottom: 0.5rem; cursor: pointer;">
-                            <input type="radio" name="request-type" value="service" required style="margin-top: 0.25rem;">
-                            <span><strong>A service call</strong><br><span style="font-size: 0.95rem; opacity: 0.8;">Something is broken or needs repair, and you want someone out soon.</span></span>
+                    <fieldset style="margin-bottom: 1.5rem;">
+                        <legend>What do you need? *</legend>
+                        <label class="choice">
+                            <input type="radio" name="request-type" value="bid" required>
+                            <span><strong>A project quote</strong><br><span style="font-size: 0.95rem; color: #555;">You have plans, specs or a door schedule and want a price.</span></span>
                         </label>
-                        <label style="display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.9rem 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); cursor: pointer;">
-                            <input type="radio" name="request-type" value="bid" required style="margin-top: 0.25rem;">
-                            <span><strong>A bid</strong><br><span style="font-size: 0.95rem; opacity: 0.8;">You have plans, specs or a door schedule and want a price.</span></span>
+                        <label class="choice">
+                            <input type="radio" name="request-type" value="service" required>
+                            <span><strong>A service call</strong><br><span style="font-size: 0.95rem; color: #555;">Something is broken or needs repair, and you want someone out soon.</span></span>
                         </label>
                     </fieldset>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="name" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Name *</label>
-                        <input type="text" id="name" name="name" required style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem;">
+
+                    <p class="group-title" style="margin-top: 0;">Your contact information</p>
+                    <div class="row2">
+                        <div class="f">
+                            <label for="name">Your name *</label>
+                            <input type="text" id="name" name="name" required autocomplete="name">
+                        </div>
+                        <div class="f">
+                            <label for="company">Company / organization</label>
+                            <input type="text" id="company" name="company" autocomplete="organization">
+                        </div>
                     </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="company" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Company</label>
-                        <input type="text" id="company" name="company" style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem;">
+                    <div class="row2">
+                        <div class="f">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required autocomplete="email">
+                        </div>
+                        <div class="f">
+                            <label for="phone">Callback phone<span id="phone-star" hidden> *</span></label>
+                            <input type="tel" id="phone" name="phone" autocomplete="tel">
+                        </div>
                     </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email *</label>
-                        <input type="email" id="email" name="email" required style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem;">
+
+                    <!-- Project quote fields -->
+                    <fieldset id="bid-fields" hidden disabled>
+                        <p class="group-title">About your project</p>
+                        <div class="row2">
+                            <div class="f">
+                                <label for="project-name">Project name *</label>
+                                <input type="text" id="project-name" name="project-name" required maxlength="120">
+                            </div>
+                            <div class="f">
+                                <label for="project-city">Project city / ZIP *</label>
+                                <input type="text" id="project-city" name="project-city" required maxlength="80">
+                            </div>
+                        </div>
+                        <div class="row2">
+                            <div class="f">
+                                <label for="bid-scope">What do you need? *</label>
+                                <select id="bid-scope" name="bid-scope" required>
+                                    <option value="">Choose your scope</option>
+                                    <option value="complete-opening">Complete opening package</option>
+                                    <option value="doors-frames">Doors &amp; frames</option>
+                                    <option value="hardware">Hardware</option>
+                                    <option value="access-control">Access control</option>
+                                    <option value="trim-millwork">Trim &amp; millwork</option>
+                                    <option value="project-documents">Project documents</option>
+                                    <option value="not-sure">Not sure yet</option>
+                                </select>
+                            </div>
+                            <div class="f">
+                                <label for="supply-install">Supply / installation *</label>
+                                <select id="supply-install" name="supply-install" required>
+                                    <option value="">Choose an option</option>
+                                    <option value="supply-only">Supply only</option>
+                                    <option value="supply-install">Supply and installation</option>
+                                    <option value="not-sure">Not sure yet</option>
+                                    <option value="documents-only">Documents only</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row2">
+                            <div class="f">
+                                <label for="bid-due">Bid due date</label>
+                                <input type="date" id="bid-due" name="bid-due">
+                            </div>
+                            <div class="f">
+                                <label for="plan-link">Plan link, if available</label>
+                                <input type="url" id="plan-link" name="plan-link" placeholder="https://" maxlength="500" inputmode="url">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- Service call fields -->
+                    <fieldset id="service-fields" hidden disabled>
+                        <p class="group-title">Where is the problem?</p>
+                        <div class="row2">
+                            <div class="f">
+                                <label for="property-name">Property / business name</label>
+                                <input type="text" id="property-name" name="property-name" maxlength="120">
+                            </div>
+                            <div class="f">
+                                <label for="door-location">Door mark / opening location</label>
+                                <input type="text" id="door-location" name="door-location" placeholder="For example: rear exit, door 104" maxlength="120">
+                            </div>
+                        </div>
+                        <div class="f">
+                            <label for="service-address">Full service address *</label>
+                            <input type="text" id="service-address" name="service-address" required autocomplete="street-address" maxlength="200">
+                        </div>
+                        <div class="row2">
+                            <div class="f">
+                                <label for="service-issue">Issue *</label>
+                                <select id="service-issue" name="service-issue" required>
+                                    <option value="">Choose the closest description</option>
+                                    <option value="wont-close">Door will not close or latch</option>
+                                    <option value="closer-operator">Closer or automatic operator problem</option>
+                                    <option value="lock-exit-device">Lock or exit-device problem</option>
+                                    <option value="damaged">Damaged door, frame, or hinges</option>
+                                    <option value="access-control">Access-control problem</option>
+                                    <option value="other">Something else</option>
+                                </select>
+                            </div>
+                            <div class="f">
+                                <label for="service-urgency">How soon is attention needed? *</label>
+                                <select id="service-urgency" name="service-urgency" required>
+                                    <option value="">Choose an option</option>
+                                    <option value="routine">Routine / planning ahead</option>
+                                    <option value="soon">Needs attention soon</option>
+                                    <option value="urgent">Urgent, please contact me</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <div class="f">
+                        <label for="message" id="message-label">Project details</label>
+                        <textarea id="message" name="message" rows="5" maxlength="4000" placeholder="Tell us about your project."></textarea>
                     </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="phone" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Phone</label>
-                        <input type="tel" id="phone" name="phone" style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem;">
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="project-type" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Project Type</label>
-                        <select id="project-type" name="project-type" style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem;">
-                            <option value="">Select a project type</option>
-                            <option value="access-control">Access Control System</option>
-                            <option value="door-hardware">Door Hardware</option>
-                            <option value="service-maintenance">Service & Maintenance</option>
-                            <option value="emergency-repair">Emergency Repair</option>
-                            <option value="consultation">Consultation</option>
-                        </select>
-                    </div>
-                    
-                    <div style="margin-bottom: 1.5rem;">
-                        <label for="message" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Project Details</label>
-                        <textarea id="message" name="message" rows="5" placeholder="Please describe your project, including building type, number of doors, specific requirements, and any other relevant details..." style="width: 100%; padding: 1rem; border: 1px solid #ddd; border-radius: var(--border-radius); font-size: 1rem; resize: vertical;"></textarea>
-                    </div>
-                    
+
+                    <fieldset id="service-extras" hidden disabled>
+                        <details>
+                            <summary>Different on-site contact? Add their details.</summary>
+                            <div class="row2">
+                                <div class="f">
+                                    <label for="onsite-name">On-site contact name</label>
+                                    <input type="text" id="onsite-name" name="onsite-name" maxlength="120">
+                                </div>
+                                <div class="f">
+                                    <label for="onsite-phone">On-site contact phone</label>
+                                    <input type="tel" id="onsite-phone" name="onsite-phone" maxlength="40">
+                                </div>
+                            </div>
+                        </details>
+                        <div class="f">
+                            <div class="drop">
+                                <label for="photos" style="margin: 0;"><strong>Add photos of the opening or hardware</strong></label>
+                                <p class="hint" id="photos-hint" style="margin: 0 0 0.75rem;">Optional. Up to 5 photos.</p>
+                                <input type="file" id="photos" accept="image/*" multiple aria-describedby="photos-hint photos-status">
+                                <div class="thumbs" id="thumbs"></div>
+                                <p class="hint" id="photos-status" role="status"></p>
+                            </div>
+                        </div>
+                    </fieldset>
+
                     <button type="submit" class="btn btn-primary" style="width: 100%;">Send Request</button>
-                    <div id="form-status" style="margin-top:12px;text-align:center;font-weight:500;"></div>
+                    <div id="form-status" role="status" style="margin-top:12px;text-align:center;font-weight:500;"></div>
                 </form>
                 <script>
-                document.getElementById('_timestamp').value = Date.now();
-                document.getElementById('contact-form').addEventListener('submit', async function(e) {
-                  e.preventDefault();
-                  const form = e.target;
-                  const btn = form.querySelector('[type="submit"]');
-                  const status = document.getElementById('form-status');
-                  const originalText = btn.textContent;
-                  btn.textContent = 'Sending...';
-                  btn.disabled = true;
-                  status.textContent = '';
-                  try {
-                    const fd = new FormData(form);
-                    const data = Object.fromEntries(fd);
-                    const res = await fetch('/api/contact', {
-                      method: 'POST',
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(data)
+                (function () {
+                  var form = document.getElementById('contact-form');
+                  var status = document.getElementById('form-status');
+                  var groups = {
+                    bid: [document.getElementById('bid-fields')],
+                    service: [document.getElementById('service-fields'), document.getElementById('service-extras')]
+                  };
+                  var message = document.getElementById('message');
+                  var messageLabel = document.getElementById('message-label');
+                  var phone = document.getElementById('phone');
+                  var phoneStar = document.getElementById('phone-star');
+                  var MAX_PHOTOS = 5;
+                  var photos = []; // data URLs, already shrunk
+                  document.getElementById('_timestamp').value = Date.now();
+                  // Nobody asks for a bid due date in the past.
+                  document.getElementById('bid-due').min = new Date().toISOString().slice(0, 10);
+
+                  function setType(type) {
+                    Object.keys(groups).forEach(function (key) {
+                      groups[key].forEach(function (el) {
+                        el.hidden = key !== type;
+                        el.disabled = key !== type;
+                      });
                     });
-                    if (res.ok) {
-                      status.innerHTML = '<span style="color:#22c55e">✓ Request sent! We\'ll be in touch within one business day.</span>';
-                      form.reset();
-                      document.getElementById('_timestamp').value = Date.now();
-                    } else { throw new Error(); }
-                  } catch(err) {
-                    status.innerHTML = '<span style="color:#dc2626">Error sending request. Please call (831) 757-1878.</span>';
-                  } finally {
-                    btn.textContent = originalText;
-                    btn.disabled = false;
+                    var service = type === 'service';
+                    message.required = service;
+                    phone.required = service;
+                    phoneStar.hidden = !service;
+                    messageLabel.textContent = service ? 'Describe what is happening *' : 'Anything else we should know?';
+                    message.placeholder = service
+                      ? 'What is the door or hardware doing? When did you notice it?'
+                      : 'Opening quantities, schedule requirements, or questions about the scope';
                   }
-                });
+                  form.querySelectorAll('input[name="request-type"]').forEach(function (radio) {
+                    radio.addEventListener('change', function () { setType(radio.value); });
+                    if (radio.checked) setType(radio.value);
+                  });
+
+                  // Photos are shrunk in the browser so five phone photos fit in one request.
+                  var photoInput = document.getElementById('photos');
+                  var photoStatus = document.getElementById('photos-status');
+                  var thumbs = document.getElementById('thumbs');
+
+                  function shrink(file, edge, quality) {
+                    return new Promise(function (resolve, reject) {
+                      var url = URL.createObjectURL(file);
+                      var img = new Image();
+                      img.onload = function () {
+                        var scale = Math.min(1, edge / Math.max(img.naturalWidth, img.naturalHeight));
+                        var canvas = document.createElement('canvas');
+                        canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
+                        canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
+                        canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                        URL.revokeObjectURL(url);
+                        resolve(canvas.toDataURL('image/jpeg', quality));
+                      };
+                      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('unreadable')); };
+                      img.src = url;
+                    });
+                  }
+
+                  function drawThumbs() {
+                    thumbs.innerHTML = '';
+                    photos.forEach(function (src, i) {
+                      var wrap = document.createElement('div');
+                      wrap.className = 'thumb';
+                      var img = document.createElement('img');
+                      img.src = src;
+                      img.alt = 'Photo ' + (i + 1);
+                      var btn = document.createElement('button');
+                      btn.type = 'button';
+                      btn.textContent = '×';
+                      btn.setAttribute('aria-label', 'Remove photo ' + (i + 1));
+                      btn.addEventListener('click', function () {
+                        photos.splice(i, 1);
+                        drawThumbs();
+                        photoStatus.textContent = photos.length ? photos.length + ' of ' + MAX_PHOTOS + ' photos added.' : '';
+                      });
+                      wrap.appendChild(img);
+                      wrap.appendChild(btn);
+                      thumbs.appendChild(wrap);
+                    });
+                  }
+
+                  photoInput.addEventListener('change', async function () {
+                    var files = Array.prototype.slice.call(photoInput.files || []);
+                    photoInput.value = '';
+                    var skipped = 0;
+                    for (var i = 0; i < files.length; i++) {
+                      if (photos.length >= MAX_PHOTOS) { skipped += files.length - i; break; }
+                      try {
+                        var data = await shrink(files[i], 1400, 0.75);
+                        if (data.length > 900000) data = await shrink(files[i], 1000, 0.7);
+                        if (data.indexOf('data:image/jpeg;base64,') !== 0 || data.length > 900000) throw new Error('too big');
+                        photos.push(data);
+                      } catch (e) { skipped++; }
+                    }
+                    drawThumbs();
+                    photoStatus.textContent = photos.length + ' of ' + MAX_PHOTOS + ' photos added.' +
+                      (skipped ? ' ' + skipped + ' could not be added. You can email them to service@mbdoor.com.' : '');
+                  });
+
+                  form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+                    var btn = form.querySelector('[type="submit"]');
+                    var originalText = btn.textContent;
+                    btn.textContent = 'Sending...';
+                    btn.disabled = true;
+                    status.textContent = '';
+                    try {
+                      // Disabled (hidden) groups are left out of FormData by the browser.
+                      var data = Object.fromEntries(new FormData(form));
+                      if (data['request-type'] === 'service' && photos.length) data.photos = photos;
+                      var res = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                      });
+                      if (!res.ok) throw new Error();
+                      status.innerHTML = '<span style="color:#15803d">Request sent. We\'ll be in touch within one business day.</span>';
+                      form.reset();
+                      photos = [];
+                      drawThumbs();
+                      photoStatus.textContent = '';
+                      setType('');
+                      document.getElementById('_timestamp').value = Date.now();
+                    } catch (err) {
+                      status.innerHTML = '<span style="color:#b91c1c">We could not send your request. Please call (831) 757-1878.</span>';
+                    } finally {
+                      btn.textContent = originalText;
+                      btn.disabled = false;
+                    }
+                  });
+                })();
                 </script>
             </div>
             
@@ -348,7 +590,8 @@
                         <p style="margin-bottom: 0.5rem;">1630 Lana Way Bldg B</p>
                         <p style="margin-bottom: 0.5rem;">Hollister, California 95023</p>
                         <p style="margin-bottom: 0.5rem;">Licensed • Bonded • Insured</p>
-                        <p style="margin-bottom: 0.5rem;">California Contractor's License #TBD</p>
+                        <p style="margin-bottom: 0.5rem;">Installs by Staley Construction</p>
+                        <p style="margin-bottom: 0.5rem;">California Contractor's License #858597</p>
                         <p style="margin-bottom: 1rem;">Serving Central California since 2007</p>
                     </div>
                     

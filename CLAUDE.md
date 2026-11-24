@@ -34,6 +34,18 @@ access control — Hollister, CA). GullStack client site.
 - **Next:** staleydoor.com has no form, only mailto bids@; it needs a visible
   service-call line (service@mbdoor.com, (831) 717-8624). Reply to Tito once live.
 
+## 2026-10-03 — Real leads resent to bids@
+
+- Tommy (email, 2 Oct): MBD never saw the 14-door-operator lead (30 Sept). It
+  went to Tommy's inbox only, before the bids@ switch.
+- Resent all real leads from the Blob log to bids@ (cc Tommy, bcc Bryce)
+  through SendGrid with the new template, subject "Resent lead (<date>): ...".
+  All four accepted (202) and arrived in Bryce's bcc. One per lead: Carmel
+  Foundation (14 ADA openers), J Mac general contractor (two forms combined),
+  water district glass doors (27 Jul), residential door and frame (8 Aug).
+- Open question: whether MBD's mail system files leads@gullstack.com mail as
+  junk. Tommy missing the 30 Sept lead suggests it might.
+
 ## 2026-09-30 — Leads to bids@, branded lead emails, /plan page for Tommy
 
 - **Lead routing (Tommy's text, 30 Sept: "Bids@mbdoor.com"):** `api/contact.js`
@@ -56,8 +68,8 @@ access control — Hollister, CA). GullStack client site.
   (Buildertrend/Jobber list prices, July 2026), dead stock back to cash.
   The lead email screenshot uses a made-up lead; no real lead's details are
   on the page (the QA gate caught the first version before push).
-- Email for Tommy: `plan-email-tommy.md` (untracked; commercial terms stay out of git).
-- **Next:** send Tommy the page; turn on Vercel Web Analytics; build the
+- Email with the /plan link sent to Tommy from bryce@gullstack.com on 1 Oct 2026 (text in `plan-email-tommy.md`, untracked).
+- **Next:** wait for Tommy's reply; turn on Vercel Web Analytics; build the
   commercial door repair page; access-control page with real counties.
 
 ## 2026-09-23 — Solicitations no longer email anyone
