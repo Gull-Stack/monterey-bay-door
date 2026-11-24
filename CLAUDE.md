@@ -36,15 +36,13 @@ access control — Hollister, CA). GullStack client site.
 - **Contact:** "Installs by Staley Construction" and license #858597 replace "TBD".
 - **Tested:** handler with SendGrid stubbed (service, quote, hostile values, old
   cached form, URL in message); photo shrink and submit in headless Chrome with the
-  request intercepted. **Not tested:** a real photo landing in Blob. The live test
-  sends an email, and the session's permission check blocked it. An upload failure
-  does not block the lead.
+  request intercepted. Live test on www.mbdoor.com (24 Nov, name "Claude Test",
+  to Bryce only): 2 photos stored in Blob and shown in the email, urgent banner on.
 - **Not verified:** license 858597 against the state license board (the lookup page
   did not load by script). The number is Erika's.
 - Reply sent to Erika from bryce@gullstack.com on 24 Nov 2026: all three are live,
   email the photos after 12 Dec.
-- **Next:** wait for Erika's feedback on the form. Send one real
-  service request with a photo and confirm the photo shows in the email. After
+- **Next:** wait for Erika's feedback on the form. After
   12 Dec 2026, add the CEO and team photos Erika sends.
 
 ## 2026-10-21 — Service calls and bids split on the contact form (Tito's ask)

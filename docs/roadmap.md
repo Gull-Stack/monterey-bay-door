@@ -16,7 +16,6 @@ Update this when priorities change. Keep it short enough to read in a minute.
 
 - After 12 Dec 2026: add the CEO portrait and team photo to /about/ when Erika
   sends them (swap the two placeholder boxes; see the comment in src/about/index.njk).
-- Send one real service request with a photo and confirm the photo shows in the email.
 
 ## Next
 
