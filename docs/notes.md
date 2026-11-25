@@ -20,6 +20,11 @@ Never put passwords, API keys, or tokens in this file.
 
 ## What the client said
 
+- Erika Garcia, 24 Nov 2026 (email, cc Tommy Rehak): the 23 Nov changes "look great".
+  Monterey Bay Door has overstock it wants to list and sell through the website.
+  Bryce's reply recommended an Overstock page with a "Request this item" button
+  first and card checkout later. Erika has not yet answered.
+
 - Erika Garcia, 23 Nov 2026 (email): the whole team meets on 12 Dec 2026. She sends
   the CEO portrait and the team photo after that. She asked how to send photos; the
   answer given is email to Bryce.

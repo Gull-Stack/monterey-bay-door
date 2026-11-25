@@ -16,6 +16,9 @@ Update this when priorities change. Keep it short enough to read in a minute.
 
 - After 12 Dec 2026: add the CEO portrait and team photo to /about/ when Erika
   sends them (swap the two placeholder boxes; see the comment in src/about/index.njk).
+- Overstock page (asked by Erika Garcia, 24 Nov 2026): list overstock items with
+  photo, specs, price and quantity, plus a "Request this item" button. Blocked on
+  Erika's item list and on who gets the requests. Card checkout is a later step.
 
 ## Next
 

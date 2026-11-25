@@ -18,6 +18,24 @@ access control — Hollister, CA). GullStack client site.
 
 # Session Log
 
+## 2026-11-24 (late) — Erika approves the three changes; asks how to sell overstock
+
+- **Erika Garcia, email 24 Nov 2026 (cc Tommy Rehak):** the form, About and license
+  changes "look great". The CEO and team photos still come after 12 Dec 2026.
+- **New ask, same email:** Monterey Bay Door has overstock to sell and wants to list
+  and sell it through mbdoor.com.
+- **Reply sent** from bryce@gullstack.com, reply-all, thread "MBD Website Photos".
+  It recommends an Overstock page: each item shows a photo, specs, price and quantity
+  left. Start with a "Request this item" button that sends the request to their
+  inbox. Add card checkout later if items sell.
+- **No code changed this session.** Nothing is built for overstock yet.
+- **Waiting on Erika:** the item list (item, size, quantity, price, a photo of each)
+  and who gets the requests, Erika or Tommy.
+- **Open for Bryce:** whether the Overstock page is free or billed. The reply named
+  no price.
+- **Next:** build the Overstock page when the list arrives. Add the two /about/
+  photos after 12 Dec 2026.
+
 ## 2026-11-24 — Erika's three asks: bigger forms, About photo spaces, license number
 
 - **Source:** Erika Garcia, three emails on 23 Nov 2026 ("MBD Website Photos"), with
